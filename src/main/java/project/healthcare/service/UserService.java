@@ -5,14 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import project.healthcare.domain.User.UserEntity;
 import project.healthcare.dto.UserDto;
-import project.healthcare.repository.UserRepositoroy;
+import project.healthcare.repository.UserRepository;
 
 import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    private final UserRepositoroy userRepository;
+    private final UserRepository userRepository;
     private EntityManager entityManager;
     public UserDto register(UserDto userDto) {
         return entityToDto(userRepository.save(dtoToEntity(userDto)));
