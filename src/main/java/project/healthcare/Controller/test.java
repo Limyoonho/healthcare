@@ -20,7 +20,7 @@ public class test {
         List<TestTable> list = testTableService.findAll();
         model.addAttribute("list",list);
         model.addAttribute("hi","hiEveryOne");
-    return "main";
+    return "index1";
     }
 
 }

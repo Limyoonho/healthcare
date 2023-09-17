@@ -11351,8 +11351,8 @@ section#contact form#contactForm :-ms-input-placeholder {
 .search-control {
   margin: auto;
   margin-top: 3%;
-  margin-left: 25%;
-  width: 450px; 
+  margin-left: 20%;
+  width: 400px; 
   height: 50px;
   border: 1px solid green;
   border-radius: 8px;
@@ -11362,15 +11362,9 @@ section#contact form#contactForm :-ms-input-placeholder {
 .search-btn{
   border : none; 
   background-color: white;
-  margin-left: 0%;
   width: 50px;
-  height: 50px;
-  margin-top: 3.5%;
+  height: 60px;
+  margin-top: 2%;
   color: limegreen;
   background-color: green;
-}
-
-#navbarNavDarkDropdown, .nav-item{
-  margin-left: 0%;
-
 }
