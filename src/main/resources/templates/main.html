@@ -31,12 +31,12 @@
                 <a class="navbar-brand" href="/take-care">
                     <img src="/img/Logo.png" alt="TAKE CARE" width="64" height="64">
                 </a>
-                <button class="navbar-toggler" 
-                    type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#navbarCollapse" 
-                    aria-controls="navbarCollapse" 
-                    aria-expanded="false" 
+                <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse"
+                    aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -69,9 +69,9 @@
                                 <a href="/logout">Logut</a>
                             </li>
 
-                            <li 
-                                class="breadcrumb-item text-end" 
-                                th:text="${session.userInfo.email}" 
+                            <li
+                                class="breadcrumb-item text-end"
+                                th:text="${session.userInfo.email}"
                                 style="color:white; vertical-align:middle;">
                             </li>
                         </th:block>
@@ -80,13 +80,13 @@
 
                 <!-- 수정필요 -->
                 <form class="d-flex" role="search" id="search-form" method="get" action="/search-page">
-                    <input 
-                        class="form-control me-2" 
-                        type="search" 
-                        placeholder="Search" 
+                    <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search"
                         aria-label="Search">
-                    <button 
-                        class="btn btn-outline-success" 
+                    <button
+                        class="btn btn-outline-success"
                         type="submit">Search
                     </button>
                 </form>
@@ -98,35 +98,35 @@
         <main>
             <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button 
+                    <button
                         type="button"
-                        data-bs-target="#myCarousel" 
-                        data-bs-slide-to="0" 
-                        class="active" 
-                        aria-current="true" 
+                        data-bs-target="#myCarousel"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
                         aria-label="Slide 1">
                     </button>
                     <button
                         type="button"
-                        data-bs-target="#myCarousel" 
-                        data-bs-slide-to="1" 
+                        data-bs-target="#myCarousel"
+                        data-bs-slide-to="1"
                         aria-label="Slide 2">
                     </button>
-                    <button 
-                        type="button" 
-                        data-bs-target="#myCarousel" 
-                        data-bs-slide-to="2" 
+                    <button
+                        type="button"
+                        data-bs-target="#myCarousel"
+                        data-bs-slide-to="2"
                         aria-label="Slide 3">
                     </button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <svg 
-                            class="bd-placeholder-img" 
-                            width="100%" 
-                            height="100%" 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            aria-hidden="true" 
+                        <svg
+                            class="bd-placeholder-img"
+                            width="100%"
+                            height="100%"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
                             preserveAspectRatio="xMidYMid slice"
                             focusable="false">
                             <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
@@ -143,13 +143,13 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <svg 
+                        <svg
                             class="bd-placeholder-img"
-                            width="100%" 
-                            height="100%" 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            aria-hidden="true" 
-                            preserveAspectRatio="xMidYMid slice" 
+                            width="100%"
+                            height="100%"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            preserveAspectRatio="xMidYMid slice"
                             focusable="false">
                             <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
                             <image href="/img/pill_2.png" width="100%" height="100%"/>
@@ -166,12 +166,12 @@
                     </div>
                     <div class="carousel-item">
                         <svg
-                            class="bd-placeholder-img" 
+                            class="bd-placeholder-img"
                             width="100%"
-                            height="100%" 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            aria-hidden="true" 
-                            preserveAspectRatio="xMidYMid slice" 
+                            height="100%"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            preserveAspectRatio="xMidYMid slice"
                             focusable="false">
                             <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
                             <image href="/img/pill_3.png" width="100%" height="100%"/>
@@ -187,18 +187,18 @@
                         </div>
                     </div>
                 </div>
-                <button 
-                    class="carousel-control-prev" 
-                    type="button" 
-                    data-bs-target="#myCarousel" 
+                <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#myCarousel"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button 
-                    class="carousel-control-next" 
-                    type="button" 
-                    data-bs-target="#myCarousel" 
+                <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#myCarousel"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
