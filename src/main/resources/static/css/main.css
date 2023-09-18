@@ -3795,12 +3795,14 @@ textarea.form-control-lg {
 .navbar-brand {
   padding-top: var(--bs-navbar-brand-padding-y);
   padding-bottom: var(--bs-navbar-brand-padding-y);
+  padding-right : 1em;
   margin-right: var(--bs-navbar-brand-margin-end);
   font-size: var(--bs-navbar-brand-font-size);
   color: var(--bs-navbar-brand-color);
   text-decoration: none;
   white-space: nowrap;
 }
+
 .navbar-brand:hover, .navbar-brand:focus {
   color: var(--bs-navbar-brand-hover-color);
 }
@@ -10973,26 +10975,13 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("https://cdn.discordapp.com/attachments/1151116737903857681/1152521836022738954/KakaoTalk_20230914_171028471.png");
+  background-image: url("/img/pill_1.png");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
 }
-header.masthead .masthead-subheading {
-  font-size: 1.5rem;
-  font-style: italic;
-  line-height: 1.5rem;
-  margin-bottom: 25px;
-  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-header.masthead .masthead-heading {
-  font-size: 3.25rem;
-  font-weight: 700;
-  line-height: 3.25rem;
-  margin-bottom: 2rem;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
+
 
 @media (min-width: 768px) {
   header.masthead {
@@ -11343,16 +11332,15 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 .d-flex{
   position: absolute;
-  top : 10%;
-  left: 27%;
+  margin-top : 1%;
+  padding-left : 10em;
   margin: auto;
 }
 
 .search-control {
   margin: auto;
-  margin-top: 3%;
-  margin-left: 25%;
-  width: 450px; 
+  margin-left: 15%;
+  width: 450px;
   height: 50px;
   border: 1px solid green;
   border-radius: 8px;
@@ -11365,7 +11353,7 @@ section#contact form#contactForm :-ms-input-placeholder {
   margin-left: 0%;
   width: 50px;
   height: 50px;
-  margin-top: 3.5%;
+
   color: limegreen;
   background-color: green;
 }
