@@ -42,7 +42,7 @@ public class BoardController {
     public String myPage() {
         return "myPage";
     }
-	
+
 	@RequestMapping("/join")
     public String join() {
         return "join";
