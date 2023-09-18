@@ -23,14 +23,14 @@ public class BoardController {
         return "searchPage";
     }
 
-    @RequestMapping("/company")
-    public String company() {
-        return "company";
+    @RequestMapping("/portfolio")
+    public String portfolio() {
+        return "portfolio";
     }
 
-    @RequestMapping("/community")
-    public String community() {
-        return "community";
+    @RequestMapping("/notice")
+    public String notice() {
+        return "notice";
     }
 
     @RequestMapping("/help-board")
@@ -41,5 +41,10 @@ public class BoardController {
     @RequestMapping("/my-page")
     public String myPage() {
         return "myPage";
+    }
+	
+	@RequestMapping("/join")
+    public String join() {
+        return "join";
     }
 }
