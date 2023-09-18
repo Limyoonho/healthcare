@@ -1,95 +1,96 @@
 <!DOCTYPE html>
-    <html
-            lang="en"
-            data-bs-theme="auto"
-            xmlns:th="http://www.thymeleaf.org"
-    >
+<html
+        lang="en"
+        data-bs-theme="auto"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head><script src="/js/color-modes.js"></script>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="">
-        <meta name="author" content="" />
-        <title th:text="'Search ' + ${query} + '''"></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.115.4">
+    <title th:text="'Search ' + ${query} + '''"></title>
 
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="img/Logo.png" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/main.css" rel="stylesheet" />
-    </head>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="/take-care">
-                <img src="/img/Logo.png" alt="TAKE CARE">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+
+</head>
+<body>
+    <header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/img/Logo.png" alt="TAKE CARE" width="64" height="64">
             </a>
             <button class="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#navbarResponsive"
-                    aria-controls="navbarResponsive"
+                    data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse"
                     aria-expanded="false"
                     aria-label="Toggle navigation">
-                <i class="fas fa-bars ms-1"></i>
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <button class="btn btn-dark dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <form class="d-flex" role="search" method="get" action="/search-page">
-                <input
-                        class="search-control"
-                        type="search"
-                        placeholder="검색어를 입력해주세요"
-                        aria-label="Search">
-                <button class="search-btn" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         fill="currentColor"
-                         class="bi bi-search"
-                         viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </button>
-            </form>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/portfolio">Portfolio</a>
+                        <a class="nav-link" href="/company">Company</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/notice">Notice</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/my-page">Mypage</a>
+                        <a class="nav-link" href="/community">Community</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/help-board">Help</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/join">Join</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="/my-page">My Page</a>
                     </li>
                 </ul>
+                <!-- 로그인 | 회원가입 -->
+                <div>
+                    <ol class="breadcrumb" >
+                        <th:block th:if="${session.userInfo==null}">
+                            <li class="breadcrumb-item text-end">
+                                <a href="/login" >LogIn</a>
+                            </li>
+                        </th:block>
+
+                        <th:block th:unless="${session.userInfo==null}">
+                            <li class="breadcrumb-item text-end" >
+                                <a href="/logout">Logut</a>
+                            </li>
+
+                            <li
+                                    class="breadcrumb-item text-end"
+                                    th:text="${session.userInfo.email}"
+                                    style="color:white; vertical-align:middle;">
+                            </li>
+                        </th:block>
+                    </ol>
+                </div>
+
+                <!-- 수정필요 -->
+                <form class="d-flex" role="search" id="search-form" method="get" action="/search-page">
+                    <input
+                            class="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search">
+                    <button
+                            class="btn btn-outline-success"
+                            type="submit">Search
+                    </button>
+                </form>
             </div>
         </div>
     </nav>
+</header>
+</body>
 </html>
