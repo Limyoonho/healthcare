@@ -53,6 +53,9 @@ public class BoardController {
         return "login";
     }
 
-    @RequestMapping("map")
+    @RequestMapping("/map")
     public String map() { return "map";}
+
+    @RequestMapping("/health-map")
+    public String healthMap() { return "healthMap";}
 }
