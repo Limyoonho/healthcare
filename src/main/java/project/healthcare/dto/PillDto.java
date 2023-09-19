@@ -8,4 +8,6 @@ public class PillDto {
     private String photo;
     private String[] details;
 
+
+
 }

@@ -5,40 +5,55 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import project.healthcare.dto.PillDto;
 
-public class PillTableService {
-    public static void main(String[] args) {
-        String[] productInfo = new String[]{"모델번호 : ", "출시일 : ", "컬러 : ", "발매가 : "};
+import java.io.IOException;
+import java.util.ArrayList;
 
-        //상품번호 10000번부터 10010번까지 스크래핑
-        for (int productNum = 10000; productNum <= 10010; productNum++) {
+public class PillTableService extends PillDto{
+    public static void main(String[] args) throws IOException {
+        final String URL = "https://www.pillyze.com/hig/broad/";
 
-            final String url = "https://kream.co.kr/products/10000";
+        String[] arr = {"fatigue/recommend-product", "eyes", "skincare", "fat", "blood_circulation",
+                "liver/recommend-product", "intestine", "sleep", "immunity/recommend-product", "cholesterol"};
+
+        ArrayList<String> list = new ArrayList<>();
+
+        for(int i=0; i<arr.length; i++){
+            list.add(arr[i]);
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            String connectUrl = URL + list.get(i);
+            Connection conn = Jsoup.connect(connectUrl);
 
             try {
-                Connection conn = Jsoup.connect(url);
                 Document document = conn.get();
-                //상품 이미지 URL
-                Element imageUrl = document.getElementsByAttributeValue("alt", "상품 이미지").first();
+                Elements imageElements = document.select(".item-cards > a > .item-img");
+                Elements componyElements = document.select(".item-cards > a > .txt1");
+                Elements nameElements = document.select(".item-cards > a > .txt2");
+                Elements effectElements = document.select(".item-cards > a > .tag-type1-wrap");
+                //Elements detailElements = document.select(".item-cards > a > .tag-type2-wrap");
 
-                //브랜드
-                Element brand = document.getElementsByClass("brand").first();
+                for (int j = 0; j < imageElements.size(); j++) {
+                    final String image = imageElements.get(j).attr("abs:src");
+                    final String compony = componyElements.get(j).text();
+                    final String name = nameElements.get(j).text();
+                    final String effect = effectElements.get(j).text();
+                    //final String detail = detailElements.get(j).text();
 
-                //상품명
-                Element title = document.getElementsByClass("sub_title").first();
 
-                //상품정보
-                Elements info = document.getElementsByClass("product_info");
-
-                System.out.println("productNumber : " + productNum);
-                System.out.println("상품 이미지 URL : " + imageUrl.attr("abs:src"));
-                System.out.println("브랜드 : " + brand.text());
-                System.out.println("상품명 : " + title.text());
-                for (int infoIdx = 0; infoIdx < info.size(); infoIdx++) {
-                    System.out.println(productInfo[infoIdx] + info.get(infoIdx).text());
+                    System.out.println("상품 이미지: " + image);
+                    System.out.println("상품 회사: " + compony);
+                    System.out.println("상품 이름 : " + name);
+                    System.out.println("상품 효과 : " + effect);
+                   // System.out.println("상품 성분 : " + detail);
+                    System.out.println("==========================================================================");
                 }
-                System.out.println("---------------------------");
-            } catch (Exception e) {
+                connectUrl = "";
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
