@@ -58,4 +58,7 @@ public class BoardController {
 
     @RequestMapping("/health-map")
     public String healthMap() { return "healthMap";}
+	
+	@RequestMapping("/survey")
+    public String survey() { return "survey"; }
 }
