@@ -42,9 +42,23 @@ public class BoardController {
     public String myPage() {
         return "myPage";
     }
-	
-	@RequestMapping("/join")
+
+    @RequestMapping("/join")
     public String join() {
         return "join";
     }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping("/map")
+    public String map() { return "map";}
+
+    @RequestMapping("/health-map")
+    public String healthMap() { return "healthMap";}
+	
+	@RequestMapping("/survey")
+    public String survey() { return "survey"; }
 }
