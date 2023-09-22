@@ -11329,7 +11329,6 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-
 .d-flex {
     display: flex;
     align-items: center;
@@ -11355,6 +11354,15 @@ section#contact form#contactForm :-ms-input-placeholder {
     background-color: green;
     color: white;
     margin-left: 10px; /* 버튼을 오른쪽에 띄우려면 margin-left를 사용 */
+
+.search-control {
+  margin: auto;
+  margin-left: 15%;
+  width: 450px;
+  height: 50px;
+  border: 1px solid green;
+  border-radius: 8px;
+  padding: 10px 12px;
 }
 
 #navbarNavDarkDropdown, .nav-item{
