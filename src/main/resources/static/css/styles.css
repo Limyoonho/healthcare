@@ -11374,3 +11374,25 @@ section#contact form#contactForm :-ms-input-placeholder {
   margin-left: 0%;
 
 }
+.survey {
+  background-color: #b8dff8;
+  padding: 60px;
+}
+.surveyBtn {
+  margin-top: 40px;
+}
+.surveyBtn a {
+  border: none;
+  background-color: #1a1e21;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+.surveyBtn a:hover {
+  background-color: white;
+  color: #1a1e21;
+}
