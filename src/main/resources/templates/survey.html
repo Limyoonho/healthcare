@@ -1,98 +1,193 @@
 <!DOCTYPE html>
-    <html
-            lang="en"
-            data-bs-theme="auto"
-            xmlns:th="http://www.thymeleaf.org"
-    >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>건강 설문 조사</title>
+    <link rel="stylesheet" href="/css/styles_survey.css">
+    <style>
+        /* 추가된 스타일 */
+        .question-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .question {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>건강 설문 조사</h1>
+    <form th:action="@{/home/submit}" method="post" onsubmit="return showConfirmation()">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="">
-        <meta name="author" content="" />
-        <title>Portfolio</title>
-
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="img/Logo.png" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/main.css" rel="stylesheet" />
-    </head>
-
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="/take-care">
-                    <img src="/img/Logo.png" alt="TAKE CARE">
-                </a>
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarResponsive"
-                        aria-controls="navbarResponsive"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <i class="fas fa-bars ms-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-dark dropdown-toggle"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Dropdown
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <form class="d-flex" role="search" method="get" action="/search-page">
-                    <input
-                            class="search-control"
-                            type="search"
-                            placeholder="검색어를 입력해주세요"
-                            aria-label="Search">
-                    <button class="search-btn" type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             fill="currentColor"
-                             class="bi bi-search"
-                             viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg>
-                    </button>
-                </form>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/portfolio">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/notice">Notice</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/my-page">Mypage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/help-board">Help</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/join">Join</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                    </ul>
-                </div>
+        <!-- 첫 번째 질문 -->
+        <div class="question-container">
+            <label class="question">영양제 섭취가 하루의 일과에서 필수적이라고 생각하시나요?</label>
+            <div class="radio-group">
+                <input type="radio" id="nutrientNotAtAll" name="nutrient_necessity" th:value="'결코 아니다'">
+                <label for="nutrientNotAtAll" th:text="'결코 아니다'"></label><br>
+                <input type="radio" id="nutrientNotNecessarily" name="nutrient_necessity" th:value="'그렇지 않은 편이다'">
+                <label for="nutrientNotNecessarily" th:text="'그렇지 않은 편이다'"></label><br>
+                <input type="radio" id="nutrientSomewhat" name="nutrient_necessity" th:value="'다소 그렇다'">
+                <label for="nutrientSomewhat" th:text="'다소 그렇다'"></label><br>
+                <input type="radio" id="nutrientDefinitely" name="nutrient_necessity" th:value="'확실히 그렇다'">
+                <label for="nutrientDefinitely" th:text="'확실히 그렇다'"></label><br>
+                <input type="radio" id="nutrientNotSure" name="nutrient_necessity" th:value="'잘 모르겠다'">
+                <label for="nutrientNotSure" th:text="'잘 모르겠다'"></label><br>
             </div>
-        </nav>
-    </body>
+        </div>
+
+        <!-- 두 번째 질문 -->
+        <div class="question-container">
+            <label class="question">연령대가 어떻게 되시나요?</label>
+            <div class="radio-group">
+                <input type="radio" id="age20s" name="age_group" th:value="'20대'">
+                <label for="age20s" th:text="'20대'"></label><br>
+                <input type="radio" id="age30s" name="age_group" th:value="'30대'">
+                <label for="age30s" th:text="'30대'"></label><br>
+                <input type="radio" id="age40s" name="age_group" th:value="'40대'">
+                <label for="age40s" th:text="'40대'"></label><br>
+                <input type="radio" id="age50s" name="age_group" th:value="'50대'">
+                <label for="age50s" th:text="'50대'"></label><br>
+                <input type="radio" id="age60s" name="age_group" th:value="'60대 이상'">
+                <label for="age60s" th:text="'60대 이상'"></label><br>
+            </div>
+        </div>
+
+        <!-- 세 번째 질문 -->
+        <div class="question-container">
+            <label class="question">영양제를 복용할 때 한 주에 얼마나 자주 영양제를 챙겨드시나요?</label>
+            <div class="radio-group">
+                <input type="radio" id="nutrient1-2Days" name="nutrient_frequency" th:value="'1~2일'">
+                <label for="nutrient1-2Days" th:text="'1~2일'"></label><br>
+                <input type="radio" id="nutrient3-4Days" name="nutrient_frequency" th:value="'3~4일'">
+                <label for="nutrient3-4Days" th:text="'3~4일'"></label><br>
+                <input type="radio" id="nutrient5-6Days" name="nutrient_frequency" th:value="'5~6일'">
+                <label for="nutrient5-6Days" th:text="'5~6일'"></label><br>
+                <input type="radio" id="nutrientEveryday" name="nutrient_frequency" th:value="'매일 챙겨먹는다'">
+                <label for="nutrientEveryday" th:text="'매일 챙겨먹는다'"></label><br>
+                <input type="radio" id="nutrientNone" name="nutrient_frequency" th:value="'먹지 않는다'">
+                <label for="nutrientNone" th:text="'먹지 않는다'"></label><br>
+            </div>
+        </div>
+
+        <!-- 네 번째 질문 -->
+        <div class="question-container">
+            <label class="question">어떤 형태의 영양제를 선호하시나요?</label>
+            <div class="radio-group">
+                <input type="radio" id="nutrientPowder" name="nutrient_form" th:value="'가루'">
+                <label for="nutrientPowder" th:text="'가루'"></label><br>
+                <input type="radio" id="nutrientPill" name="nutrient_form" th:value="'알약'">
+                <label for="nutrientPill" th:text="'알약'"></label><br>
+                <input type="radio" id="nutrientTablet" name="nutrient_form" th:value="'타블렛'">
+                <label for="nutrientTablet" th:text="'타블렛'"></label><br>
+                <input type="radio" id="nutrientGummy" name="nutrient_form" th:value="'젤리'">
+                <label for="nutrientGummy" th:text="'젤리'"></label><br>
+                <input type="radio" id="nutrientPotion" name="nutrient_form" th:value="'물약'">
+                <label for="nutrientPotion" th:text="'물약'"></label><br>
+            </div>
+        </div>
+
+        <!-- 다섯 번째 질문 -->
+        <div class="question-container">
+            <label class="question">영양제가 필요한 부위가 있다면 어디인가요?</label>
+            <div class="radio-group">
+                <input type="radio" id="discomfortEyes" name="discomfort_area" th:value="'눈'">
+                <label for="discomfortEyes" th:text="'눈'"></label><br>
+                <input type="radio" id="discomfortLiver" name="discomfort_area" th:value="'간'">
+                <label for="discomfortLiver" th:text="'간'"></label><br>
+                <input type="radio" id="discomfortLungs" name="discomfort_area" th:value="'폐'">
+                <label for="discomfortLungs" th:text="'폐'"></label><br>
+                <input type="radio" id="discomfortNose" name="discomfort_area" th:value="'코'">
+                <label for="discomfortNose" th:text="'코'"></label><br>
+                <input type="radio" id="discomfortNone" name="discomfort_area" th:value="'없음'">
+                <label for="discomfortNone" th:text="'없음'"></label><br>
+            </div>
+        </div>
+
+        <!-- 여섯 번째 질문 -->
+        <div class="question-container">
+            <label class="question">원하는 기능이 있다면 무엇인가요?</label>
+            <div class="radio-group">
+                <input type="radio" id="desiredRecovery" name="desired_function" th:value="'피로회복'">
+                <label for="desiredRecovery" th:text="'피로회복'"></label><br>
+                <input type="radio" id="desiredExerciseSupport" name="desired_function" th:value="'운동보조'">
+                <label for="desiredExerciseSupport" th:text="'운동보조'"></label><br>
+                <input type="radio" id="desiredAntiAging" name="desired_function" th:value="'노화방지'">
+                <label for="desiredAntiAging" th:text="'노화방지'"></label><br>
+                <input type="radio" id="desiredHealth" name="desired_function" th:value="'건강기능'">
+                <label for="desiredHealth" th:text="'건강기능'"></label><br>
+                <input type="radio" id="desiredNone" name="desired_function" th:value="'없음'">
+                <label for="desiredNone" th:text="'없음'"></label><br>
+            </div>
+        </div>
+
+        <!-- 일곱 번째 질문 -->
+        <div class="question-container">
+            <label class="question">필요한 주요 성분을 골라주세요.(중복 선택 가능)</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="desiredVitaminC" name="desired_ingredients" th:value="'비타민C'">
+                <label for="desiredVitaminC" th:text="'비타민C'"></label><br>
+                <input type="checkbox" id="desiredProbiotics" name="desired_ingredients" th:value="'유산균(프로바이오틱스)'">
+                <label for="desiredProbiotics" th:text="'유산균(프로바이오틱스)'"></label><br>
+                <input type="checkbox" id="desiredOmega3" name="desired_ingredients" th:value="'오메가3'">
+                <label for="desiredOmega3" th:text="'오메가3'"></label><br>
+                <input type="checkbox" id="desiredCollagen" name="desired_ingredients" th:value="'콜라겐'">
+                <label for="desiredCollagen" th:text="'콜라겐'"></label><br>
+                <input type="checkbox" id="desiredArginine" name="desired_ingredients" th:value="'아르기닌'">
+                <label for="desiredArginine" th:text="'아르기닌'"></label><br>
+            </div>
+        </div>
+
+        <button type="submit">제출</button>
+    </form>
+
+    <script>
+        function showConfirmation() {
+    var result = confirm("제출 하시겠습니까?");
+    if (result) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var radioGroups = document.querySelectorAll('.radio-group');
+
+        var checkboxesValid = true;
+        var radioGroupsValid = true;
+
+        checkboxes.forEach(function (checkbox) {
+            var name = checkbox.name;
+            if (!document.querySelector('input[name="' + name + '"]:checked')) {
+                checkboxesValid = false;
+                checkbox.nextElementSibling.style.color = 'red'; // 미체크된 항목의 텍스트 색상을 빨간색으로 변경
+            }
+        });
+
+        radioGroups.forEach(function (group) {
+            var name = group.querySelector('input[type="radio"]').name;
+            if (!document.querySelector('input[name="' + name + '"]:checked')) {
+                radioGroupsValid = false;
+                group.querySelector('label').style.color = 'red'; // 미선택된 라디오 그룹의 라벨 텍스트 색상을 빨간색으로 변경
+            }
+        });
+
+        if (!checkboxesValid || !radioGroupsValid) {
+            alert("모든 항목을 선택하세요.");
+            return false;
+        }
+
+        alert("제출되었습니다");
+        return true;
+    } else {
+        alert("취소되었습니다");
+        return false;
+    }
+}
+
+    </script>
+</div>
+</body>
 </html>

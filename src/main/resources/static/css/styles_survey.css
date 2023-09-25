@@ -1,0 +1,110 @@
+/* styles_survey.css */
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0 0 20px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 97%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #357abf;
+}
+
+/* 추가된 CSS 스타일 */
+.question-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.question {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.radio-group label,
+.checkbox-group label {
+  display: inline;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+/* 원 모양 체크박스 스타일 */
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+  display: none;
+}
+
+.radio-group label::before,
+.checkbox-group label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #4285f4;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* 체크박스 선택 시 스타일 */
+.radio-group input[type="radio"]:checked + label::before,
+.checkbox-group input[type="checkbox"]:checked + label::before {
+  background-color: #4285f4;
+}
+
+/* 추가된 원 모양 체크박스 스타일 끝 */
