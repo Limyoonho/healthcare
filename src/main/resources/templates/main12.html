@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pill Data</title>
+    <style>
+        .scroll-table {
+            overflow-x: auto;
+        }
+
+        .table-container {
+            display: flex;
+            max-width: 100%;
+        }
+
+        .table-container > table {
+            flex: 1;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Pill Data</h1>
+<div class="scroll-table">
+    <div class="table-container">
+        <!-- Basic Info Table -->
+        <table>
+            <thead>
+            <tr>
+                <th style="width: 100px;">Company</th>
+                <th style="width: 100px;">Product</th>
+                <th style="width: 100px;">Expiry Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pill : ${pillBasics}">
+                <td th:text="${pill.company}"></td>
+                <td th:text="${pill.product}"></td>
+                <td th:text="${pill.exDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Detail Info Table -->
+        <table>
+            <thead>
+            <tr>
+                <th style="width: 150px;">Base Standard</th>
+                <th style="width: 150px;">Main Function</th>
+                <th style="width: 150px;">Service Use</th>
+                <th style="width: 150px;">Intake Hint</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pills : ${pillDetails}">
+                <td th:text="${pills.baseStandard}"></td>
+                <td th:text="${pills.effect}"></td>
+                <td th:text="${pills.srvUse}"></td>
+                <td th:text="${pills.intakeHint}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
