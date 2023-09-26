@@ -1,7 +1,7 @@
 package project.healthcare.dto;
 
 import lombok.Data;
-import project.healthcare.entity.UserEntity;
+import project.healthcare.Entity.UserEntity;
 
 @Data
 public class UserDTO {

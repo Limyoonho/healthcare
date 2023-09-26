@@ -1,7 +1,11 @@
-package project.healthcare.entity;
+package project.healthcare.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @NoArgsConstructor
 @Entity
@@ -47,5 +51,36 @@ public class UserEntity {
         this.userAuth = userAuth;
         this.appendDate = appendDate;
         this.updateDate = updateDate;
+    }
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> collectors = new ArrayList<>();
+        collectors.add(() -> {
+            return "ROLE_USER";
+        });
+
+        return collectors;
+    }
+    public String getPassword() {
+        return this.userPw;
+    }
+
+    public String getUsername() {
+        return this.userId;
+    }
+
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    public boolean isEnabled() {
+        return true;
     }
 }
