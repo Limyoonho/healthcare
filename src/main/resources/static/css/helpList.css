@@ -1,0 +1,95 @@
+.layout {
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10%; /* Remove the default margin */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black; /* Add right border to separate columns */
+}
+
+th:nth-child(1) {
+    width: 25%; /* Set the width for 글 번호 */
+}
+
+th:nth-child(2) {
+    width: 50%; /* Set the width for 제목 */
+   text-align:center;
+}
+
+th:nth-child(3) {
+    width: 25%; /* Set the width for 작성 일자 */
+}
+
+/* Adjust the margin for the search form */
+
+tr:nth-child(odd) {
+    border-bottom: 1px solid black;
+}
+
+tr:nth-child(even) {
+    border-bottom: 1px solid black;
+}
+
+
+/* Style for the span tag */
+.question {
+    display: block; /* Make the span a block element to stack vertically */
+    text-align: center; /* Center align the text */
+    font-style: italic; /* Make the text italic */
+}
+
+/* 페이징 */
+
+.paging {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paging th {
+    padding: 10px;
+    text-align: center;
+}
+
+.paging a {
+    text-decoration: none;
+    color: black;
+}
+
+.paging strong {
+    color: red;
+}
+
+/* 검색 */
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-form input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.search-form button {
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}

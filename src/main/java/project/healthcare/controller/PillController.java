@@ -80,7 +80,7 @@ public class PillController {
             List<PillBasic> pillBasics = pillBasicService.getAllPillBasics();
             List<PillDetail> pillDetails = pillDetailService.getAllDetails();
 
-            for(int i=0; i<items.size(); i++){
+            for(int i=0; i<items.size(); i++){ //ok you search HA GI JEON DELETE -> UPDATE YOU ADD DET_AT//<- what is this??? DELETE ﻿여﻿부 dkgka COLUMN FOR YOUR TABLE OK?
                 JSONObject item = (JSONObject) items.get(i);
                 JSONObject itemIn = (JSONObject) item.get("item");
 
@@ -90,7 +90,7 @@ public class PillController {
                 basic.setProduct(String.valueOf(itemIn.get("PRDUCT")));
                 basic.setExDate(String.valueOf(itemIn.get("DISTB_PD")));
 
-               // pillBasicService.save(basic);
+                //pillBasicService.save(basic);
 
                 PillDetail detail = new PillDetail();
 
@@ -101,16 +101,16 @@ public class PillController {
                 detail.setSrvUse(String.valueOf(itemIn.get("SRV_USE")).replace("\n","#%$"));
                 detail.setIntakeHint(String.valueOf(itemIn.get("INTAKE_HINT1")).replace("\n","#%$"));
 
-               // pillDetailService.save(detail);
+                //pillDetailService.save(detail);
 
                 model.addAttribute("pillBasics", pillBasics);
                 model.addAttribute("pillDetails", pillDetails);
             }
-        return "main12";
+        return "pill";
         }
 
     @RequestMapping("/take-care")
     public String main(Model model) {
-        return "index1";
+        return "main";
     }
     }

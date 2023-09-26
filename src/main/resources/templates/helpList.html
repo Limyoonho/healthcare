@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html
-        lang="en"
-        data-bs-theme="auto"
-        xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="" />
-    <title>Join</title>
+    <link href="/css/helpList.css" rel="stylesheet" />
+    <title>문의사항 리스트</title>
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/Logo.png" />
@@ -22,6 +20,7 @@
     <link href="/css/main.css" rel="stylesheet" />
 </head>
 
+<body>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -43,7 +42,7 @@
                     <button class="btn btn-dark dropdown-toggle"
                             data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Dropdown
+                        Dropdown
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="#">Action</a></li>
@@ -92,4 +91,39 @@
         </div>
     </div>
 </nav>
+    <div class="layout">
+        <span class="question"><h1>문의사항</h1>불편사항이 있으면 언제든지 문의 해주세요</span>
+        <table>
+        <thead>
+          <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+            <th>작성 일자</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="help : ${list}">
+            <td th:text="${help.id}">1</td>
+            <td>
+                <a th:text="${help.title}" th:href="@{/help/view(id=${help.id})}"></a></td>
+              <td>2222</td>
+          </tr>
+        </tbody>
+        </table>
+
+        <div class="paging">
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                <a th:if="${page != nowPage}" th:href="@{/help/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+                <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
+            </th:block>
+        </div>
+        <div class="search-form">
+            <form th:action="@{/help/list}" method="get">
+                <input type="text" name="searchKeyword">
+                <button class="help-search" type="submit">검색</button>
+            </form>
+        </div>
+
+    </div>
+</body>
 </html>

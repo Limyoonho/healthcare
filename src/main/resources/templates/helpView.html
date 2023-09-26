@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상제보기</title>
+</head>
+<body>
+    <h1 th:text="${view.title}">제목입니다.</h1>
+    <p th:text="${view.content}">내용이 들어 갈 부분 입니다.</p>
+    <a th:href="@{/help/delete(id=${view.id})}">글 삭제</a>
+    <a th:href="@{/help/modify/{id}(id= ${view.id})}">수정</a>
+</body>
+</html>

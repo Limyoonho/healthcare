@@ -17,9 +17,9 @@ public class PillDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "company", nullable = false)
     private String company;
+
 
     @Column(name = "product", nullable = false)
     private String product;
