@@ -18,21 +18,65 @@
   <link href="/css/main.css" rel="stylesheet" />
 </head>
 <style>
-  .layout{
-  width:500px;
-  margin : 0 auto;
-  margin-top : 20%;
+  .layout {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-top : 10%;
   }
 
-  .layout input{
-  width : 100%;
-  box-sizing : border-box;
+  .write-form {
+      display: flex;
+      flex-direction: column;
+
   }
 
-  .layout textarea{
-  width : 100%;
-  margin-top : 10px;
-  min-height : 300px;
+  .title-modify,
+  .content-modify {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+
+  .content-modify{
+      height: 350px;
+  }
+
+  .write-submit, .write-retry {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 50%;
+      text-decoration-line: none;
+      text-align: center;
+      margin-right: -10px;
+  }
+
+  .write-submit{
+      background-color: green;
+      color: #fff;
+  }
+
+  .write-retry{
+      background-color: green;
+      color: #fff;
+  }
+  .button-container {
+       display: flex;
+       justify-content: space-between;
+  }
+
+  .write-submit:hover {
+      background-color: #00b303;
+  }
+
+  .write-retry:hover {
+      background-color: #00b303;
   }
 </style>
 <body>
@@ -93,7 +137,7 @@
           <a class="nav-link" href="/my-page">Mypage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/help-board">Help</a>
+          <a class="nav-link" href="/help/list">Help</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/join">Join</a>
@@ -107,11 +151,46 @@
 </nav>
 
 <div class="layout">
-  <form th:action="@{/help/update/{id}(id=${view.id})}" method="post">
-    <input name="title" type="text" th:value="${view.title}">
-    <textarea name="content" th:text="${view.content}"></textarea>
-    <button type="submit">수정</button>
+  <h2 style="text-align:center">게시판 수정</h2>
+  <hr />
+  <form class="write-form" th:action="@{/help/update/{id}(id=${view.id})}" method="post" onsubmit="showConfirm(event)">
+    <input class="title-modify" name="title" type="text" th:value="${view.title}" required>
+    <textarea class="content-modify" name="content" th:text="${view.content}" required></textarea>
+    <div class="button-container">
+    <a th:href="@{/help/view(id=${view.id})}" class="write-retry">돌아가기</a>
+    <button class="write-submit" type="submit">수정</button>
+    </div>
   </form>
 </div>
+
+<script>
+  function showConfirm(event) {
+      var result = confirm("수정 하시겠습니까?");
+      if(result == true){
+          alert("수정 되었습니다");
+      }else{
+          event.preventDefault();
+      }
+  }
+</script>
+<br>
+<br>
+<br>
+<footer class="footer py-4">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-4 text-lg-start">COPYRIGHT &copy; 2023. TAKE CARE. ALL RIGHTS RESERVED.</div>
+      <div class="col-lg-4 my-3 my-lg-0">
+        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a class="link-dark text-decoration-none me-3" href="#">Privacy Policy</a>
+        <a class="link-dark text-decoration-none" href="javascript:void(0);" onclick="scrollToTop();">Back to top</a>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

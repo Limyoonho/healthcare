@@ -1,95 +1,115 @@
 .layout {
-    width: 800px;
-    margin: 0 auto;
     margin-top: 10%;
+    text-align: left;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10%; /* Remove the default margin */
+.table123 {
+    margin: 0 auto; /* 가운데 정렬 */
+    width: 80%; /* 원하는 테이블 너비로 조절 */
+    border-collapse: separate;
+    border-spacing: 0px; /* 셀 간격을 조절 (수평 간격 20px) */
+    margin-top: 5%;
 }
 
 th, td {
-    padding: 10px;
+    padding: 15px; /* 간격을 넓힘 */
     text-align: left;
     border-bottom: 1px solid black;
-    border-right: 1px solid black; /* Add right border to separate columns */
 }
 
 th:nth-child(1) {
-    width: 25%; /* Set the width for 글 번호 */
+    width: 100px; /* 글 번호 너비 조절 */
+    text-align: left;
 }
 
 th:nth-child(2) {
-    width: 50%; /* Set the width for 제목 */
-   text-align:center;
+    width: 250px; /* 두 번째 컬럼 너비 조절 */
+    text-align: center;
 }
 
 th:nth-child(3) {
-    width: 25%; /* Set the width for 작성 일자 */
+    width: 150px; /* 작성 일자 너비 조절 */
+    text-align: left;
 }
 
-/* Adjust the margin for the search form */
-
+th:nth-child(4) {
+    width: 150px; /* 작성 일자 너비 조절 */
+        text-align: left;
+}
 tr:nth-child(odd) {
-    border-bottom: 1px solid black;
+    background-color: #f2f2f2;
 }
 
 tr:nth-child(even) {
-    border-bottom: 1px solid black;
+    background-color: #ffffff;
 }
 
-
-/* Style for the span tag */
 .question {
-    display: block; /* Make the span a block element to stack vertically */
-    text-align: center; /* Center align the text */
-    font-style: italic; /* Make the text italic */
+    margin-left: 10%;
 }
 
+.question2 {
+    display: block; /* 문의사항 문구를 블록 요소로 변경하여 아래에 표시 */
+    margin-top: 10px; /* 문의사항 문구 위 여백 조절 */
+}
 /* 페이징 */
 
 .paging {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding:40px;
 }
 
 .paging th {
     padding: 10px;
     text-align: center;
+    display: flex;
 }
 
 .paging a {
     text-decoration: none;
     color: black;
+    padding: 13px;
 }
 
 .paging strong {
     color: red;
 }
 
+.paging th:block {
+    display: inline-block;
+
+}
+
 /* 검색 */
 
 .search-form {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    position : absolute;
+    float : right;
+    top : 0;
+    margin-left : 35%;
 }
 
 .search-form input {
-    width: 200px;
+    width: 300px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;
 }
 
-.search-form button {
+.help-search, .write-pro{
     margin-left: 10px;
     padding: 10px;
-    border: 1px solid black;
     border-radius: 5px;
-    background-color: black;
+    background-color: green;
     color: white;
+    border:gainsboro;
+}
+
+a{
+text-decoration-line: none;
 }

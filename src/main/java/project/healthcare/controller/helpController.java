@@ -26,14 +26,9 @@ public class helpController {
 
     @PostMapping("/help/writepro")
     public String helpWritePro(Help help, Model model) {
-
         helpService.write(help);
 
-        model.addAttribute("message", "글 작성이 완료되었습니다");
-        model.addAttribute("message", "글 작성이 실패되었습니다");
-        model.addAttribute("searchUrl","/help/list");
-
-        return "message";
+        return "redirect:/help/list";
     }
 
     @GetMapping("/help/list")
