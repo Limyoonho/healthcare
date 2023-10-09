@@ -3,7 +3,7 @@ package project.healthcare.Service;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import project.healthcare.repository.UserRepository;
+import project.healthcare.Repository.UserRepository;
 import project.healthcare.dto.UserDTO;
 
 import java.text.SimpleDateFormat;

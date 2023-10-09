@@ -1,9 +1,9 @@
-package project.healthcare.repository;
+package project.healthcare.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import project.healthcare.entity.PillBasic;
-import project.healthcare.entity.PillDetail;
+import project.healthcare.Entity.PillBasic;
+import project.healthcare.Entity.PillDetail;
 
 import java.util.List;
 

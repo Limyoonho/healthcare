@@ -1,12 +1,12 @@
-package project.healthcare.service;
+package project.healthcare.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.healthcare.dto.PillDto;
-import project.healthcare.entity.PillBasic;
-import project.healthcare.entity.PillDetail;
-import project.healthcare.repository.PillBasicRepository;
-import project.healthcare.repository.PillDetailRepository;
+import project.healthcare.Entity.PillBasic;
+import project.healthcare.Entity.PillDetail;
+import project.healthcare.Repository.PillBasicRepository;
+import project.healthcare.Repository.PillDetailRepository;
 
 import java.util.List;
 

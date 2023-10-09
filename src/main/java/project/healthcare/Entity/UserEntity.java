@@ -1,13 +1,17 @@
-package project.healthcare.entity;
+package project.healthcare.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @NoArgsConstructor
-@Entity
+@Entity(name="tb_user")
 @Data
-@Table(name="tb_user")
-public class UserEntity {
+public class UserEntity implements UserDetails{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="USER_NO")
@@ -47,5 +51,37 @@ public class UserEntity {
         this.userAuth = userAuth;
         this.appendDate = appendDate;
         this.updateDate = updateDate;
+    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> collectors=new ArrayList<>();
+        collectors.add(()->{
+            return "ROLE_USER";
+        });
+        return collectors;
+    }
+    @Override
+    public String getPassword() {
+        return this.userPw;
+    }
+    @Override
+    public String getUsername() {
+        return this.userId;
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

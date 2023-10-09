@@ -1,10 +1,10 @@
-package project.healthcare.service;
+package project.healthcare.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.healthcare.dto.PillDto;
-import project.healthcare.entity.PillBasic;
-import project.healthcare.repository.PillBasicRepository;
+import project.healthcare.Entity.PillBasic;
+import project.healthcare.Repository.PillBasicRepository;
 
 import java.util.List;
 
@@ -20,4 +20,3 @@ public class PillBasicService extends PillDto {
         return pillBasicRepository.findAll(); // 데이터베이스에서 모든 PillBasic 엔티티 검색
     }
 }
-
