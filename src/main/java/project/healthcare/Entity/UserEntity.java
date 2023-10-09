@@ -11,28 +11,28 @@ import java.util.Collection;
 @NoArgsConstructor
 @Entity(name="tb_user")
 @Data
-public class UserEntity implements UserDetails{
+public class UserEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="USER_NO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_NO")
     private int userNo;
 
-    @Column(name="USER_ID")
+    @Column(name = "USER_ID")
     private String userId;
 
-    @Column(length=32,name="USER_PW")
+    @Column(length = 32, name = "USER_PW")
     private String userPw;
 
-    @Column(name="USER_NAME")
+    @Column(name = "USER_NAME")
     private String userName;
 
-    @Column(name="USER_AUTH")
+    @Column(name = "USER_AUTH")
     private String userAuth;
 
-    @Column(name="APPEND_DATE")
+    @Column(name = "APPEND_DATE")
     private String appendDate;
 
-    @Column(name="UPDATE_DATE")
+    @Column(name = "UPDATE_DATE")
     private String updateDate;
 
     @Builder
@@ -52,36 +52,36 @@ public class UserEntity implements UserDetails{
         this.appendDate = appendDate;
         this.updateDate = updateDate;
     }
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> collectors=new ArrayList<>();
-        collectors.add(()->{
-            return "ROLE_USER";
-        });
-        return collectors;
-    }
-    @Override
-    public String getPassword() {
-        return this.userPw;
-    }
-    @Override
-    public String getUsername() {
-        return this.userId;
-    }
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        Collection<GrantedAuthority> collectors=new ArrayList<>();
+//        collectors.add(()->{
+//            return "ROLE_USER";
+//        });
+//        return collectors;
+//    }
+//    @Override
+//    public String getPassword() {
+//        return this.userPw;
+//    }
+//    @Override
+//    public String getUsername() {
+//        return this.userId;
+//    }
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 }

@@ -1,4 +1,4 @@
-package project.healthcare.service;
+package project.healthcare.Service;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
