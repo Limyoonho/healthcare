@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class BoardController {
 
-    @RequestMapping("/take-care")
+    @RequestMapping("/")
     public String main(Model model) {
         return "main";
     }
