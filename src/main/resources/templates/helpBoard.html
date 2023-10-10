@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+    <html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -89,7 +89,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="/take-care">
+            <a class="navbar-brand" href="/">
                 <img src="/img/Logo.png" alt="TAKE CARE">
             </a>
             <button class="navbar-toggler"
@@ -134,22 +134,25 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/portfolio">Portfolio</a>
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/notice">Notice</a>
+                        <a class="nav-link" sec:authorize="isAuthenticated()"href="/notice">Notice</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/my-page">Mypage</a>
+                        <a class="nav-link" sec:authorize="isAuthenticated()"href="/my-page">Mypage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/help/list">Help</a>
+                        <a class="nav-link" sec:authorize="isAuthenticated()"href="/help/list">Help</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/join">Join</a>
+                        <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
                     </li>
                 </ul>
             </div>

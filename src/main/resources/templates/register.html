@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
         lang="en"
         data-bs-theme="auto"
         xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 
 <head>
@@ -10,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="" />
-    <title>회원가입</title>
+    <title>TAKE CARE</title>
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/Logo.png" />
@@ -19,14 +20,18 @@
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link href="/css/main.css" rel="stylesheet" />
 </head>
 
+<body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="/take-care">
+        <a class="navbar-brand" href="/">
             <img src="/img/Logo.png" alt="TAKE CARE">
         </a>
         <button class="navbar-toggler"
@@ -36,6 +41,7 @@
                 aria-controls="navbarResponsive"
                 aria-expanded="false"
                 aria-label="Toggle navigation">
+            Menu
             <i class="fas fa-bars ms-1"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
@@ -44,6 +50,7 @@
                     <button class="btn btn-dark dropdown-toggle"
                             data-bs-toggle="dropdown"
                             aria-expanded="false">
+                        Dropdown
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="#">Action</a></li>
@@ -71,45 +78,50 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/notice">Notice</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()"href="/notice">Notice</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/my-page">Mypage</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()"href="/my-page">Mypage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/help-board">Help</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()"href="/help/list">Help</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/join">Join</a>
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <body>
+<main class="form-signin w-100 m-auto">
 <form method="post" th:action="@{/user/save}">
     <div class="container">
-        <h1>회원가입</h1>
-        <div class="form-group">
-            <label for="inputEmail4">userId</label>
-            <input type="text" class="form-control" id="inputEmail4" name="userId" placeholder="사용자 아이디">
+        <h1 class="h3 mb-3 fw-normal text-center">회원가입</h1>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="이메일">
+            <label for="floatingInput">이메일</label>
         </div>
-        <div class="form-group">
-            <label for="inputAddress">userName</label>
-            <input type="text" class="form-control" id="inputAddress" name="userName" placeholder="사용자 이름">
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingName" name="userName" placeholder="이름">
+            <label for="floatingName">이름</label>
         </div>
-        <div class="form-group">
-            <label for="inputPassword4">password</label>
-            <input type="password" class="form-control" id="inputPassword4" name="userPw" placeholder="사용자 비밀번호">
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name="userPw" placeholder="비밀번호">
+            <label for="floatingPassword">비밀번호</label>
         </div>
         <button type="submit" class="btn btn-primary">가입 완료</button>
     </div>
 </form>
+</main>
 </body>
 </html>
