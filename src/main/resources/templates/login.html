@@ -3,6 +3,7 @@
             lang="en"
             data-bs-theme="auto"
             xmlns:th="http://www.thymeleaf.org"
+            xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     >
 
     <head>
@@ -26,7 +27,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="/take-care">
+            <a class="navbar-brand" href="/">
                 <img src="/img/Logo.png" alt="TAKE CARE">
             </a>
             <button class="navbar-toggler"
@@ -72,35 +73,46 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/portfolio">Portfolio</a>
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/notice">Notice</a>
+                        <a class="nav-link" sec:authorize="isAuthenticated()"href="/notice">Notice</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/my-page">Mypage</a>
+                        <a class="nav-link" sec:authorize="isAuthenticated()"href="/my-page">Mypage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/help/list">Help</a>
+                        <a class="nav-link" sec:authorize="isAuthenticated()"href="/help/list">Help</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/join">Join</a>
+                        <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <body>
-    <h1>Login</h1> <hr>
-    <form th:action="@{/authenticate}" method="POST">
-        email : <input type="text" name="username"> <br>
-        password : <input type="password" name="password"> <br>
-        <button type="submit">Login</button>
-    </form> <br>
-
-    <a href="/join">회원가입 하기 -></a>
-    </body>
+<body>
+<main class="form-signin w-100 m-auto">
+<form th:action="@{/authenticate}" method="POST">
+    <div class="container">
+        <h1 class="h3 mb-3 fw-normal text-center">로그인</h1> <hr>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="이메일">
+            <label for="floatingInput">이메일</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="비밀번호">
+            <label for="floatingPassword">비밀번호</label>
+        </div>
+        <button class="btn btn-primary" type="submit">로그인</button>
+    </div>
+</form>
+</main>
+</body>
 </html>
