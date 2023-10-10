@@ -162,7 +162,7 @@
     <div class="layout">
         <h2 style="text-align:center">게시판 작성</h2>
         <hr />
-        <form action="/help/writepro" method="post" class="write-form" onsubmit="showConfirm(event)">
+        <form th:action="@{/help/writepro}" method="post" class="write-form" onsubmit="showConfirm(event)">
             <input class="title" name="title" type="text" placeholder="제목을 입력해주세요" required>
             <textarea class="content" name="content" placeholder="내용을 입력해주세요" required></textarea>
             <div class="button-container">
