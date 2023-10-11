@@ -1,4 +1,4 @@
-package project.healthcare.Entity;
+package project.healthcare.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,11 +20,11 @@ public class UserEntity implements UserDetails{
     @Column(name="USER_ID")
     private String userId;
 
-    @Column(length=32,name="USER_PW")
+    @Column(length=2000,name="USER_PW")
     private String userPw;
 
     @Column(name="USER_NAME")
-    private String userName;
+    private String uName;
 
     @Column(name="USER_AUTH")
     private String userAuth;
@@ -40,14 +40,14 @@ public class UserEntity implements UserDetails{
             int userNo,
             String userId,
             String userPw,
-            String userName,
+            String uName,
             String userAuth,
             String appendDate,
             String updateDate) {
         this.userNo = userNo;
         this.userId = userId;
         this.userPw = userPw;
-        this.userName = userName;
+        this.uName = uName;
         this.userAuth = userAuth;
         this.appendDate = appendDate;
         this.updateDate = updateDate;

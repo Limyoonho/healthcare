@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이름 변경</title>
+</head>
+<body>
+<form th:action="@{/mypage/changename}" method="post" th:object="${usernameChangeForm}">
+    <div class="form-group">
+        <label for="newUsername">새 이름</label>
+        <input type="text" id="newUsername" name="newUsername" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">이름 변경</button>
+</form>
+
+</body>
+</html>

@@ -1,14 +1,14 @@
 package project.healthcare.dto;
 
 import lombok.Data;
-import project.healthcare.Entity.UserEntity;
+import project.healthcare.entity.UserEntity;
 
 @Data
 public class UserDTO {
     private int userNo;
     private String userId;
     private String userPw;
-    private String userName;
+    private String uName;
     private String userAuth;
     private String appendDate;
     private String updateDate;
@@ -17,7 +17,7 @@ public class UserDTO {
         return UserEntity.builder()
                 .userId(userId)
                 .userPw(userPw)
-                .userName(userName)
+                .uName(uName)
                 .userAuth(userAuth)
                 .appendDate(appendDate)
                 .updateDate(updateDate)
