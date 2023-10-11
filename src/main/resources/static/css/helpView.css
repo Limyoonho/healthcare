@@ -1,0 +1,56 @@
+
+    .container33 {
+        width: 80%; /* 컨테이너의 폭 조정 */
+        margin: 0 auto; /* 가운데 정렬 */
+        padding: 20px; /* 내부 여백 추가 */
+        background-color: #f0f0f0; /* 배경색 지정 */
+        border: 1px solid #ddd; /* 테두리 추가 */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+        margin-top:10%;
+    }
+
+    .card {
+        background-color: #fff; /* 카드 배경색 */
+        border: 1px solid #ddd; /* 카드 테두리 추가 */
+        padding: 20px; /* 카드 내부 여백 */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 카드 그림자 효과 추가 */
+    }
+
+    .details {
+        font-size: 24px; /* 제목 크기 조정 */
+        margin-bottom: 20px; /* 아래 여백 추가 */
+    }
+
+    .card-table{
+        width: 100%; /* 테이블 너비를 100%로 설정 */
+        border-collapse: collapse; /* 테이블 테두리 병합 */
+        margin-top: 20px; /* 테이블 위 여백 추가 */
+    }
+
+    .card-header th {
+        width: 120px; /* 제목 열의 너비 조정 */
+        font-weight: bold; /* 제목 글꼴 굵기 조정 */
+        border: 1px solid #ddd; /* 셀 테두리 추가 */
+        padding: 10px; /* 셀 내부 여백 추가 */
+    }
+
+    .card-header td {
+        padding-left: 10px; /* 내용 왼쪽 여백 추가 */
+        border: 1px solid #ddd; /* 셀 테두리 추가 */
+        padding: 10px; /* 셀 내부 여백 추가 */
+    }
+
+    .card-footer {
+        margin-top: 40px; /* 상단 여백 추가 */
+        float:right;
+    }
+
+    .go {
+        text-decoration: none;
+        padding: 10px 20px; /* 버튼 여백 조정 */
+        border-radius: 10px;
+        background-color: green;
+        color: white;
+        border: 1px solid gainsboro; /* 테두리 추가 */
+        display: inline-block; /* 인라인 블록 요소로 설정하여 여러 버튼을 옆에 나열할 수 있도록 함 */
+        }

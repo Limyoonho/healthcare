@@ -1,0 +1,115 @@
+.layout {
+    margin-top: 10%;
+    text-align: left;
+}
+
+.table123 {
+    margin: 0 auto; /* 가운데 정렬 */
+    width: 80%; /* 원하는 테이블 너비로 조절 */
+    border-collapse: separate;
+    border-spacing: 0px; /* 셀 간격을 조절 (수평 간격 20px) */
+    margin-top: 5%;
+}
+
+th, td {
+    padding: 15px; /* 간격을 넓힘 */
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+th:nth-child(1) {
+    width: 100px; /* 글 번호 너비 조절 */
+    text-align: left;
+}
+
+th:nth-child(2) {
+    width: 250px; /* 두 번째 컬럼 너비 조절 */
+    text-align: center;
+}
+
+th:nth-child(3) {
+    width: 150px; /* 작성 일자 너비 조절 */
+    text-align: left;
+}
+
+th:nth-child(4) {
+    width: 150px; /* 작성 일자 너비 조절 */
+        text-align: left;
+}
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.question {
+    margin-left: 10%;
+}
+
+.question2 {
+    display: block; /* 문의사항 문구를 블록 요소로 변경하여 아래에 표시 */
+    margin-top: 10px; /* 문의사항 문구 위 여백 조절 */
+}
+/* 페이징 */
+
+.paging {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:40px;
+}
+
+.paging th {
+    padding: 10px;
+    text-align: center;
+    display: flex;
+}
+
+.paging a {
+    text-decoration: none;
+    color: black;
+    padding: 13px;
+}
+
+.paging strong {
+    color: red;
+}
+
+.paging th:block {
+    display: inline-block;
+
+}
+
+/* 검색 */
+
+.search-form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position : absolute;
+    float : right;
+    top : 0;
+    margin-left : 35%;
+}
+
+.search-form input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.help-search, .write-pro{
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    border:gainsboro;
+}
+
+a{
+text-decoration-line: none;
+}
