@@ -8,20 +8,25 @@ import project.healthcare.entity.SurveyEntity;
 import project.healthcare.repository.SurveyTableRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
 @Controller
-@RequestMapping("/take-care")
+@RequestMapping("/")
 public class SurveyController {
     @Autowired
     private SurveyTableRepository surveyTableRepository;
+
+//    @RequestMapping("/main")
+//    public String main() {
+//        return "index1";
+//    }
 
     @GetMapping("/survey")
     public String showSurveyForm(Model model) {
         return "survey";
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/survey/submit")
     public String submitSurvey(
             @RequestParam("nutrient_necessity") String nutrientNecessity,
             @RequestParam("age_group") String ageGroup,
@@ -42,7 +47,7 @@ public class SurveyController {
                 desiredIngredients
         );
 
-        List<List<String>> imageUrlsList = getImageUrlsBasedOnSelections(discomfortArea, desiredFunction, desiredIngredients);
+        List<List<String>> imageUrlsList = getImageUrlsBasedOnSelections(discomfortArea, desiredFunction,desiredIngredients);
 
         surveyTableRepository.save(surveyEntity);
 
@@ -180,4 +185,27 @@ public class SurveyController {
 
         return imageUrlsList;
     }
+
+
+
+
+
+
+//        private List<String> getRecommendedSupplements(SurveyEntity surveyData) {
+//        List<String> recommendedSupplements = new ArrayList<>();
+//
+//        // 여기서 설문 데이터를 기반으로 권장 보충제를 생성
+//        // 예를 들어, 연령대에 따라 다른 보충제를 추천하는 로직을 추가할 수 있습니다.
+//        String ageGroup = surveyData.getAge_group();
+//
+//        if ("20대".equals(ageGroup)) {
+//            recommendedSupplements.add("영양제 A");
+//            recommendedSupplements.add("영양제 B");
+//        } else if ("30대".equals(ageGroup)) {
+//            recommendedSupplements.add("영양제 C");
+//            recommendedSupplements.add("영양제 D");
+//        }
+//
+//        return recommendedSupplements;
+//    }
 }

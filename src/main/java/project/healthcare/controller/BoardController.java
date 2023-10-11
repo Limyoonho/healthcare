@@ -23,7 +23,7 @@ public class BoardController {
     @Autowired
     private PillEntity pillEntity;
 
-    @RequestMapping("/take-care")
+    @RequestMapping("/")
     public String main(Model model) {
         String[] products = new String[6];
         String[] images = new String[6];
@@ -100,13 +100,13 @@ public class BoardController {
 
     @RequestMapping("/category/eyes")
     public String eyes(Model model) {
-        String category = "´«";
+        String category = "ëˆˆ";
 
         List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {
-            if (tempPill.getCategory().equals("´«")) {
+            if (tempPill.getCategory().equals("ëˆˆ")) {
                 pillList.add(tempPill);
             }
         }
@@ -118,13 +118,13 @@ public class BoardController {
 
     @RequestMapping("/category/skincare")
     public String skincare(Model model) {
-        String category = "ÇÇºÎ";
+        String category = "í”¼ë¶€";
 
         List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {
-            if (tempPill.getCategory().equals("ÇÇºÎ")) {
+            if (tempPill.getCategory().equals("í”¼ë¶€")) {
                 pillList.add(tempPill);
             }
         }
@@ -136,13 +136,13 @@ public class BoardController {
 
     @RequestMapping("/category/fat")
     public String fat(Model model) {
-        String category = "Ã¼Áö¹æ";
+        String category = "ì²´ì§€ë°©";
 
         List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {
-            if (tempPill.getCategory().equals("Ã¼Áö¹æ")) {
+            if (tempPill.getCategory().equals("ì²´ì§€ë°©")) {
                 pillList.add(tempPill);
             }
         }
@@ -154,13 +154,13 @@ public class BoardController {
 
     @RequestMapping("/category/blood")
     public String blood_circulation(Model model) {
-        String category = "Ç÷°ü ¹× Ç÷¾× ¼øÈ¯";
+        String category = "í˜ˆê´€ ë° í˜ˆì•¡ ìˆœí™˜";
 
         List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {
-            if (tempPill.getCategory().equals("Ç÷°ü ¹× Ç÷¾× ¼øÈ¯")) {
+            if (tempPill.getCategory().equals("í˜ˆê´€ ë° í˜ˆì•¡ ìˆœí™˜")) {
                 pillList.add(tempPill);
             }
         }
@@ -172,13 +172,13 @@ public class BoardController {
 
     @RequestMapping("/category/intestine")
     public String intestine(Model model) {
-        String category = "Àå";
+        String category = "ì¥";
 
         List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {
-            if (tempPill.getCategory().equals("Àå")) {
+            if (tempPill.getCategory().equals("ì¥")) {
                 pillList.add(tempPill);
             }
         }
@@ -190,13 +190,13 @@ public class BoardController {
 
     @RequestMapping("/category/sleep")
     public String sleep(Model model) {
-        String category = "½ºÆ®·¹½º ¹× ¼ö¸é";
+        String category = "ìŠ¤íŠ¸ë ˆìŠ¤ ë° ìˆ˜ë©´";
 
         List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {
-            if (tempPill.getCategory().equals("½ºÆ®·¹½º ¹× ¼ö¸é")) {
+            if (tempPill.getCategory().equals("ìŠ¤íŠ¸ë ˆìŠ¤ ë° ìˆ˜ë©´")) {
                 pillList.add(tempPill);
             }
         }
@@ -208,13 +208,13 @@ public class BoardController {
 
     @RequestMapping("/category/cholesterol")
     public String cholesterol(Model model) {
-        String category = "Äİ·¹½ºÅ×·Ñ";
+        String category = "ì½œë ˆìŠ¤í…Œë¡¤";
 
         List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {
-            if (tempPill.getCategory().equals("Äİ·¹½ºÅ×·Ñ")) {
+            if (tempPill.getCategory().equals("ì½œë ˆìŠ¤í…Œë¡¤")) {
                 pillList.add(tempPill);
             }
         }
@@ -239,10 +239,10 @@ public class BoardController {
         return "helpBoard";
     }
 
-    @RequestMapping("/my-page")
-    public String myPage() {
-        return "myPage";
-    }
+//    @RequestMapping("/my-page")
+//    public String myPage() {
+//        return "myPage";
+//    }
 
     @RequestMapping("/join")
     public String join() {

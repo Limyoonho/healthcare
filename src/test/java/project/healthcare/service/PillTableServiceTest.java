@@ -1,4 +1,4 @@
-package project.healthcare.Service;
+package project.healthcare.service;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class PillDetailServiceTest {
+public class PillTableServiceTest {
     public static void main(String[] args) {
         String[] productInfo = new String[]{"모델번호 : ", "출시일 : ", "컬러 : ", "발매가 : "};
 

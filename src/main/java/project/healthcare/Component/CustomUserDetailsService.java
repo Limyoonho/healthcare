@@ -8,11 +8,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import project.healthcare.Entity.UserEntity;
-import project.healthcare.Entity.UserRole;
-import project.healthcare.Repository.UserRepository;
+import project.healthcare.entity.UserEntity;
+import project.healthcare.entity.UserRole;
+import project.healthcare.repository.UserRepository;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

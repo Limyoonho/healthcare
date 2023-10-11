@@ -1,31 +1,123 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+        lang="en"
+        data-bs-theme="auto"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>건강 설문 조사</title>
-    <link rel="stylesheet" href="/css/styles_survey.css">
-    <style>
-        /* 추가된 스타일 */
-        .question-container {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            background-color: #fff;
-        }
-        .question {
-            font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="">
+    <meta name="author" content="" />
+    <title>Survey</title>
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="img/Logo.png" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/main.css" rel="stylesheet" />
 </head>
+
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/img/Logo.png" alt="TAKE CARE">
+        </a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <button class="btn btn-dark dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Dropdown
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <form class="d-flex" role="search" method="get" action="/search-page">
+            <input
+                    class="search-control"
+                    type="search"
+                    placeholder="검색어를 입력해주세요"
+                    aria-label="Search">
+            <button class="search-btn" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="currentColor"
+                     class="bi bi-search"
+                     viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/my-page">Mypage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <body>
+<link rel="stylesheet" href="/css/styles_survey.css">
+<style>
+    /* 추가된 스타일 */
+    .question-container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+    }
+    .question {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
 <div class="form-container">
     <h1>건강 설문 조사</h1>
-    <form th:action="@{/take-care/submit}" method="post" onsubmit="return showConfirmation()">
-
+    <form th:action="@{/survey/submit}" method="post" onsubmit="return showConfirmation()">
         <!-- 첫 번째 질문 -->
         <div class="question-container">
             <label class="question">영양제 섭취가 하루의 일과에서 필수적이라고 생각하시나요?</label>
@@ -150,42 +242,43 @@
 
     <script>
         function showConfirmation() {
-            var result = confirm("제출 하시겠습니까?");
-            if (result) {
-                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                var radioGroups = document.querySelectorAll('.radio-group');
+    var result = confirm("제출 하시겠습니까?");
+    if (result) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var radioGroups = document.querySelectorAll('.radio-group');
 
-                var checkboxesValid = true;
-                var radioGroupsValid = true;
+        var checkboxesValid = true;
+        var radioGroupsValid = true;
 
-                checkboxes.forEach(function (checkbox) {
-                    var name = checkbox.name;
-                    if (!document.querySelector('input[name="' + name + '"]:checked')) {
-                        checkboxesValid = false;
-                        checkbox.nextElementSibling.style.color = 'red'; // 미체크된 항목의 텍스트 색상을 빨간색으로 변경
-                    }
-                });
-
-                radioGroups.forEach(function (group) {
-                    var name = group.querySelector('input[type="radio"]').name;
-                    if (!document.querySelector('input[name="' + name + '"]:checked')) {
-                        radioGroupsValid = false;
-                        group.querySelector('label').style.color = 'red'; // 미선택된 라디오 그룹의 라벨 텍스트 색상을 빨간색으로 변경
-                    }
-                });
-
-                if (!checkboxesValid || !radioGroupsValid) {
-                    alert("모든 항목을 선택하세요.");
-                    return false;
-                }
-
-                alert("제출되었습니다");
-                return true;
-            } else {
-                alert("취소되었습니다");
-                return false;
+        checkboxes.forEach(function (checkbox) {
+            var name = checkbox.name;
+            if (!document.querySelector('input[name="' + name + '"]:checked')) {
+                checkboxesValid = false;
+                checkbox.nextElementSibling.style.color = 'red'; // 미체크된 항목의 텍스트 색상을 빨간색으로 변경
             }
+        });
+
+        radioGroups.forEach(function (group) {
+            var name = group.querySelector('input[type="radio"]').name;
+            if (!document.querySelector('input[name="' + name + '"]:checked')) {
+                radioGroupsValid = false;
+                group.querySelector('label').style.color = 'red'; // 미선택된 라디오 그룹의 라벨 텍스트 색상을 빨간색으로 변경
+            }
+        });
+
+        if (!checkboxesValid || !radioGroupsValid) {
+            alert("모든 항목을 선택하세요.");
+            return false;
         }
+
+        alert("제출되었습니다");
+        return true;
+    } else {
+        alert("취소되었습니다");
+        return false;
+    }
+}
+
     </script>
 </div>
 </body>

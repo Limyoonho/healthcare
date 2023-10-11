@@ -1,4 +1,4 @@
-package project.healthcare.Entity;
+package project.healthcare.entity;
 
 import lombok.Getter;
 

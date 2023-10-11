@@ -87,10 +87,10 @@
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()"href="/notice">Notice</a>
+                    <a class="nav-link" sec:authorize="isAnonymous()"href="/notice">Notice</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()"href="/my-page">Mypage</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()"href="/mypage">Mypage</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()"href="/help/list">Help</a>
@@ -170,7 +170,7 @@
             <h2 class="section-heading text-uppercase">나에게 맞는 영양분을 찾으세요</h2>
         </div>
         <div class="surveyBtn text-center">
-            <a href="/take-care/survey">
+            <a href="/survey">
                 지금 시작하기
             </a>
         </div>

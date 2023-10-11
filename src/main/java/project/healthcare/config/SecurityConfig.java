@@ -4,10 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.domain.AbstractAuditable_;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -15,8 +11,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import project.healthcare.Component.CustomAuthenticationFailureHandler;
-import project.healthcare.Component.CustomAuthenticationSuccessHandler;
+import project.healthcare.component.CustomAuthenticationFailureHandler;
+import project.healthcare.component.CustomAuthenticationSuccessHandler;
 
 @Slf4j
 @Configuration
@@ -35,7 +31,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(
                         authorize-> authorize
-                                .requestMatchers("/","/login","/join","/user/save").permitAll()
+                                .requestMatchers("/","/pill","/health-map","/notice","/map","/search-page","/category/**","/login","/join","/user/save").permitAll()
                                 .anyRequest().authenticated()
                 );
         http
