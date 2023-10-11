@@ -1,4 +1,4 @@
-package project.healthcare.Component;
+package project.healthcare.component;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

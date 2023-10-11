@@ -1,4 +1,4 @@
-package project.healthcare.Entity;
+package project.healthcare.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

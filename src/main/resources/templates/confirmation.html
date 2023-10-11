@@ -1,15 +1,170 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>설문조사 완료</title>
-    <link rel="stylesheet" href="/css/styles_survey.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>설문 결과 확인</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .container {
+        background-color: #fff;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 80%;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+        color: #555;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style-type: disc;
+        margin-left: 20px;
+        padding-left: 0;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    img {
+        max-width: 80%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+.image-grid {
+            display: grid;
+            gap: 10px;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 80%;
+        }
+
+        .image-grid-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-grid-cell {
+            flex: 1;
+            max-width: 178px; /* 이미지 크기 조정 */
+            max-height: 113px; /* 이미지 크기 조정 */
+        }
+
+        .image-responsive {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+             transition: transform 0.2s ease-in-out;
+        }
+        .image-responsive:hover {
+        transform: scale(1.05); /* 호버 시 이미지 확대 효과 */
+        cursor: pointer; /* 호버 시 커서 모양 변경 */
+        filter: brightness(1.2); /* 호버 시 이미지 밝기 조정 */
+    }
+    .container123{
+      text-align: center;
+        background-color: #f7f7f7; /* 배경 색상 추가 */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 10%;
+        margin: 20px auto; /* 중앙 정렬 */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    }
+
+  </style>
 </head>
 <body>
-<div class="form-container">
-    <h1>설문조사 완료</h1>
-    <p>설문조사가 성공적으로 제출되었습니다.</p>
+<div class="header">
+  <h1>설문 결과 확인</h1>
+</div>
+<div class="container">
+  <h2>선택한 영양소 필요성:</h2>
+  <p><span th:text="${surveyEntity.nutrient_necessity}"></span></p>
+</div>
+
+<div class="container">
+  <h2>선택한 연령대:</h2>
+  <p><span th:text="${surveyEntity.age_group}"></span></p>
+</div>
+
+<div class="container">
+  <h2>선택한 영양제 복용 빈도:</h2>
+  <p><span th:text="${surveyEntity.nutrient_frequency}"></span></p>
+</div>
+
+<div class="container">
+  <h2>선택한 영양제 형태:</h2>
+  <p><span th:text="${surveyEntity.nutrient_form}"></span></p>
+</div>
+
+<div class="container">
+  <h2>선택한 부위의 불편함:</h2>
+  <p><span th:text="${surveyEntity.discomfort_area}"></span></p>
+</div>
+
+<div class="container">
+  <h2>원하는 기능:</h2>
+  <p><span th:text="${surveyEntity.desired_function}"></span></p>
+</div>
+
+<div class="container1">
+  <!-- 설문 조사 기반 영양제 추천 박스 추가 -->
+  <!-- 각 질문을 독립적으로 표시 -->
+  <div th:each="question : ${questions}">
+    <div class="container">
+      <h2 th:text="${question.title}"></h2>
+      <p th:text="${question.answer}"></p>
+    </div>
+  </div>
+  <!-- 이미지 그리드 -->
+  <div class="container123">추천 영양제</div>
+  <div class="image-grid">
+    <div th:each="imageUrlList : ${imageUrlsList}" class="image-grid-row">
+      <div th:each="imageUrl : ${imageUrlList}" class="image-grid-cell">
+        <img th:src="@{${imageUrl}}" alt="선택한 이미지" class="image-responsive" />
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

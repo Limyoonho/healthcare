@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import project.healthcare.Entity.Help;
-import project.healthcare.Service.HelpService;
+import project.healthcare.entity.Help;
+import project.healthcare.service.HelpService;
 
 @Controller
 public class helpController {

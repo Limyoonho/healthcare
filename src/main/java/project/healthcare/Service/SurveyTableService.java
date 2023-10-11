@@ -1,4 +1,4 @@
-package project.healthcare.Service;
+package project.healthcare.service;
 //
 //import project.healthcare.Entity.SurveyEntity;
 //import project.healthcare.Repository.SurveyTableRepository;

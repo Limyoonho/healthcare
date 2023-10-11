@@ -1,4 +1,4 @@
-package project.healthcare.Repository;
+package project.healthcare.repository;
 
 import project.healthcare.Entity.SurveyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package project.healthcare.Component;
+package project.healthcare.component;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

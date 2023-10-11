@@ -1,11 +1,11 @@
-package project.healthcare.Service;
+package project.healthcare.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import project.healthcare.Entity.Help;
-import project.healthcare.Repository.HelpRepository;
+import project.healthcare.entity.Help;
+import project.healthcare.repository.HelpRepository;
 
 import java.sql.Date;
 import java.util.List;

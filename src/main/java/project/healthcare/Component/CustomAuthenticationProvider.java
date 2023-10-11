@@ -1,4 +1,4 @@
-package project.healthcare.Component;
+package project.healthcare.component;
 
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;

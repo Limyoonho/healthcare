@@ -60,8 +60,10 @@
                         class="search-control"
                         type="search"
                         placeholder="검색어를 입력해주세요"
-                        aria-label="Search">
-                <button class="search-btn" type="submit">
+                        aria-label="Search"
+                        name="query"
+                        th:value="${query}">
+                <button class="search-btn" type="submit" onclick="location.herf='/search-page?query=${query}'">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          fill="currentColor"
                          class="bi bi-search"
