@@ -117,6 +117,7 @@
 }
 
 body {
+  padding-top: 100px;
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -11329,12 +11330,31 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+.d-flex {
+    display: flex;
+    align-items: center;
+   width: 500px;
+    height: 50px;
+    border: 1px solid green;
+    border-radius: 8px;
+    padding: 0 12px;
+    justify-content: space-between; /* 내부 요소들을 좌우로 분리 */
+}
 
-.d-flex{
-  position: absolute;
-  margin-top : 1%;
-  padding-left : 10em;
-  margin: auto;
+.search-input {
+    flex: 1;
+    border: none;
+    height: 100%;
+    padding: 0;
+}
+
+.search-btn {
+    border: none;
+    width: 50px;
+    height: 100%;
+    background-color: green;
+    color: white;
+    margin-left: 10px; /* 버튼을 오른쪽에 띄우려면 margin-left를 사용 */
 }
 
 .search-control {
@@ -11344,18 +11364,7 @@ section#contact form#contactForm :-ms-input-placeholder {
   height: 50px;
   border: 1px solid green;
   border-radius: 8px;
-  padding: 10px 12px;        
-}
-
-.search-btn{
-  border : none; 
-  background-color: white;
-  margin-left: 0%;
-  width: 50px;
-  height: 50px;
-
-  color: limegreen;
-  background-color: green;
+  padding: 10px 12px;
 }
 
 #navbarNavDarkDropdown, .nav-item{
