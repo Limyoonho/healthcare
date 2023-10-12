@@ -102,10 +102,12 @@
 <body><h1>User Profile</h1>
 <p>USER ID: <span th:text="${user.userId}"></span></p>
 <p>USER Name: <span th:text="${user.uName}"></span></p>
+<p>닉네임: <span th:text="${user.nickName}"></span></p>
 <p>회원 등급: <span th:text="${user.userAuth}"></span></p>
 <p>회원가입 날짜: <span th:text="${user.appendDate}"></span></p>
 <p>최종 정보 수정 날짜: <span th:text="${user.updateDate}"></span></p>
 <button class="btn btn-primary" onclick="location.href='/mypage/changepw'">비밀번호 바꾸기</button>
 <button class="btn btn-primary" onclick="location.href='/mypage/changename'">이름 바꾸기</button>
+<button class="btn btn-primary" onclick="location.href='/mypage/changenickname'">닉네임 바꾸기</button>
 </body>
 </html>
