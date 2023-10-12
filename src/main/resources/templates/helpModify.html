@@ -144,6 +144,9 @@
           <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" sec:authorize="isAnonymous()" href="/free/list">Free</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
         </li>
         <li class="nav-item">
@@ -161,7 +164,7 @@
 </nav>
 
 <div class="layout">
-  <h2 style="text-align:center">게시판 수정</h2>
+  <h2 style="text-align:center">게시글 수정</h2>
   <hr />
   <form class="write-form" th:action="@{/help/update/{id}(id=${view.id})}" method="post" onsubmit="showConfirm(event)">
     <input class="title-modify" name="title" type="text" th:value="${view.title}" required>
