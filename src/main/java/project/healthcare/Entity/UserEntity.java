@@ -14,26 +14,29 @@ import java.util.Collection;
 public class UserEntity implements UserDetails{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="USER_NO")
+    @Column(name="USER_NO", nullable=false)
     private int userNo;
 
-    @Column(name="USER_ID")
+    @Column(name="USER_ID", nullable=false)
     private String userId;
 
-    @Column(length=2000,name="USER_PW")
+    @Column(length=2000,name="USER_PW", nullable=false)
     private String userPw;
 
-    @Column(name="USER_NAME")
+    @Column(name="USER_NAME",nullable=false)
     private String uName;
 
-    @Column(name="USER_AUTH")
+    @Column(name="USER_AUTH",nullable=false)
     private String userAuth;
 
-    @Column(name="APPEND_DATE")
+    @Column(name="APPEND_DATE",nullable=false)
     private String appendDate;
 
-    @Column(name="UPDATE_DATE")
+    @Column(name="UPDATE_DATE",nullable=false)
     private String updateDate;
+
+    @Column(name="NICK_NAME",nullable=false)
+    private String nickName;
 
     @Builder
     public UserEntity(
@@ -43,7 +46,8 @@ public class UserEntity implements UserDetails{
             String uName,
             String userAuth,
             String appendDate,
-            String updateDate) {
+            String updateDate,
+            String nickName) {
         this.userNo = userNo;
         this.userId = userId;
         this.userPw = userPw;
@@ -51,6 +55,7 @@ public class UserEntity implements UserDetails{
         this.userAuth = userAuth;
         this.appendDate = appendDate;
         this.updateDate = updateDate;
+        this.nickName = nickName;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

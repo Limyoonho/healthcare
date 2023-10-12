@@ -12,7 +12,7 @@
     <p class="error-message">현재 비밀번호가 일치하지 않거나 새 비밀번호가 비밀번호 확인과 일치하지 않습니다.</p>
 </div>
 
-<form th:action="@{/mypage/changepw}" method="post" th:object="${passwordChangeForm}">
+<form th:action="@{/mypage/changepw}" method="post" th:object="${ChangeForm}">
     <!-- 현재 비밀번호 입력 -->
     <div>
         <label for="currentPassword">현재 비밀번호: </label>

@@ -43,6 +43,7 @@ public class UserService {
             userDTO.setUserAuth(userEntity.getUserAuth());
             userDTO.setAppendDate(userEntity.getAppendDate());
             userDTO.setUpdateDate(userEntity.getUpdateDate());
+            userDTO.setNickName(userEntity.getNickName());
 
             return userDTO;
         }
@@ -62,6 +63,15 @@ public class UserService {
         UserEntity userEntity = userRepository.findByUserId(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         userEntity.setUserPw(passwordEncoder.encode(newPassword));
+        String localTime=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        userEntity.setUpdateDate(localTime);
+        userRepository.save(userEntity);
+    }
+
+    public void updateNickname(String username, String newNickname) {
+        UserEntity userEntity=userRepository.findByUserId(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        userEntity.setNickName(newNickname);
         String localTime=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         userEntity.setUpdateDate(localTime);
         userRepository.save(userEntity);

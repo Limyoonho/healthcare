@@ -4,9 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import project.healthcare.dto.ChangeForm;
 import project.healthcare.dto.PasswordChangeForm;
 import project.healthcare.dto.UserDTO;
 import project.healthcare.dto.UsernameChangeForm;
@@ -33,12 +32,12 @@ public class UserController {
     }
     @GetMapping("/mypage/changepw")
     public String showChangePasswordForm(Model model) {
-        model.addAttribute("passwordChangeForm",new PasswordChangeForm());
+        model.addAttribute("ChangeForm",new ChangeForm());
         return "changePw";
     }
 
     @PostMapping("/mypage/changepw")
-    public String processChangePassword(@ModelAttribute("passwordChangeForm") PasswordChangeForm form) {
+    public String processChangePassword(@ModelAttribute("ChangeForm") ChangeForm form) {
         UserDTO currentUser=userService.getCurrentUser();
         String newPassword=form.getNewPassword();
         if(!passwordEncoder.matches(form.getCurrentPassword(),currentUser.getUserPw())) {
@@ -53,17 +52,33 @@ public class UserController {
     }
 
     @GetMapping("/mypage/changename")
-    public String showChageUsernameForm(Model model) {
-        model.addAttribute("usernameChangeForm",new UsernameChangeForm());
+    public String showChangeUsernameForm(Model model) {
+        model.addAttribute("ChangeForm",new ChangeForm());
         return "changename";
     }
 
     @PostMapping("/mypage/changename")
-    public String processChangeUsername(@ModelAttribute("usernameChangeForm") UsernameChangeForm form) {
+    public String processChangeUsername(@ModelAttribute("ChangeForm") ChangeForm form) {
         UserDTO currentUser=userService.getCurrentUser();
         String newUsername=form.getNewUsername();
 
         userService.updateUsername(currentUser.getUserId(),newUsername);
+
+        return "redirect:/mypage";
+    }
+
+    @GetMapping("/mypage/changenickname")
+    public String showChangeNicknameForm(Model model) {
+        model.addAttribute("ChangeForm",new ChangeForm());
+        return "changenickname";
+    }
+
+    @PostMapping("/mypage/changenickname")
+    public String processChangeNickname(@ModelAttribute("ChangeForm") ChangeForm form) {
+        UserDTO currentUser=userService.getCurrentUser();
+        String newNickname=form.getNewNickname();
+
+        userService.updateNickname(currentUser.getUserId(),newNickname);
 
         return "redirect:/mypage";
     }

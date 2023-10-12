@@ -12,6 +12,7 @@ public class UserDTO {
     private String userAuth;
     private String appendDate;
     private String updateDate;
+    private String nickName;
 
     public UserEntity toEntity() {
         return UserEntity.builder()
@@ -21,6 +22,7 @@ public class UserDTO {
                 .userAuth(userAuth)
                 .appendDate(appendDate)
                 .updateDate(updateDate)
+                .nickName(nickName)
                 .build();
     }
 }
