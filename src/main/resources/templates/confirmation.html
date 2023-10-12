@@ -118,32 +118,32 @@
   <h1>설문 결과 확인</h1>
 </div>
 <div class="container">
-  <h2>선택한 영양소 필요성:</h2>
+  <h2>필요한 영양 성분 : </h2>
   <p><span th:text="${surveyEntity.nutrient_necessity}"></span></p>
 </div>
 
 <div class="container">
-  <h2>선택한 연령대:</h2>
+  <h2>현재 연령대 : </h2>
   <p><span th:text="${surveyEntity.age_group}"></span></p>
 </div>
 
 <div class="container">
-  <h2>선택한 영양제 복용 빈도:</h2>
+  <h2>현재 영양제 복용 빈도 : </h2>
   <p><span th:text="${surveyEntity.nutrient_frequency}"></span></p>
 </div>
 
 <div class="container">
-  <h2>선택한 영양제 형태:</h2>
+  <h2>선호하는 영양제 복용 방법 : </h2>
   <p><span th:text="${surveyEntity.nutrient_form}"></span></p>
 </div>
 
 <div class="container">
-  <h2>선택한 부위의 불편함:</h2>
+  <h2>영양제가 필요한 부분 : </h2>
   <p><span th:text="${surveyEntity.discomfort_area}"></span></p>
 </div>
 
 <div class="container">
-  <h2>원하는 기능:</h2>
+  <h2>원하는 기능 : </h2>
   <p><span th:text="${surveyEntity.desired_function}"></span></p>
 </div>
 
@@ -159,11 +159,12 @@
   <!-- 이미지 그리드 -->
   <div class="container123">추천 영양제</div>
   <div class="image-grid">
-    <div th:each="imageUrlList : ${imageUrlsList}" class="image-grid-row">
-      <div th:each="imageUrl : ${imageUrlList}" class="image-grid-cell">
-        <img th:src="@{${imageUrl}}" alt="선택한 이미지" class="image-responsive" />
-      </div>
+    <div class="image-grid-row">
+      <img th:src="${image}" onerror="this.src='/img/default-image.png;" class="image-responsive" />
     </div>
+    <p th:text="${product}"></p>
+    <p th:text="${effect}"></p>
+    <p th:text="${detail}"></p>
   </div>
 </div>
 </body>

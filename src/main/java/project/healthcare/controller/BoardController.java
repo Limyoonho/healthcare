@@ -27,18 +27,28 @@ public class BoardController {
     public String main(Model model) {
         String[] products = new String[6];
         String[] images = new String[6];
+        String[] company = new String[6];
+        String[] effects = new String[6];
+        String[] details = new String[6];
 
-        for (int i = 7; i < 13; i++) {
+        for (int i = 1; i < 7; i++) {
             pillEntity = pillRepository.findById(i);
-            products[i-7] = pillEntity.getProduct();
+            products[i-1] = pillEntity.getProduct();
+            company[i-1] = pillEntity.getCompany();
+            effects[i-1] = String.join(", ", pillEntity.getEffect());
+            details[i-1] = String.join(", ", pillEntity.getDetail());
+
             if (pillEntity.getImage() == null) {
-                images[i-7] = null;
+                images[i-1] = null;
             } else {
-                images[i-7] = pillEntity.getImage();
+                images[i-1] = pillEntity.getImage();
             }
 
-            model.addAttribute("product_" + (i-6), products[i-7]);
-            model.addAttribute("image_" + (i-6), images[i-7]);
+            model.addAttribute("product_" + i, products[i-1]);
+            model.addAttribute("image_" + i, images[i-1]);
+            model.addAttribute("company_" + i, company[i-1]);
+            model.addAttribute("effect_" + i, effects[i-1]);
+            model.addAttribute("detail_" + i, details[i-1]);
         }
 
         return "main";
