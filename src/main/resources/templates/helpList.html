@@ -115,6 +115,7 @@
             <th>제목</th>
               <th>조회수</th>
             <th>작성 일자</th>
+              <th>작성자</th>
           </tr>
         </thead>
         <tbody>
@@ -123,6 +124,7 @@
             <td><a th:text="${help.title}" th:href="@{/help/view(id=${help.id})}"></a></td>
               <td th:text="${help.view_count}"></td>
               <td th:text="${help.create_date}"></td>
+              <td th:text="${help.write_user}"></td>
           </tr>
         </tbody>
         </table>

@@ -11,13 +11,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import project.healthcare.dto.UserDTO;
 import project.healthcare.entity.Help;
 import project.healthcare.service.HelpService;
+import project.healthcare.service.UserService;
 
 @Controller
 public class helpController {
     @Autowired
     private HelpService helpService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/help-board")
     public String question() {
@@ -58,7 +63,9 @@ public class helpController {
 
     @GetMapping("/help/view")
     public String helpView(Model model, Integer id) {
+        UserDTO user=userService.getCurrentUser();
         model.addAttribute("view", helpService.helpView(id));
+        model.addAttribute("user", user);
         return "helpView";
     }
 
@@ -71,18 +78,18 @@ public class helpController {
 
     @GetMapping("/help/modify/{id}")
     public String helpModify(@PathVariable("id") Integer id, Model model){
-        model.addAttribute("view", helpService.helpView(id));
+        model.addAttribute("view", helpService.helpId(id));
         return "helpModify";
     }
 
     @PostMapping("/help/update/{id}")
     public String helpUpdate(@PathVariable("id") Integer id, Help help){
 
-        Help helpTemp = helpService.helpView(id);
-        helpTemp.setTitle(help.getTitle());
-        helpTemp.setContent(help.getContent());
+        Help helptemp = helpService.helpId(id);
+        helptemp.setTitle(help.getTitle());
+        helptemp.setContent(help.getContent());
 
-        helpService.write(helpTemp);
+        helpService.helpModify(helptemp);
 
         return "redirect:/help/list";
     }
