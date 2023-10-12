@@ -7,114 +7,27 @@
 >
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="">
-    <meta name="author" content="" />
-    <title>Survey</title>
-
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="img/Logo.png" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/main.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>건강 설문 조사</title>
+    <link rel="stylesheet" href="/css/styles_survey.css">
+    <style>
+        /* 추가된 스타일 */
+        .question-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .question {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
-
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            <img src="/img/Logo.png" alt="TAKE CARE">
-        </a>
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <button class="btn btn-dark dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        Dropdown
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <form class="d-flex" role="search" method="get" action="/search-page">
-            <input
-                    class="search-control"
-                    type="search"
-                    placeholder="검색어를 입력해주세요"
-                    aria-label="Search">
-            <button class="search-btn" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     fill="currentColor"
-                     class="bi bi-search"
-                     viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-            </button>
-        </form>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/my-page">Mypage</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <body>
-<link rel="stylesheet" href="/css/styles_survey.css">
-<style>
-    /* 추가된 스타일 */
-    .question-container {
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        background-color: #fff;
-    }
-    .question {
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-</style>
-</head>
 <div class="form-container">
     <h1>건강 설문 조사</h1>
     <form th:action="@{/survey/submit}" method="post" onsubmit="return showConfirmation()">
@@ -188,16 +101,16 @@
 
         <!-- 다섯 번째 질문 -->
         <div class="question-container">
-            <label class="question">영양제가 필요한 부위가 있다면 어디인가요?</label>
+            <label class="question">영양제가 필요한 부분이 있다면 어디인가요?</label>
             <div class="radio-group">
-                <input type="radio" id="discomfortEyes" name="discomfort_area" th:value="'눈'">
-                <label for="discomfortEyes" th:text="'눈'"></label><br>
-                <input type="radio" id="discomfortLiver" name="discomfort_area" th:value="'간'">
-                <label for="discomfortLiver" th:text="'간'"></label><br>
-                <input type="radio" id="discomfortLungs" name="discomfort_area" th:value="'폐'">
-                <label for="discomfortLungs" th:text="'폐'"></label><br>
-                <input type="radio" id="discomfortNose" name="discomfort_area" th:value="'코'">
-                <label for="discomfortNose" th:text="'코'"></label><br>
+                <input type="radio" id="discomfortEyes" name="discomfort_area" th:value="'눈/스트레스/수면'">
+                <label for="discomfortEyes" th:text="'눈/스트레스/수면'"></label><br>
+                <input type="radio" id="discomfortLiver" name="discomfort_area" th:value="'혈관/혈액순환'">
+                <label for="discomfortLiver" th:text="'혈관/혈액순환'"></label><br>
+                <input type="radio" id="discomfortLungs" name="discomfort_area" th:value="'체지방/콜레스테롤'">
+                <label for="discomfortLungs" th:text="'체지방/콜레스테롤'"></label><br>
+                <input type="radio" id="discomfortNose" name="discomfort_area" th:value="'피부/장'">
+                <label for="discomfortNose" th:text="'피부/장'"></label><br>
                 <input type="radio" id="discomfortNone" name="discomfort_area" th:value="'없음'">
                 <label for="discomfortNone" th:text="'없음'"></label><br>
             </div>
@@ -224,16 +137,16 @@
         <div class="question-container">
             <label class="question">필요한 주요 성분을 골라주세요.(중복 선택 가능)</label>
             <div class="checkbox-group">
-                <input type="checkbox" id="desiredVitaminC" name="desired_ingredients" th:value="'비타민C'">
-                <label for="desiredVitaminC" th:text="'비타민C'"></label><br>
+                <input type="checkbox" id="desiredVitaminC" name="desired_ingredients" th:value="'비타민'">
+                <label for="desiredVitaminC" th:text="'비타민'"></label><br>
                 <input type="checkbox" id="desiredProbiotics" name="desired_ingredients" th:value="'유산균(프로바이오틱스)'">
                 <label for="desiredProbiotics" th:text="'유산균(프로바이오틱스)'"></label><br>
                 <input type="checkbox" id="desiredOmega3" name="desired_ingredients" th:value="'오메가3'">
                 <label for="desiredOmega3" th:text="'오메가3'"></label><br>
                 <input type="checkbox" id="desiredCollagen" name="desired_ingredients" th:value="'콜라겐'">
                 <label for="desiredCollagen" th:text="'콜라겐'"></label><br>
-                <input type="checkbox" id="desiredArginine" name="desired_ingredients" th:value="'아르기닌'">
-                <label for="desiredArginine" th:text="'아르기닌'"></label><br>
+                <input type="checkbox" id="desiredArginine" name="desired_ingredients" th:value="'루테인'">
+                <label for="desiredArginine" th:text="'루테인'"></label><br>
             </div>
         </div>
 
@@ -242,43 +155,42 @@
 
     <script>
         function showConfirmation() {
-    var result = confirm("제출 하시겠습니까?");
-    if (result) {
-        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        var radioGroups = document.querySelectorAll('.radio-group');
+            var result = confirm("제출 하시겠습니까?");
+            if (result) {
+                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                var radioGroups = document.querySelectorAll('.radio-group');
 
-        var checkboxesValid = true;
-        var radioGroupsValid = true;
+                var checkboxesValid = true;
+                var radioGroupsValid = true;
 
-        checkboxes.forEach(function (checkbox) {
-            var name = checkbox.name;
-            if (!document.querySelector('input[name="' + name + '"]:checked')) {
-                checkboxesValid = false;
-                checkbox.nextElementSibling.style.color = 'red'; // 미체크된 항목의 텍스트 색상을 빨간색으로 변경
+                checkboxes.forEach(function (checkbox) {
+                    var name = checkbox.name;
+                    if (!document.querySelector('input[name="' + name + '"]:checked')) {
+                        checkboxesValid = false;
+                        checkbox.nextElementSibling.style.color = 'red'; // 미체크된 항목의 텍스트 색상을 빨간색으로 변경
+                    }
+                });
+
+                radioGroups.forEach(function (group) {
+                    var name = group.querySelector('input[type="radio"]').name;
+                    if (!document.querySelector('input[name="' + name + '"]:checked')) {
+                        radioGroupsValid = false;
+                        group.querySelector('label').style.color = 'red'; // 미선택된 라디오 그룹의 라벨 텍스트 색상을 빨간색으로 변경
+                    }
+                });
+
+                if (!checkboxesValid || !radioGroupsValid) {
+                    alert("모든 항목을 선택하세요.");
+                    return false;
+                }
+
+                alert("제출되었습니다");
+                return true;
+            } else {
+                alert("취소되었습니다");
+                return false;
             }
-        });
-
-        radioGroups.forEach(function (group) {
-            var name = group.querySelector('input[type="radio"]').name;
-            if (!document.querySelector('input[name="' + name + '"]:checked')) {
-                radioGroupsValid = false;
-                group.querySelector('label').style.color = 'red'; // 미선택된 라디오 그룹의 라벨 텍스트 색상을 빨간색으로 변경
-            }
-        });
-
-        if (!checkboxesValid || !radioGroupsValid) {
-            alert("모든 항목을 선택하세요.");
-            return false;
         }
-
-        alert("제출되었습니다");
-        return true;
-    } else {
-        alert("취소되었습니다");
-        return false;
-    }
-}
-
     </script>
 </div>
 </body>

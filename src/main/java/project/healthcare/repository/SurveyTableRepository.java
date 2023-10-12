@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SurveyTableRepository extends JpaRepository<SurveyEntity, Long> {
-    // public SurveyEntity save(SurveyEntity surveyEntity);
+     SurveyEntity findByNameAndEmail(Object name, Object email);
 }

@@ -109,5 +109,10 @@
 <button class="btn btn-primary" onclick="location.href='/mypage/changepw'">비밀번호 바꾸기</button>
 <button class="btn btn-primary" onclick="location.href='/mypage/changename'">이름 바꾸기</button>
 <button class="btn btn-primary" onclick="location.href='/mypage/changenickname'">닉네임 바꾸기</button>
+<h1>설문 기록</h1>
+<p>연령대 : <span th:text="${surveyResult.age_group}"></span></p>
+<p>일주일 영양제 복용 횟수 : <span th:text="${surveyResult.nutrient_frequency}"></span></p>
+<p>영양제 필요 부위 : <span th:text="${surveyResult.discomfort_area}"></span></p>
+<p>원하는 기능 : <span th:text="${surveyResult.desired_function}"></span></p>
 </body>
 </html>
