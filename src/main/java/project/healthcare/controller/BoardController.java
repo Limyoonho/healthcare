@@ -7,8 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.healthcare.dto.PillDto;
+import project.healthcare.dto.UserDTO;
 import project.healthcare.entity.PillEntity;
+import project.healthcare.entity.SurveyEntity;
 import project.healthcare.repository.PillRepository;
+import project.healthcare.repository.SurveyTableRepository;
+import project.healthcare.service.UserService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +26,10 @@ public class BoardController {
     private PillRepository pillRepository;
     @Autowired
     private PillEntity pillEntity;
+    @Autowired
+    private SurveyTableRepository surveyTableRepository;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     public String main(Model model) {
@@ -50,6 +58,17 @@ public class BoardController {
             model.addAttribute("effect_" + i, effects[i-1]);
             model.addAttribute("detail_" + i, details[i-1]);
         }
+
+        UserDTO user = userService.getCurrentUser();
+        String video;
+
+        if (surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId()) == null) {
+            video = "";
+        } else {
+            SurveyEntity surveyResult = surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId());
+            video = surveyResult.getDesired_function();
+        }
+        model.addAttribute("video", video);
 
         return "main";
     }

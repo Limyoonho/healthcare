@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import project.healthcare.dto.PillDto;
+import project.healthcare.dto.UserDTO;
 import project.healthcare.entity.PillEntity;
 import project.healthcare.entity.SurveyEntity;
 import project.healthcare.repository.PillRepository;
 import project.healthcare.repository.SurveyTableRepository;
+import project.healthcare.service.UserService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +21,11 @@ public class SurveyController {
     private SurveyTableRepository surveyTableRepository;
     @Autowired
     private PillRepository pillRepository;
+    @Autowired
+    private UserService userService;
+
+    public SurveyController() {
+    }
 
     @GetMapping("/survey")
     public String showSurveyForm(Model model) {
@@ -40,6 +45,10 @@ public class SurveyController {
     ) {
         SurveyEntity surveyEntity = new SurveyEntity();
 
+        UserDTO user = userService.getCurrentUser();
+
+        surveyEntity.setName(user.getUName());
+        surveyEntity.setEmail(user.getUserId());
         surveyEntity.setNutrient_necessity(nutrientNecessity);
         surveyEntity.setAge_group(ageGroup);
         surveyEntity.setNutrient_frequency(nutrientFrequency);

@@ -15,6 +15,12 @@ public class SurveyEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
     @Column(name = "nutrient_necessity", nullable = false)
     private String nutrient_necessity;
 
@@ -36,6 +42,6 @@ public class SurveyEntity {
     @Column(name = "desired_ingredients", nullable = false)
     private String[] desired_ingredients;
 
-    @Column(name = "ingredients", nullable = false)
+    @Column(name = "ingredient", nullable = false)
     private String ingredient;
 }

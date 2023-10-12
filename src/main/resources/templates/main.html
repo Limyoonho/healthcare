@@ -145,7 +145,11 @@
                                  </svg>
                             </div>     
                         </span>
-                        <h4 class="my-3"><a class="service-link" href="">운동 영상 추천</a></h4>
+                        <h4 class="my-3">
+                            <a class="service-link" th:href="'https://www.youtube.com/results?search_query=' + ${video} + '+운동'">
+                                운동 영상 추천
+                            </a>
+                        </h4>
                         <p class="text-muted">나에게 맞는 영상을 보고 운동을 해봅시다!</p>
                     </div>
                     <div class="col-md-4">
@@ -180,8 +184,7 @@
 <section class="page-section bg-light" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">면역력이 부족 하신가요?</h2>
-            <h3 class="section-subheading text-muted">전체보기</h3>
+            <h2 class="section-heading text-uppercase">무엇이 필요할까 고민이신가요?</h2>
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6 mb-4">
