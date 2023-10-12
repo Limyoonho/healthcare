@@ -8,9 +8,6 @@ import project.healthcare.entity.Help;
 import project.healthcare.repository.HelpRepository;
 
 import java.sql.Date;
-import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class HelpService {

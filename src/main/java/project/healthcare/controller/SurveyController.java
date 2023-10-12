@@ -4,29 +4,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import project.healthcare.dto.PillDto;
+import project.healthcare.dto.UserDTO;
 import project.healthcare.entity.PillEntity;
 import project.healthcare.entity.SurveyEntity;
 import project.healthcare.repository.PillRepository;
 import project.healthcare.repository.SurveyTableRepository;
+import project.healthcare.service.UserService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 @Controller
-@RequestMapping("/take-care")
+@RequestMapping("/")
 public class SurveyController {
     @Autowired
     private SurveyTableRepository surveyTableRepository;
     @Autowired
     private PillRepository pillRepository;
+    @Autowired
+    private UserService userService;
+
+    public SurveyController() {
+    }
 
     @GetMapping("/survey")
     public String showSurveyForm(Model model) {
         return "survey";
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/survey/submit")
     public String submitSurvey(
             @RequestParam("nutrient_necessity") String nutrientNecessity,
             @RequestParam("age_group") String ageGroup,
@@ -37,8 +44,18 @@ public class SurveyController {
             @RequestParam("desired_ingredients") String[] desiredIngredients,
             Model model
     ) {
+        UserDTO user = userService.getCurrentUser();
+        SurveyEntity existingSurvey = surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId());
+
+        if (existingSurvey != null) {
+            // 이미 설문 내용이 존재하면 삭제 또는 업데이트
+            surveyTableRepository.delete(existingSurvey);
+        }
+
         SurveyEntity surveyEntity = new SurveyEntity();
 
+        surveyEntity.setName(user.getUName());
+        surveyEntity.setEmail(user.getUserId());
         surveyEntity.setNutrient_necessity(nutrientNecessity);
         surveyEntity.setAge_group(ageGroup);
         surveyEntity.setNutrient_frequency(nutrientFrequency);
@@ -138,7 +155,7 @@ public class SurveyController {
     }
 
     public List<PillEntity> searchPill(String keyword) {
-        List<PillEntity> pillList = pillRepository.findAll();
+        List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {

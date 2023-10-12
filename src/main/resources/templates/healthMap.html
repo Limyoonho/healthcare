@@ -90,12 +90,16 @@
                             <button class="btn btn-dark dropdown-toggle"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                Dropdown
+                                카테고리
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="/category/eyes">눈</a></li>
+                                <li><a class="dropdown-item" href="/category/skincare">피부</a></li>
+                                <li><a class="dropdown-item" href="/category/fat">체지방</a></li>
+                                <li><a class="dropdown-item" href="/category/blood">혈관/혈액 순환</a></li>
+                                <li><a class="dropdown-item" href="/category/intestine">장</a></li>
+                                <li><a class="dropdown-item" href="/category/sleep">스트레스/수면</a></li>
+                                <li><a class="dropdown-item" href="/category/cholesterol">콜레스테롤</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -123,13 +127,13 @@
                             <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" sec:authorize="isAuthenticated()"href="/notice">Notice</a>
+                            <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" sec:authorize="isAuthenticated()"href="/my-page">Mypage</a>
+                            <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" sec:authorize="isAuthenticated()"href="/help/list">Help</a>
+                            <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>

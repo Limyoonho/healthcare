@@ -7,8 +7,6 @@ import project.healthcare.repository.PillRepository;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class PillApiTest {
     @Autowired

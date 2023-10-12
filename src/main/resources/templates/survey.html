@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+        lang="en"
+        data-bs-theme="auto"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,8 +30,7 @@
 <body>
 <div class="form-container">
     <h1>건강 설문 조사</h1>
-    <form th:action="@{/take-care/submit}" method="post" onsubmit="return showConfirmation()">
-
+    <form th:action="@{/survey/submit}" method="post" onsubmit="return showConfirmation()">
         <!-- 첫 번째 질문 -->
         <div class="question-container">
             <label class="question">영양제 섭취가 하루의 일과에서 필수적이라고 생각하시나요?</label>
