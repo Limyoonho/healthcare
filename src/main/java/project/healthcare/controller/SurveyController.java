@@ -11,6 +11,7 @@ import project.healthcare.repository.PillRepository;
 import project.healthcare.repository.SurveyTableRepository;
 import project.healthcare.service.UserService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,9 +44,15 @@ public class SurveyController {
             @RequestParam("desired_ingredients") String[] desiredIngredients,
             Model model
     ) {
-        SurveyEntity surveyEntity = new SurveyEntity();
-
         UserDTO user = userService.getCurrentUser();
+        SurveyEntity existingSurvey = surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId());
+
+        if (existingSurvey != null) {
+            // 이미 설문 내용이 존재하면 삭제 또는 업데이트
+            surveyTableRepository.delete(existingSurvey);
+        }
+
+        SurveyEntity surveyEntity = new SurveyEntity();
 
         surveyEntity.setName(user.getUName());
         surveyEntity.setEmail(user.getUserId());
@@ -148,7 +155,7 @@ public class SurveyController {
     }
 
     public List<PillEntity> searchPill(String keyword) {
-        List<PillEntity> pillList = pillRepository.findAll();
+        List<PillEntity> pillList = new ArrayList<>();
         List<PillEntity> tempPillList = pillRepository.findAll();
 
         for (PillEntity tempPill : tempPillList) {
