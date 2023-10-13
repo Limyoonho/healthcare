@@ -2,25 +2,33 @@ package project.healthcare.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.healthcare.dto.ChangeForm;
 import project.healthcare.dto.UserDTO;
 import project.healthcare.entity.SurveyEntity;
 import project.healthcare.repository.SurveyTableRepository;
 import project.healthcare.service.UserService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Controller
 @AllArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
+
     private final PasswordEncoder passwordEncoder;
     @Autowired
     private SurveyTableRepository surveyTableRepository;
+
     @PostMapping("/user/save")
     public String saveUser(UserDTO userDTO) {
         userService.saveUser(userDTO);
@@ -29,8 +37,8 @@ public class UserController {
 
     @GetMapping("/mypage")
     public String userProfile(Model model) {
-        UserDTO user=userService.getCurrentUser();
-        model.addAttribute("user",user);
+        UserDTO user = userService.getCurrentUser();
+        model.addAttribute("user", user);
 
         SurveyEntity surveyResult = new SurveyEntity();
 
@@ -52,17 +60,18 @@ public class UserController {
 
         return "/mypage";
     }
+
     @GetMapping("/mypage/changepw")
     public String showChangePasswordForm(Model model) {
-        model.addAttribute("ChangeForm",new ChangeForm());
+        model.addAttribute("ChangeForm", new ChangeForm());
         return "changePw";
     }
 
     @PostMapping("/mypage/changepw")
     public String processChangePassword(@ModelAttribute("ChangeForm") ChangeForm form) {
-        UserDTO currentUser=userService.getCurrentUser();
-        String newPassword=form.getNewPassword();
-        if(!passwordEncoder.matches(form.getCurrentPassword(),currentUser.getUserPw())) {
+        UserDTO currentUser = userService.getCurrentUser();
+        String newPassword = form.getNewPassword();
+        if (!passwordEncoder.matches(form.getCurrentPassword(), currentUser.getUserPw())) {
             return "redirect:/mypage/changepw?error=incorrectCurrentPassword";
         }
         if (!form.getNewPassword().equals(form.getConfirmNewPassword())) {
@@ -75,33 +84,49 @@ public class UserController {
 
     @GetMapping("/mypage/changename")
     public String showChangeUsernameForm(Model model) {
-        model.addAttribute("ChangeForm",new ChangeForm());
+        model.addAttribute("ChangeForm", new ChangeForm());
         return "changename";
     }
 
     @PostMapping("/mypage/changename")
     public String processChangeUsername(@ModelAttribute("ChangeForm") ChangeForm form) {
-        UserDTO currentUser=userService.getCurrentUser();
-        String newUsername=form.getNewUsername();
+        UserDTO currentUser = userService.getCurrentUser();
+        String newUsername = form.getNewUsername();
 
-        userService.updateUsername(currentUser.getUserId(),newUsername);
+        userService.updateUsername(currentUser.getUserId(), newUsername);
 
         return "redirect:/mypage";
     }
 
     @GetMapping("/mypage/changenickname")
     public String showChangeNicknameForm(Model model) {
-        model.addAttribute("ChangeForm",new ChangeForm());
+        model.addAttribute("ChangeForm", new ChangeForm());
         return "changenickname";
     }
 
     @PostMapping("/mypage/changenickname")
     public String processChangeNickname(@ModelAttribute("ChangeForm") ChangeForm form) {
-        UserDTO currentUser=userService.getCurrentUser();
-        String newNickname=form.getNewNickname();
+        UserDTO currentUser = userService.getCurrentUser();
+        String newNickname = form.getNewNickname();
 
-        userService.updateNickname(currentUser.getUserId(),newNickname);
+        userService.updateNickname(currentUser.getUserId(), newNickname);
 
         return "redirect:/mypage";
+    }
+    @GetMapping("/user/checkEmailDuplicate")
+    @ResponseBody
+    public Map<String, Boolean> checkDuplicateUser(@RequestParam String userId) {
+        Map<String, Boolean> response = new HashMap<>();
+        boolean isDuplicate = userService.isUserIdDuplicate(userId);
+        response.put("duplicate", isDuplicate);
+        return response;
+    }
+    @GetMapping("/user/checkNicknameDuplicate")
+    @ResponseBody
+    public Map<String, Boolean> checkDuplicateNickname(@RequestParam String nickName) {
+        Map<String, Boolean> response = new HashMap<>();
+        boolean isDuplicate = userService.isNickNameDuplicate(nickName);
+        response.put("duplicate", isDuplicate);
+        return response;
     }
 }

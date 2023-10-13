@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 @Service
 @AllArgsConstructor
 public class UserService {
-
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -75,5 +74,15 @@ public class UserService {
         String localTime=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         userEntity.setUpdateDate(localTime);
         userRepository.save(userEntity);
+    }
+    public boolean isUserIdDuplicate(String userId) {
+        // 이메일(ID) 중복 확인 로직
+        UserEntity existingUser = userRepository.findByUserId(userId).orElse(null);
+        return existingUser != null;
+    }
+    public boolean isNickNameDuplicate(String nickName) {
+        // 닉네임 중복 확인 로직
+        UserEntity existingUser = userRepository.findByNickName(nickName).orElse(null);
+        return existingUser != null;
     }
 }
