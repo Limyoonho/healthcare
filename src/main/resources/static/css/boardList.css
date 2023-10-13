@@ -79,8 +79,10 @@ width:80%;
 margin-left:10%;
 margin-top:15px;
 }
+
 .write-button {
 border-radius: 5px;
+padding: 10px;
 background-color:green;
 color:white;
 border:gainsboro;
