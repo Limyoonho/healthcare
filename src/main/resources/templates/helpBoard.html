@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-    <html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head>
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="">
@@ -18,10 +18,10 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/main.css" rel="stylesheet" />
-    </head>
-    <head>
-        <style>
-            .layout {
+</head>
+<head>
+    <style>
+        .layout {
                 max-width: 800px;
                 margin: 0 auto;
                 padding: 20px;
@@ -141,16 +141,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
+                        <a class="nav-link" href="/notice">Notice</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/free/list">Free</a>
+                        <a class="nav-link" href="/free/list">Free</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
@@ -210,5 +207,6 @@
             </div>
         </div>
     </footer>
+<script src="/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

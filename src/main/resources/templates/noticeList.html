@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="" />
-    <title>Question Board</title>
+    <title>Notice Board</title>
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/Logo.png" />
@@ -102,47 +102,47 @@
         </div>
     </div>
 </nav>
-    <div class="layout">
-        <div class="tt">
-        <h1 class="tt1">문의사항</h1>
-        <span class="tt2">불편사항이 있으면 언제든지 문의 해주세요</span>
-            <div class="search-form">
-                <form th:action="@{/help/list}" method="get">
-                    <input type="text" name="searchKeyword">
-                    <button class="search-button" type="submit">검색</button>
-                </form>
-            </div>
-        </div>
-        <table class="table123">
-        <thead>
-          <tr>
-            <th>글 번호</th>
-            <th>제목</th>
-              <th>조회수</th>
-            <th>작성 일자</th>
-              <th>작성자</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="help : ${list}">
-            <td class="table-number" th:text="${help.id}">1</td>
-            <td><a th:text="${help.title}" th:href="@{/help/view(id=${help.id})}"></a></td>
-              <td th:text="${help.view_count}"></td>
-              <td th:text="${help.create_date}"></td>
-              <td th:text="${help.write_user}"></td>
-          </tr>
-        </tbody>
-        </table>
-        <div class="write-pro">
-            <a th:href="@{/help-board}" class="write-button">글쓰기</a>
+<div class="layout">
+    <div class="tt">
+        <h1 class="tt1">공지사항</h1>
+        <span class="tt2">사이트 공지 올라오는 게시판</span>
+        <div class="search-form">
+            <form th:action="@{/notice/list}" method="get">
+                <input type="text" name="searchKeyword">
+                <button class="search-button" type="submit">검색</button>
+            </form>
         </div>
     </div>
-        <div class="paging">
-            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-                <a th:if="${page != nowPage}" th:href="@{/help/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
-                <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
-            </th:block>
-        </div>
+    <table class="table123">
+        <thead>
+        <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+            <th>조회수</th>
+            <th>작성 일자</th>
+            <th>작성자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="notice : ${list}">
+            <td class="table-number" th:text="${notice.id}">1</td>
+            <td><a th:text="${notice.title}" th:href="@{/notice/view(id=${notice.id})}"></a></td>
+            <td th:text="${notice.view_count}"></td>
+            <td th:text="${notice.create_date}"></td>
+            <td th:text="${notice.write_user}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="write-pro">
+        <a th:href="@{/notice-board}" class="write-button">글쓰기</a>
+    </div>
+</div>
+<div class="paging">
+    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <a th:if="${page != nowPage}" th:href="@{/notice/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+        <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
+    </th:block>
+</div>
 <footer class="footer py-4">
     <div class="container">
         <div class="row align-items-center">

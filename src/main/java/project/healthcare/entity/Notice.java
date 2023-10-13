@@ -1,20 +1,19 @@
 package project.healthcare.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.Date;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Entity
 @Data
-public class Help {
+public class Notice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 
-    @Column(name="title", length=255)
+    @Column(name="title", length=32)
     private String title;
 
     @Column(name="content", length=65535)
