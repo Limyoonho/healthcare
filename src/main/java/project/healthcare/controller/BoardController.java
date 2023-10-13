@@ -72,13 +72,18 @@ public class BoardController {
 
     @RequestMapping("/userhealth")
     public String userhealth() {
-        UserDTO user=userService.getCurrentUser();
-        SurveyEntity surveyEntity=new SurveyEntity();
-        surveyEntity=surveyTableRepository.findByNameAndEmail(user.getUName(),user.getUserId());
-        String function= URLEncoder.encode(surveyEntity.getDesired_function()+" 운동", StandardCharsets.UTF_8);
-        String excer=URLEncoder.encode("운동",StandardCharsets.UTF_8);
-        String link="https://www.youtube.com/results?search_query="+function;
-        return "redirect:"+link;
+        UserDTO user = userService.getCurrentUser();
+        SurveyEntity surveyEntity = new SurveyEntity();
+        surveyEntity = surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId());
+        if (surveyEntity==null) {
+            String excer = URLEncoder.encode("5분 운동", StandardCharsets.UTF_8);
+            return "redirect:https://www.youtube.com/results?search_query=" + excer;
+        } else {
+            String function = URLEncoder.encode(surveyEntity.getDesired_function() + " 운동", StandardCharsets.UTF_8);
+            String excer = URLEncoder.encode("운동", StandardCharsets.UTF_8);
+            String link = "https://www.youtube.com/results?search_query=" + function;
+            return "redirect:" + link;
+        }
     }
 
     @RequestMapping("/pill")
@@ -261,11 +266,6 @@ public class BoardController {
         return "cholesterol";
     }
 
-    @RequestMapping("/portfolio")
-    public String portfolio() {
-        return "portfolio";
-    }
-
     @RequestMapping("/notice")
     public String notice() {
         return "notice";
@@ -275,11 +275,6 @@ public class BoardController {
     public String helpBoard() {
         return "helpBoard";
     }
-
-//    @RequestMapping("/my-page")
-//    public String myPage() {
-//        return "myPage";
-//    }
 
     @RequestMapping("/join")
     public String join() {

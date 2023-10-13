@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="" />
-    <title>게시글 리스트</title>
+    <title>Free Board</title>
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/Logo.png" />
@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
-    <link href="/css/helpList.css?after" rel="stylesheet" />
+    <link href="/css/boardList.css?after" rel="stylesheet" />
 </head>
 
 <body>
@@ -76,16 +76,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
+                    <a class="nav-link" href="/notice/list">Notice</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/free/list">Free</a>
+                    <a class="nav-link" href="/free/list">Free</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
@@ -103,47 +100,47 @@
         </div>
     </div>
 </nav>
-    <div class="layout">
-        <div class="question">
-        <h1 class="question1">자유 게시판</h1>
-        <span class="question2">즐겁게 떠들어 봅시다.</span>
-        </div>
+<div class="layout">
+    <div class="tt">
+        <h1 class="tt1">자유 게시판</h1>
+        <span class="tt2">자유롭게 떠들고 놉시다.</span>
         <div class="search-form">
             <form th:action="@{/free/list}" method="get">
                 <input type="text" name="searchKeyword">
-                <button class="free-search" type="submit">검색</button>
-                <a th:href="@{/free-board}" class="write-pro">글쓰기</a>
+                <button class="search-button" type="submit">검색</button>
             </form>
         </div>
-        <table class="table123">
+    </div>
+    <table class="table123">
         <thead>
-          <tr>
+        <tr>
             <th>글 번호</th>
             <th>제목</th>
-              <th>조회수</th>
+            <th>조회수</th>
             <th>작성 일자</th>
-              <th>작성자</th>
-          </tr>
+            <th>작성자</th>
+        </tr>
         </thead>
         <tbody>
-          <tr th:each="free : ${list}">
+        <tr th:each="free : ${list}">
             <td class="table-number" th:text="${free.id}">1</td>
             <td><a th:text="${free.title}" th:href="@{/free/view(id=${free.id})}"></a></td>
-              <td th:text="${free.view_count}"></td>
-              <td th:text="${free.create_date}"></td>
-              <td th:text="${free.write_user}"></td>
-          </tr>
+            <td th:text="${free.view_count}"></td>
+            <td th:text="${free.create_date}"></td>
+            <td th:text="${free.write_user}"></td>
+        </tr>
         </tbody>
-        </table>
+    </table>
+    <div class="write-pro">
+        <a th:href="@{/free-board}" class="write-button">글쓰기</a>
     </div>
-        <div class="paging">
-            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-                <a th:if="${page != nowPage}" th:href="@{/free/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
-                <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
-            </th:block>
-        </div>
-    </div>
-
+</div>
+<div class="paging">
+    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <a th:if="${page != nowPage}" th:href="@{/free/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+        <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
+    </th:block>
+</div>
 <footer class="footer py-4">
     <div class="container">
         <div class="row align-items-center">
@@ -160,6 +157,6 @@
         </div>
     </div>
 </footer>
-
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
