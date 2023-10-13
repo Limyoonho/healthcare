@@ -149,7 +149,10 @@
                             </div>     
                         </span>
                         <h4 class="my-3">
-                            <a class="service-link" th:href="'https://www.youtube.com/results?search_query=' + ${video} + '+운동'">
+                            <a sec:authorize="isAnonymous()" class="service-link" th:href="@{/anonyhealth}">
+                                운동 영상 추천
+                            </a>
+                            <a sec:authorize="isAuthenticated()" class="service-link" th:href="@{/userhealth}">
                                 운동 영상 추천
                             </a>
                         </h4>

@@ -2,6 +2,7 @@ package project.healthcare.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Utf8;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import project.healthcare.repository.SurveyTableRepository;
 import project.healthcare.service.UserService;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,36 +44,41 @@ public class BoardController {
 
         for (int i = 1; i < 7; i++) {
             pillEntity = pillRepository.findById(i);
-            products[i-1] = pillEntity.getProduct();
-            company[i-1] = pillEntity.getCompany();
-            effects[i-1] = String.join(", ", pillEntity.getEffect());
-            details[i-1] = String.join(", ", pillEntity.getDetail());
+            products[i - 1] = pillEntity.getProduct();
+            company[i - 1] = pillEntity.getCompany();
+            effects[i - 1] = String.join(", ", pillEntity.getEffect());
+            details[i - 1] = String.join(", ", pillEntity.getDetail());
 
             if (pillEntity.getImage() == null) {
-                images[i-1] = null;
+                images[i - 1] = null;
             } else {
-                images[i-1] = pillEntity.getImage();
+                images[i - 1] = pillEntity.getImage();
             }
 
-            model.addAttribute("product_" + i, products[i-1]);
-            model.addAttribute("image_" + i, images[i-1]);
-            model.addAttribute("company_" + i, company[i-1]);
-            model.addAttribute("effect_" + i, effects[i-1]);
-            model.addAttribute("detail_" + i, details[i-1]);
+            model.addAttribute("product_" + i, products[i - 1]);
+            model.addAttribute("image_" + i, images[i - 1]);
+            model.addAttribute("company_" + i, company[i - 1]);
+            model.addAttribute("effect_" + i, effects[i - 1]);
+            model.addAttribute("detail_" + i, details[i - 1]);
         }
-
-        UserDTO user = userService.getCurrentUser();
-        String video;
-
-        if (surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId()) == null) {
-            video = "";
-        } else {
-            SurveyEntity surveyResult = surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId());
-            video = surveyResult.getDesired_function();
-        }
-        model.addAttribute("video", video);
-
         return "main";
+    }
+
+    @RequestMapping("/anonyhealth")
+    public String anonyhealth() {
+        String excer=URLEncoder.encode("5분 운동", StandardCharsets.UTF_8);
+        return "redirect:https://www.youtube.com/results?search_query="+excer;
+    }
+
+    @RequestMapping("/userhealth")
+    public String userhealth() {
+        UserDTO user=userService.getCurrentUser();
+        SurveyEntity surveyEntity=new SurveyEntity();
+        surveyEntity=surveyTableRepository.findByNameAndEmail(user.getUName(),user.getUserId());
+        String function= URLEncoder.encode(surveyEntity.getDesired_function()+" 운동", StandardCharsets.UTF_8);
+        String excer=URLEncoder.encode("운동",StandardCharsets.UTF_8);
+        String link="https://www.youtube.com/results?search_query="+function;
+        return "redirect:"+link;
     }
 
     @RequestMapping("/pill")
