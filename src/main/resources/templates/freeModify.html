@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="">
   <meta name="author" content="" />
-  <title>수정</title>
+  <title>게시글 수정</title>
 
   <!-- Favicon-->
   <link rel="icon" type="image/x-icon" href="img/Logo.pngo" />
@@ -135,16 +135,13 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
         <li class="nav-item">
-          <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
+          <a class="nav-link" href="/notice/list">Notice</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" sec:authorize="isAnonymous()" href="/free/list">Free</a>
+          <a class="nav-link" href="/free/list">Free</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
@@ -205,5 +202,6 @@
     </div>
   </div>
 </footer>
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -79,16 +79,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
+                        <a class="nav-link" href="/notice/list">Notice</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/free/list">Free</a>
+                        <a class="nav-link" href="/free/list">Free</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
@@ -121,5 +118,6 @@
 <p>일주일 영양제 복용 횟수 : <span th:text="${surveyResult.nutrient_frequency}"></span></p>
 <p>영양제 필요 부위 : <span th:text="${surveyResult.discomfort_area}"></span></p>
 <p>원하는 기능 : <span th:text="${surveyResult.desired_function}"></span></p>
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

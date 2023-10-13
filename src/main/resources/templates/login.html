@@ -3,8 +3,7 @@
             lang="en"
             data-bs-theme="auto"
             xmlns:th="http://www.thymeleaf.org"
-            xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-    >
+            xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <head>
         <meta charset="utf-8">
@@ -23,7 +22,6 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/main.css" rel="stylesheet" />
     </head>
-
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
@@ -64,8 +62,10 @@
                         class="search-control"
                         type="search"
                         placeholder="검색어를 입력해주세요"
-                        aria-label="Search">
-                <button class="search-btn" type="submit">
+                        aria-label="Search"
+                        name="query"
+                        th:value="${query}">
+                <button class="search-btn" type="submit" onclick="location.herf='/search-page?query=${query}'">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          fill="currentColor"
                          class="bi bi-search"
@@ -77,16 +77,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
+                        <a class="nav-link" href="/notice/list">Notice</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/free/list">Free</a>
+                        <a class="nav-link" href="/free/list">Free</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
@@ -121,5 +118,6 @@
     </div>
 </form>
 </main>
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
