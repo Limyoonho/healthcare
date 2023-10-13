@@ -49,6 +49,9 @@ public class noticeController {
             list = noticeService.noticeSearchList(searchKeyword, pageable);
         }
 
+        UserDTO user=userService.getCurrentUser();
+        model.addAttribute("user",user);
+
         int nowPage = list.getPageable().getPageNumber() + 1;
         int startPage = Math.max(nowPage -4, 1);
         int endPage = Math.min(nowPage + 4, list.getTotalPages());

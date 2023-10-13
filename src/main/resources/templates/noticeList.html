@@ -134,7 +134,7 @@
         </tbody>
     </table>
     <div class="write-pro">
-        <a th:href="@{/notice-board}" class="write-button">글쓰기</a>
+        <a sec:authorize="isAuthenticated()" th:if="${user.userAuth.toString().equals('ADMIN')}" th:href="@{/notice-board}" class="write-button">글쓰기</a>
     </div>
 </div>
 <div class="paging">

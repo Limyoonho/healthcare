@@ -132,12 +132,12 @@
         </tbody>
     </table>
     <div class="write-pro">
-        <a th:href="@{/free-board}" class="write-button">글쓰기</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/free-board}" class="write-button">글쓰기</a>
     </div>
 </div>
 <div class="paging">
     <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-        <a th:if="${page != nowPage}" th:href="@{/free/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+        <a th:if="${page != nowPage}" th:href="@{/free/list(page = ${page-1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
         <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
     </th:block>
 </div>
