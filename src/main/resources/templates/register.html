@@ -5,11 +5,7 @@
         xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
-<style>
-    #passwordMatchMessage {
-        font-size: 14px;
-    }
-</style>
+
 
 <head>
     <meta charset="utf-8">
@@ -27,7 +23,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/join.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/db064c80db.js" crossorigin="anonymous"></script>
 </head>
 
 <body id="page-top">
@@ -112,34 +110,39 @@
 </nav>
 <main class="form-signin w-100 m-auto">
 <form method="post" th:action="@{/user/save}" onsubmit="return checkEmailDuplicate() && checkNicknameDuplicate();">
-    <div class="container">
-        <h1 class="h3 mb-3 fw-normal text-center">회원가입</h1>
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" name="userId" placeholder="이메일" required>
-            <label for="floatingInput">이메일</label>
+    <div class="join-container">
+        <h1 class="join-title">회원가입</h1>
+        <div class="join-container1">
+            <div class="join-left">
+                <img class="pill-img" src="https://images.unsplash.com/photo-1555633514-abcee6ab92e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBpbGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60" alt="">
+            </div>
+            <div class="join-right">
+            <div class="form-floating1">
+                <h5 class="e-mail" style="font-size:15px;"> <span id="userIdDuplicateMessage" style="padding-left:10px;"></span></h5>
+                <input type="email" class="form-control1" id="floatingInput" name="userId" required>
+                <button type="button" class="id-duplicate" onclick="checkEmailDuplicate()">중복 확인</button>
+
+            </div>
+                <div class="form-floating1">
+                    <h5 class="e-mail" style="font-size:15px;">이름</h5>
+                    <input type="text" class="form-control1" id="floatingName" name="uName" placeholder="이름" required>
+                </div>
+                <div class="form-floating1">
+                    <h5 class="e-mail" style="font-size:15px;">닉네임<span id="nickNameDuplicateMessage" style="padding-left:10px;"></span></h5>
+                    <input type="text" class="form-control1" id="floatingNickName" name="nickName" placeholder="닉네임" required>
+                    <button type="button" class="nick-duplicate" onclick="checkNicknameDuplicate()">중복 확인</button>
+                </div>
+                <div class="form-floating1">
+                    <h5 class="e-mail" style="font-size:15px">비밀번호<span id="passwordMatchMessage" style="padding-left:10px;"></span></h5>
+                    <input type="password" class="form-control1" id="floatingPassword" name="userPw" placeholder="비밀번호" required>
+                </div>
+                <div class="form-floating1">
+                    <h5 class="e-mail" style="font-size:15px">비밀번호확인</h5>
+                    <input type="password" class="form-control1" id="floatingConfirmPassword" name="confirmPassword" placeholder="비밀번호 확인" required>
+                </div>
+                <button type="submit" id="registerButton" disabled class="join-compleate">가입 완료</button>
+            </div>
         </div>
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" name="uName" placeholder="이름" required>
-            <label for="floatingName">이름</label>
-        </div>
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingNickName" name="nickName" placeholder="닉네임" required>
-            <label for="floatingNickName">닉네임</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" name="userPw" placeholder="비밀번호" required>
-            <label for="floatingPassword">비밀번호</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingConfirmPassword" name="confirmPassword" placeholder="비밀번호 확인" required>
-            <label for="floatingConfirmPassword">비밀번호 확인</label>
-        </div>
-        <div id="userIdDuplicateMessage"></div>
-        <div id="nickNameDuplicateMessage"></div>
-        <button type="submit" id="registerButton" disabled class="btn btn-primary">가입 완료</button>
-        <button type="button" class="btn btn-secondary" onclick="checkEmailDuplicate()">아이디 중복 확인</button>
-        <button type="button" class="btn btn-secondary" onclick="checkNicknameDuplicate()">닉네임 중복 확인</button>
-        <div id="passwordMatchMessage"></div>
     </div>
 </form>
 </main>
