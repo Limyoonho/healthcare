@@ -6,63 +6,76 @@
   <title>설문 결과 확인</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
     }
 
     .header {
-      background-color: #60E4F5;
-      color: #fff;
-      padding: 10px 0;
-      text-align: center;
-      width: 100%;
+        background-color: #009688;
+        color: #fff; /* 헤더 텍스트 색상을 흰색(#fff)으로 변경 */
+        padding: 10px 0;
+        text-align: center;
+        width: 100%;
     }
 
     .container {
       background-color: #fff;
-
       padding: 20px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 10px; /* 테두리 둥글게 변경 */
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-            margin-top: 90px;
+      margin-top: 90px;
+      max-width: 800px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
     }
 
     .left-column {
-      max-width: 60%; /* 이미지를 오른쪽으로 이동시키기 위해 max-width 조정 */
-      text-align: right; /* 이미지는 오른쪽 정렬 */
+      max-width: 60%;
+      text-align: right;
       padding: 10px;
     }
 
     .right-column {
-      max-width: 40%; /* 나머지 정보를 왼쪽으로 이동시키기 위해 max-width 조정 */
-      text-align: left; /* 나머지 정보는 왼쪽 정렬 */
+      max-width: 40%;
+      text-align: left;
       padding: 10px;
     }
 
     h1 {
       font-size: 24px;
-      color: white;
+      color: #fff; /* 제목 색상 변경 */
       margin-bottom: 20px;
     }
 
     h2 {
-      font-size: 18px;
+      font-size: 20px; /* 제목 크기 조정 */
       color: #555;
       margin-top: 20px;
       margin-bottom: 10px;
     }
 
-    p {
+    .info {
+      margin-top: 20px;
+    }
+
+    .info-title {
+      font-size: 18px; /* 제목 크기 조정 */
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #009688; /* 제목 색상 변경 */
+    }
+
+    .info-content {
+      font-size: 16px;
       margin-bottom: 10px;
     }
 
@@ -77,7 +90,7 @@
       background-color: #f7f7f7;
       padding: 20px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 10px; /* 테두리 둥글게 변경 */
       width: 100%;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -87,18 +100,24 @@
 <div class="header">
   <h1>설문 결과 확인</h1>
 </div>
-
 <div class="container">
   <div class="left-column">
     <img th:src="${image}" onerror="this.src='/img/default-image.png;" />
   </div>
   <div class="right-column">
     <h2>추천 영양제</h2>
-    <p th:text="${product}"></p>
-    <p th:text="${effect}"></p>
-    <p th:text="${detail}"></p>
+    <div class="info">
+      <div class="info-title">이름</div>
+      <div class="info-content" th:text="${product}"></div>
+
+      <div class="info-title">효과</div>
+      <div class="info-content" th:text="${effect}"></div>
+
+      <div class="info-title">성분</div>
+      <div class="info-content" th:text="${detail}"></div>
+    </div>
   </div>
 </div>
-<a href="/" style="background-color: white; color: black; padding: 10px 20px; text-decoration: none; border: 2px solid black; border-radius: 10px;">메인페이지 이동</a>
+<a href="/" style="background-color: #009688; /* 배경색 변경 */ color: #fff; padding: 10px 20px; text-decoration: none; border: none; border-radius: 10px; /* 테두리 둥글게 변경 */">메인페이지 이동</a>
 </body>
 </html>
