@@ -23,10 +23,7 @@ import project.healthcare.service.UserService;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -50,23 +47,24 @@ public class BoardController {
 
         for (int i = 1; i < 7; i++) {
             pillEntity = pillRepository.findById(i);
-            products[i - 1] = pillEntity.getProduct();
-            company[i - 1] = pillEntity.getCompany();
-            effects[i - 1] = String.join(", ", pillEntity.getEffect());
-            details[i - 1] = String.join(", ", pillEntity.getDetail());
+            products[i-1] = pillEntity.getProduct();
+            company[i-1] = pillEntity.getCompany();
+            effects[i-1] = String.join(", ", pillEntity.getEffect());
+            details[i-1] = String.join(", ", pillEntity.getDetail());
 
             if (pillEntity.getImage() == null) {
-                images[i - 1] = null;
+                images[i-1] = null;
             } else {
-                images[i - 1] = pillEntity.getImage();
+                images[i-1] = pillEntity.getImage();
             }
 
-            model.addAttribute("product_" + i, products[i - 1]);
-            model.addAttribute("image_" + i, images[i - 1]);
-            model.addAttribute("company_" + i, company[i - 1]);
-            model.addAttribute("effect_" + i, effects[i - 1]);
-            model.addAttribute("detail_" + i, details[i - 1]);
+            model.addAttribute("product_" + i, products[i-1]);
+            model.addAttribute("image_" + i, images[i-1]);
+            model.addAttribute("company_" + i, company[i-1]);
+            model.addAttribute("effect_" + i, effects[i-1]);
+            model.addAttribute("detail_" + i, details[i-1]);
         }
+		
         return "main";
     }
 
@@ -106,12 +104,28 @@ public class BoardController {
         String effects = String.join(", ", pillEntity.getEffect());
         String details = String.join(", ", pillEntity.getDetail());
 
+        List<PillEntity> inCategory = pillRepository.findByCategory(category);
+        List<PillEntity> otherPills = new ArrayList<>();
+
+        Random random = new Random();
+
+        while (otherPills.size() < 4 && inCategory.size() > 0) {
+            int randomIndex = random.nextInt(inCategory.size());
+
+            PillEntity selectedPill = inCategory.get(randomIndex);
+
+            if (!selectedPill.equals(pillEntity) && !otherPills.contains(selectedPill)) {
+                otherPills.add(selectedPill);
+            }
+        }
+
         model.addAttribute("image", image);
         model.addAttribute("product", product);
         model.addAttribute("company", company);
         model.addAttribute("category", category);
         model.addAttribute("effect", effects);
         model.addAttribute("detail", details);
+        model.addAttribute("otherPills", otherPills);
 
         return "pill";
     }

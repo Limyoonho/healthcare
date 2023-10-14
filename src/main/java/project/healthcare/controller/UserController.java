@@ -17,7 +17,6 @@ import project.healthcare.service.UserService;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Controller
 @AllArgsConstructor
 public class UserController {

@@ -1,6 +1,7 @@
 package project.healthcare.dto;
 
 import lombok.Data;
+import project.healthcare.entity.PillEntity;
 import project.healthcare.entity.UserEntity;
 
 @Data

@@ -20,23 +20,21 @@ public class PillDto {
 
     private String category;
 
-    private String effect;
+    private String[] effect;
 
-    private String detail;
+    private String[] detail;
 
     private String image;
 
-    public static PillDto toPillDto(PillEntity pillEntity) {
-        PillDto pillDto = new PillDto();
-
-        pillDto.setId(pillEntity.getId());
-        pillDto.setCompany(pillEntity.getCompany());
-        pillDto.setProduct(pillDto.getProduct());
-        pillDto.setCategory(pillDto.getCategory());
-        pillDto.setEffect(pillDto.getEffect());
-        pillDto.setDetail(pillDto.getDetail());
-        pillDto.setImage(pillDto.getImage());
-
-        return pillDto;
+    public PillEntity toPillEntity() {
+        return PillEntity.builder()
+                .id(id)
+                .company(company)
+                .product(product)
+                .category(category)
+                .effect(effect)
+                .detail(detail)
+                .image(image)
+                .build();
     }
 }
