@@ -1,12 +1,17 @@
 package project.healthcare.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.authenticator.SavedRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.codec.Utf8;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import project.healthcare.dto.PillDto;
 import project.healthcare.dto.UserDTO;
 import project.healthcare.entity.PillEntity;
@@ -21,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -281,6 +287,20 @@ public class BoardController {
         return "register";
     }
 
+    @GetMapping("/login")
+    public String login(HttpServletRequest request) {
+        String uri=request.getHeader("Referer");
+
+        if (uri==null) {
+            Map<String, ?> paramMap = RequestContextUtils.getInputFlashMap(request);
+            uri = (String) paramMap.get("referer");
+
+            request.getSession().setAttribute("prevPage", uri);
+        } else {
+            request.getSession().setAttribute("prevPage",uri);
+        }
+        return "login";
+    }
     @RequestMapping("/login")
     public String login() {
         return "login";
