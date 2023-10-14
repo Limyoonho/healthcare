@@ -44,6 +44,7 @@ public class UserService {
             userDTO.setUserAuth(userEntity.getUserAuth());
             userDTO.setAppendDate(userEntity.getAppendDate());
             userDTO.setUpdateDate(userEntity.getUpdateDate());
+            userDTO.setNickName(userEntity.getNickName());
 
             return userDTO;
         }
