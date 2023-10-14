@@ -241,7 +241,7 @@
                         <p class="p-name"><strong class="name1">이름</strong><span th:text="${user.uName}"></span></p>
                     </div>
                     <div style="display:inline-block">
-                        <button class="w-btn w-btn-green" type="button">이름 바꾸기</button>
+                        <button class="w-btn w-btn-green" type="button" onclick="location.href='/mypage/changename'">이름 바꾸기</button>
                     </div>
                     <div class="mypage-id">
                         <p class="p-id"><strong class="id1">아이디</strong> <span th:text="${user.userId}"></span></p>
@@ -250,16 +250,13 @@
                         <p class="p-nick"><strong class="nick1">닉네임</strong> <span th:text="${user.nickName}"></span></p>
                     </div>
                     <div style="display:inline-block">
-                        <button class="w-btn w-btn-green" type="button">닉네임 바꾸기</button>
+                        <button class="w-btn w-btn-green" type="button" onclick="location.href='/mypage/changenickname'">닉네임 바꾸기</button>
                     </div>
                     <div class="mypage-grade">
                         <p class="p-grade"><strong class="grade1">회원 등급</strong><span th:text="${user.userAuth}"></span></p>
                     </div>
                     <div class="mypage-date">
                         <p class="p-date" ><strong class="date1">회원가입 날짜</strong> <span th:text="${user.appendDate}"></span></p>
-                    </div>
-                    <div style="display:inline-block">
-                        <button class="w-btn w-btn-green" type="button">비밀번호 바꾸기</button>
                     </div>
                 </div>
             </div>
@@ -283,7 +280,9 @@
         </div>
     </div>
 </div>
-
+<div style="display:inline-block">
+    <button class="w-btn w-btn-green" type="button" onclick="location.href='/mypage/changepw'">비밀번호 바꾸기</button>
+</div>
 <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
