@@ -153,6 +153,14 @@
         passwordInput.addEventListener("input", validatePassword);
         confirmPasswordInput.addEventListener("input", validatePassword);
     });
+    document.addEventListener("DOMContentLoaded", function() {
+        // 서버에서 리다이렉트 URL에 error 파라미터가 있으면 메시지를 표시
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if (urlParams.has("error") && urlParams.get("error") === "incorrectCurrentPassword") {
+            alert("현재 비밀번호가 일치하지 않습니다.");
+        }
+    });
 </script>
 </body>
 </html>
