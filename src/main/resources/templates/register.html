@@ -111,18 +111,16 @@
 <main class="form-signin w-100 m-auto">
 <form method="post" th:action="@{/user/save}" onsubmit="return checkEmailDuplicate() && checkNicknameDuplicate();">
     <div class="join-container">
-        <h1 class="join-title">회원가입</h1>
         <div class="join-container1">
             <div class="join-left">
                 <img class="pill-img" src="https://images.unsplash.com/photo-1555633514-abcee6ab92e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBpbGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60" alt="">
             </div>
             <div class="join-right">
-            <div class="form-floating1">
-                <h5 class="e-mail" style="font-size:15px;"> <span id="userIdDuplicateMessage" style="padding-left:10px;"></span></h5>
-                <input type="email" class="form-control1" id="floatingInput" name="userId" required>
-                <button type="button" class="id-duplicate" onclick="checkEmailDuplicate()">중복 확인</button>
-
-            </div>
+                <div class="form-floating1">
+                    <h5 class="e-mail" style="font-size:15px;">이메일<span id="userIdDuplicateMessage" style="padding-left:10px;"></span></h5>
+                    <input type="email" class="form-control1" id="floatingInput" name="userId" required>
+                    <button type="button" class="id-duplicate" onclick="checkEmailDuplicate()">중복 확인</button>
+                </div>
                 <div class="form-floating1">
                     <h5 class="e-mail" style="font-size:15px;">이름</h5>
                     <input type="text" class="form-control1" id="floatingName" name="uName" placeholder="이름" required>
@@ -140,7 +138,7 @@
                     <h5 class="e-mail" style="font-size:15px">비밀번호확인</h5>
                     <input type="password" class="form-control1" id="floatingConfirmPassword" name="confirmPassword" placeholder="비밀번호 확인" required>
                 </div>
-                <button type="submit" id="registerButton" disabled class="join-compleate">가입 완료</button>
+                <button type="submit" id="registerButton" class="join-compleate">회원가입</button>
             </div>
         </div>
     </div>
