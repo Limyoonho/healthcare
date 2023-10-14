@@ -21,7 +21,11 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/main.css" rel="stylesheet" />
+        <link href="/css/login.css" rel="stylesheet" />
     </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Pen+Script&family=Poppins:wght@300;700&display=swap');
+    </style>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
@@ -104,17 +108,24 @@
 <body>
 <main class="form-signin w-100 m-auto">
 <form th:action="@{/authenticate}" method="POST">
-    <div class="container">
-        <h1 class="h3 mb-3 fw-normal text-center">로그인</h1> <hr>
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" name="username" placeholder="이메일" required>
-            <label for="floatingInput">이메일</label>
+    <div class="login-container">
+        <div class="login-container1">
+            <div class="login-left">
+                <img class="pill-img1" src="https://images.unsplash.com/photo-1581159186721-b68b78da4ec9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHBpbGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60" alt="">
+            </div>
+            <div class="login-right">
+                <div class="login-title">Login</div>
+                <div class="form-floating20">
+                    <label for="floatingInput"><span>* </span>아이디</label>
+                    <input type="email" class="form-control2" id="floatingInput" name="username" placeholder="이메일" required>
+                </div>
+                <div class="form-floating21">
+                    <label for="floatingInput"><span>* </span>비밀번호</label>
+                    <input type="password" class="form-control2" id="floatingPassword" name="password" placeholder="비밀번호" required>
+                </div>
+                <button class="login-complate" type="submit">로그인</button>
+            </div>
         </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="비밀번호" required>
-            <label for="floatingPassword">비밀번호</label>
-        </div>
-        <button class="btn btn-primary" type="submit">로그인</button>
     </div>
 </form>
 </main>

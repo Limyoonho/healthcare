@@ -1,23 +1,23 @@
 
-.join-container{
+.login-container{
     background-color : #FFF0BA;
-    height:950px;
+    height:650px;
     position : relative;
 }
-.join-container1{
+.login-container1{
     background-color : white;
     margin : auto;
     position : absolute;
     top : 10%;
 
 }
-.pill-img{
+.pill-img1{
     width:100%;
     height:100%;
     border-radius:12px 0 0 12px;
     }
 
-.join-left{
+.login-left{
     width:50%;
     height:100%;
     float: left;
@@ -26,7 +26,7 @@
     border-radius:12px 0 0 12px;
 }
 
-.join-right{
+.login-right{
     width: 50%;
     height:100%;
     float: right;
@@ -35,7 +35,7 @@
     border-radius:0 12px 12px 0;
 }
 
-.join-title{
+.login-title{
     text-align : center;
     font-family: 'Nanum Pen Script', cursive;
     font-size: 90px;
@@ -43,33 +43,24 @@
     text-shadow : 10px 10px 10px;
 }
 
-.form-floating1{
+
+.form-floating20{
  margin-top : 20px;
  margin-left : 60px;
-    box-sizeing: border-box;
-   position: relative;
+     box-sizeing: border-box;
+    position: relative;
 }
 
-.form-floating1 label span{
+
+.form-floating20 label span{
     color: #da4841;
     vertical-align: -1px;
 }
 
-.form-floating22{
-    margin-top : 40px;
-     margin-left : 60px;
-       position: relative;
-}
-
-.form-floating22 label span{
-    color: #da4841;
-    vertical-align: -1px;
-}
-
-.form-floating1 label{
+.form-floating20 label{
   display: inline-block;
   position: absolute;
-  top: 5px;
+  top: -20px;
   left: 14px;
   padding: 7px;
   background: white;
@@ -78,7 +69,19 @@
   font-weight: bold;
 }
 
-.form-floating22 label{
+
+.form-floating21{
+    margin-top : 40px;
+     margin-left : 60px;
+       position: relative;
+}
+
+.form-floating21 label span{
+    color: #da4841;
+    vertical-align: -1px;
+}
+
+.form-floating21 label{
 display: inline-block;
   position: absolute;
   top: -20px;
@@ -90,25 +93,22 @@ display: inline-block;
   font-weight: bold;
 }
 
-.form-control1{
+.form-control2{
     width : 300px;
     height: 55px;
-        border: 1px solid #dddddd !important;
-        font-size: 1rem;
-        line-height: 1.45;
-        letter-spacing: -0.04rem;
-        border-radius: 8px;
-        padding: 16px;
+    border: 1px solid #dddddd !important;
+    font-size: 1rem;
+    line-height: 1.45;
+    letter-spacing: -0.04rem;
+    border-radius: 8px;
+    padding: 16px;
+
 
 }
 
-.form-control1::placeholder{
-  color: #d9d9d9
-}
-.form-control1:focus{
-   outline : none;
-}
-.join-compleate{
+.form-control2:focus{outline: none;}
+
+.login-complate{
     margin-left : 40%;
     margin-top : 3%;
     background-color:#659F7C;
@@ -119,20 +119,13 @@ display: inline-block;
     border : 1px solid darkgrey;
 }
 
-.id-duplicate, .nick-duplicate{
-    background-color:#659F7C;
-    color:white;
-    padding : 7px;
-    border-radius : 10px;
-    box-shadow: 5px 5px 5px gray;
-    border : 1px solid darkgrey;
-}
+
 @media only screen and (min-width: 768px) {
-    .join-container1{
-        width  : 950px;
-        height : 750px;
+    .login-container1{
+        height : 500px;
+        width : 800px;
         background-color : white;
-        margin-left : 17%;
+        margin-left : 21%;
         position : absolute;
         top : 10%;
         box-shadow : 0 0 14px darkcyan;
