@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -107,42 +108,53 @@
     <button type="submit" id="changeNickname" class="btn btn-primary" disabled>닉네임 변경</button>
 </form>
 <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const nickNameInput = document.getElementById("newNickname");
-            const nickNameDuplicateMessage = document.getElementById("nickNameDuplicateMessage");
-            const checkButton = document.getElementById("checkNicknameButton");
-            const changeButton = document.getElementById("changeNickname");
+    document.addEventListener("DOMContentLoaded", function() {
+        const nickNameInput = document.getElementById("newNickname");
+        const nickNameDuplicateMessage = document.getElementById("nickNameDuplicateMessage");
+        const checkButton = document.getElementById("checkNicknameButton");
+        const changeButton = document.getElementById("changeNickname");
 
-            // 닉네임 중복 확인 함수
-            function checkNicknameDuplicate() {
-                const nickName = nickNameInput.value;
+        // "닉네임 변경" 버튼의 이벤트 리스너를 추가
+        function activateChangeButton() {
+            changeButton.disabled = false; // "닉네임 변경" 버튼 활성화
+        }
 
-                // 닉네임 길이를 확인
-                if (nickName.length < 2) {
-                    nickNameDuplicateMessage.innerHTML = "<span style='color: red;'>닉네임은 최소 2자 이상이어야 합니다.</span>";
-                    changeButton.disabled = true; // 닉네임 길이가 2자 미만인 경우 버튼 비활성화
-                    return;
-                }
+        // 닉네임 중복 확인 함수
+        function checkNicknameDuplicate() {
+            const nickName = nickNameInput.value;
 
-                // AJAX 요청을 통해 서버에 닉네임 중복 확인 요청
-                fetch("/user/checkNicknameDuplicate?nickName=" + nickName)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.duplicate) {
-                            nickNameDuplicateMessage.innerHTML = "<span style='color: red;'>중복된 닉네임입니다.</span>";
-                            changeButton.disabled = true; // 중복된 닉네임인 경우 버튼 비활성화
-                        } else {
-                            nickNameDuplicateMessage.innerHTML = "<span style='color: green;'>사용 가능한 닉네임입니다.</span>";
-                            changeButton.disabled = false; // 사용 가능한 닉네임인 경우 버튼 활성화
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error checking nickName duplication: " + error);
-                    });
+            // 닉네임 길이를 확인
+            if (nickName.length < 2) {
+                nickNameDuplicateMessage.innerHTML = "<span style='color: red;'>닉네임은 최소 2자 이상이어야 합니다.</span>";
+                changeButton.disabled = true; // 닉네임 길이가 2자 미만인 경우 버튼 비활성화
+                return;
             }
 
-            checkButton.addEventListener("click", checkNicknameDuplicate);
+            // AJAX 요청을 통해 서버에 닉네임 중복 확인 요청
+            fetch("/user/checkNicknameDuplicate?nickName=" + nickName)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.duplicate) {
+                        nickNameDuplicateMessage.innerHTML = "<span style='color: red;'>중복된 닉네임입니다.</span>";
+                        changeButton.disabled = true; // 중복된 닉네임인 경우 버튼 비활성화
+                    } else {
+                        nickNameDuplicateMessage.innerHTML = "<span style='color: green;'>사용 가능한 닉네임입니다.</span>";
+                        // 사용 가능한 닉네임인 경우 버튼 활성화
+                        activateChangeButton();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error checking nickName duplication: " + error);
+                });
+        }
+
+        checkButton.addEventListener("click", checkNicknameDuplicate);
+
+        // 닉네임 필드가 변경될 때 "닉네임 변경" 버튼 비활성화
+        nickNameInput.addEventListener("input", function() {
+            changeButton.disabled = true;
         });
+    });
 </script>
 </body>
 </html>

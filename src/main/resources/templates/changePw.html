@@ -121,41 +121,38 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-    const passwordInput = document.getElementById("newPassword");
-    const confirmPasswordInput = document.getElementById("confirmNewPassword");
-    const errorContainer = document.getElementById("errorContainer");
-    const changePwButton = document.getElementById("changePassword");
+        const currentPasswordInput = document.getElementById("currentPassword");
+        const passwordInput = document.getElementById("newPassword");
+        const confirmPasswordInput = document.getElementById("confirmNewPassword");
+        const errorContainer = document.getElementById("errorContainer");
+        const changePwButton = document.getElementById("changePassword");
 
-    // 비밀번호 및 일치 여부 실시간 검사
-    function validatePassword() {
-        const password = passwordInput.value;
-        const confirmPassword = confirmPasswordInput.value;
+        // 비밀번호 및 일치 여부 실시간 검사
+        function validatePassword() {
+            const currentPassword = currentPasswordInput.value;
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
 
-        // 비밀번호 길이 검사
-        if (password.length < 8 || password.length > 32) {
-            errorContainer.textContent = "비밀번호는 8~32자여야 합니다.";
-            changePwButton.disabled = true;
-        } else if (password !== confirmPassword) {
-            errorContainer.textContent = "비밀번호가 일치하지 않습니다.";
-            changePwButton.disabled = true;
-        } else {
-            errorContainer.textContent = "비밀번호가 일치합니다.";
-            changePwButton.disabled = false;
-        }
-    }
+            // 비밀번호 정규식: 8~32자, 영문과 숫자를 포함
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,32}$/;
 
-    // 비밀번호 입력 필드와 비밀번호 확인 필드에 이벤트 리스너 추가
-    passwordInput.addEventListener("input", validatePassword);
-    confirmPasswordInput.addEventListener("input", validatePassword);
-});
-            document.addEventListener("DOMContentLoaded", function() {
-            // 서버에서 리다이렉트 URL에 error 파라미터가 있으면 메시지를 표시
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            if (urlParams.has("error") && urlParams.get("error") === "incorrectCurrentPassword") {
-                alert("현재 비밀번호가 일치하지 않습니다.");
+            if (!passwordRegex.test(password) || password !== confirmPassword) {
+                errorContainer.textContent = "비밀번호는 8~32자리 이어야 하며 영문과 숫자를 반드시 포함해야 합니다.";
+                changePwButton.disabled = true;
+            } else if (currentPassword === password) {
+                errorContainer.textContent = "비밀번호가 현재 비밀번호와 일치합니다.";
+                changePwButton.disabled = true;
+            } else {
+                errorContainer.textContent = "비밀번호가 일치합니다.";
+                changePwButton.disabled = false;
             }
-        });
+        }
+
+        // 비밀번호 입력 필드와 비밀번호 확인 필드에 이벤트 리스너 추가
+        currentPasswordInput.addEventListener("input", validatePassword);
+        passwordInput.addEventListener("input", validatePassword);
+        confirmPasswordInput.addEventListener("input", validatePassword);
+    });
 </script>
 </body>
 </html>

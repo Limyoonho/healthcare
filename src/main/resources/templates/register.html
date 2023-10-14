@@ -113,44 +113,45 @@
     </div>
 </nav>
 <main class="form-signin w-100 m-auto">
-<form method="post" th:action="@{/user/save}" onsubmit="return checkEmailDuplicate() && checkNicknameDuplicate();">
-    <div class="join-container">
-        <div class="join-container1">
-            <div class="join-left">
-                <img class="pill-img" src="https://images.unsplash.com/photo-1555633514-abcee6ab92e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBpbGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60" alt="">
-            </div>
-            <div class="join-right">
-                <div class="join-title">Join</div>
-                <div class="form-floating1">
-                    <h5 class="e-mail" style="font-size:15px;"><span id="userIdDuplicateMessage" style="padding-left:100px;"></span></h5>
-                    <label for="floatingInput"><span>* </span>아이디</label>
-                    <input type="email" class="form-control1" id="floatingInput" name="userId" placeholder="이메일" required>
-                    <button type="button" class="id-duplicate" onclick="checkEmailDuplicate()">중복 확인</button>
+    <form method="post" th:action="@{/user/save}" onsubmit="return checkEmailDuplicate() && checkNicknameDuplicate();">
+        <div class="join-container">
+            <div class="join-container1">
+                <div class="join-left">
+                    <img class="pill-img" src="https://images.unsplash.com/photo-1555633514-abcee6ab92e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBpbGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60" alt="">
                 </div>
-                <div class="form-floating22">
-                    <label for="floatingInput"><span>* </span>이름</label>
-                    <input type="text" class="form-control1" id="floatingName" name="uName" placeholder="이름" required>
+                <div class="join-right">
+                    <div class="join-title">Join</div>
+                    <div class="form-floating1">
+                        <h5 class="e-mail" style="font-size:15px;"><span id="userIdDuplicateMessage" style="padding-left:100px;"></span></h5>
+                        <label for="floatingInput"><span>* </span>아이디</label>
+                        <input type="email" class="form-control1" id="floatingInput" name="userId" placeholder="이메일" required>
+                        <button type="button" class="id-duplicate" onclick="checkEmailDuplicate()">중복 확인</button>
+                    </div>
+                    <div class="form-floating22">
+                        <label for="floatingInput"><span>* </span>이름</label>
+                        <input type="text" class="form-control1" id="floatingName" name="uName" placeholder="이름" required>
+                    </div>
+                    <div class="form-floating1">
+                        <h5 class="e-mail" style="font-size:15px;"><span id="nickNameDuplicateMessage" style="padding-left:100px;"></span></h5>
+                        <label for="floatingInput"><span>* </span>닉네임</label>
+                        <input type="text" class="form-control1" id="floatingNickName" name="nickName" placeholder="닉네임" required>
+                        <button type="button" class="nick-duplicate" onclick="checkNicknameDuplicate()">중복 확인</button>
+                    </div>
+                    <div class="form-floating1">
+                        <br>
+                        <h5 class="e-mail" style="font-size:15px"><span id="passwordMatchMessage" style="padding-left:100px;"></span></h5>
+                        <label for="floatingInput"><span>* </span>비밀번호</label>
+                        <input type="password" class="form-control1" id="floatingPassword" name="userPw" placeholder="비밀번호" required>
+                    </div>
+                    <div class="form-floating22">
+                        <label for="floatingInput"><span>* </span>비밀번호확인</label>
+                        <input type="password" class="form-control1" id="floatingConfirmPassword" name="confirmPassword" placeholder="비밀번호 확인" required>
+                    </div>
+                    <button type="submit" id="registerButton" class="join-compleate" disabled>회원가입</button>
                 </div>
-                <div class="form-floating1">
-                    <h5 class="e-mail" style="font-size:15px;"><span id="nickNameDuplicateMessage" style="padding-left:100px;"></span></h5>
-                    <label for="floatingInput"><span>* </span>닉네임</label>
-                    <input type="text" class="form-control1" id="floatingNickName" name="nickName" placeholder="닉네임" required>
-                    <button type="button" class="nick-duplicate" onclick="checkNicknameDuplicate()">중복 확인</button>
-                </div>
-                <div class="form-floating1">
-                    <h5 class="e-mail" style="font-size:15px"><span id="passwordMatchMessage" style="padding-left:100px;"></span></h5>
-                    <label for="floatingInput"><span>* </span>비밀번호</label>
-                    <input type="password" class="form-control1" id="floatingPassword" name="userPw" placeholder="비밀번호" required>
-                </div>
-                <div class="form-floating22">
-                    <label for="floatingInput"><span>* </span>비밀번호확인</label>
-                    <input type="password" class="form-control1" id="floatingConfirmPassword" name="confirmPassword" placeholder="비밀번호 확인" required>
-                </div>
-                <button type="submit" id="registerButton" class="join-compleate" disabled>회원가입</button>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 </main>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
@@ -225,8 +226,9 @@ function checkNicknameDuplicate() {
             const confirmPassword = confirmPasswordInput.value;
 
             // 비밀번호 길이를 확인
-            if (password.length < 8 || password.length > 32) {
-                passwordMatchMessage.innerHTML = "<span style='color: red;'>비밀번호는 8~32자여야 합니다.</span>";
+            const passwordRegex=/^(?=.*[A-Za-z])(?=.*\d).{8,32}$/;
+            if (!passwordRegex.test(password) || password !== confirmPassword) {
+                passwordMatchMessage.innerHTML = "<span style='color: red;'>비밀번호는 8~32자이어야 하며 영문과 숫자를 반드시 포함해야 합니다.</span>";
                 registerButton.disabled = true; // 버튼 비활성화
             } else if (password === confirmPassword) {
                 passwordMatchMessage.innerHTML = "<span style='color: green;'>비밀번호가 일치합니다.</span>";
