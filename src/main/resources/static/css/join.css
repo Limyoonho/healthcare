@@ -1,7 +1,7 @@
 
 .join-container{
     background-color : #FFF0BA;
-    height:650px;
+    height:950px;
     position : relative;
 }
 .join-container1{
@@ -35,24 +35,79 @@
     border-radius:0 12px 12px 0;
 }
 
-
 .join-title{
     text-align : center;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 90px;
+    color:darkseagreen;
+    text-shadow : 10px 10px 10px;
 }
 
 .form-floating1{
  margin-top : 20px;
  margin-left : 60px;
+    box-sizeing: border-box;
+   position: relative;
+}
+
+.form-floating1 label span{
+    color: #da4841;
+    vertical-align: -1px;
+}
+
+.form-floating22{
+    margin-top : 40px;
+     margin-left : 60px;
+       position: relative;
+}
+
+.form-floating22 label span{
+    color: #da4841;
+    vertical-align: -1px;
+}
+
+.form-floating1 label{
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  left: 14px;
+  padding: 7px;
+  background: white;
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+}
+
+.form-floating22 label{
+display: inline-block;
+  position: absolute;
+  top: -20px;
+  left: 14px;
+  padding: 7px;
+  background: white;
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
 }
 
 .form-control1{
     width : 300px;
-    height: 40px;
-    border-radius : 7px;
+    height: 55px;
+        border: 1px solid #dddddd !important;
+        font-size: 1rem;
+        line-height: 1.45;
+        letter-spacing: -0.04rem;
+        border-radius: 8px;
+        padding: 16px;
+
 }
 
-.form-control1:focus{outline: none;}
-
+.form-control1::placeholder{
+  color: #d9d9d9
+}
+.form-control1:focus{
+   outline : none;
+}
 .join-compleate{
     margin-left : 40%;
     margin-top : 3%;
@@ -74,7 +129,8 @@
 }
 @media only screen and (min-width: 768px) {
     .join-container1{
-        height : 500px;
+        width  : 950px;
+        height : 750px;
         background-color : white;
         margin-left : 17%;
         position : absolute;

@@ -35,15 +35,75 @@
     border-radius:0 12px 12px 0;
 }
 
-.form-floating2{
+.login-title{
+    text-align : center;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 90px;
+    color:darkseagreen;
+    text-shadow : 10px 10px 10px;
+}
+
+
+.form-floating20{
  margin-top : 20px;
  margin-left : 60px;
+     box-sizeing: border-box;
+    position: relative;
+}
+
+
+.form-floating20 label span{
+    color: #da4841;
+    vertical-align: -1px;
+}
+
+.form-floating20 label{
+  display: inline-block;
+  position: absolute;
+  top: -20px;
+  left: 14px;
+  padding: 7px;
+  background: white;
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+}
+
+
+.form-floating21{
+    margin-top : 40px;
+     margin-left : 60px;
+       position: relative;
+}
+
+.form-floating21 label span{
+    color: #da4841;
+    vertical-align: -1px;
+}
+
+.form-floating21 label{
+display: inline-block;
+  position: absolute;
+  top: -20px;
+  left: 14px;
+  padding: 7px;
+  background: white;
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
 }
 
 .form-control2{
     width : 300px;
-    height: 40px;
-    border-radius : 7px;
+    height: 55px;
+    border: 1px solid #dddddd !important;
+    font-size: 1rem;
+    line-height: 1.45;
+    letter-spacing: -0.04rem;
+    border-radius: 8px;
+    padding: 16px;
+
+
 }
 
 .form-control2:focus{outline: none;}
@@ -65,7 +125,7 @@
         height : 500px;
         width : 800px;
         background-color : white;
-        margin-left : 17%;
+        margin-left : 21%;
         position : absolute;
         top : 10%;
         box-shadow : 0 0 14px darkcyan;
