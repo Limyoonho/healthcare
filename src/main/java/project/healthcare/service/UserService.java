@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import project.healthcare.entity.PillEntity;
 import project.healthcare.entity.UserEntity;
 import project.healthcare.repository.UserRepository;
 import project.healthcare.dto.UserDTO;
@@ -15,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 @Service
 @AllArgsConstructor
 public class UserService {
+
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -42,7 +44,6 @@ public class UserService {
             userDTO.setUserAuth(userEntity.getUserAuth());
             userDTO.setAppendDate(userEntity.getAppendDate());
             userDTO.setUpdateDate(userEntity.getUpdateDate());
-            userDTO.setNickName(userEntity.getNickName());
 
             return userDTO;
         }

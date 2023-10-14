@@ -27,7 +27,6 @@ public class PillApi extends PillEntity {
 
     @Transactional
     public void Pill() throws IOException {
-        List<PillEntity> parsingData = new ArrayList<>();
 
         try {
             // 웹 페이지 URL
@@ -75,23 +74,12 @@ public class PillApi extends PillEntity {
 
                     if (savaData == null || (!savaData.getCompany().equals(pillEntity.getCompany())
                             && !savaData.getProduct().equals(pillEntity.getProduct()))) {
-                        parsingData.add(pillEntity);
+                        pillRepository.save(pillEntity);
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        for (PillEntity pillEntity : parsingData) {
-            System.out.println(("Category : " + pillEntity.getCategory()));
-            System.out.println(("Company : " + pillEntity.getCompany()));
-            System.out.println(("Product : " + pillEntity.getProduct()));
-            System.out.println(("Effect : " + Arrays.toString(pillEntity.getEffect())));
-            System.out.println(("Detail : " + Arrays.toString(pillEntity.getDetail())));
-            System.out.println(("Image : " + pillEntity.getImage()));
-
-            pillRepository.save(pillEntity);
         }
     }
 }

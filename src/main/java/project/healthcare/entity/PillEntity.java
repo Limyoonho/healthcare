@@ -34,5 +34,4 @@ public class PillEntity {
 
     @Column(name = "image")
     private String image;
-
 }
