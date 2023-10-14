@@ -17,80 +17,268 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Pen+Script&family=Poppins:wght@300;700&display=swap');
+        @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: beige;
             text-align: center; /* 페이지 가운데 정렬을 위해 추가 */
         }
 
         .container {
-            max-width: 800px;
             margin: 0 auto;
             text-align: left; /* 내용은 왼쪽 정렬 유지 */
         }
+        .row-mypage{
+            display : inline-block;
+            }
 
         .section-container {
+            width : 50%;
             background-color: #fff;
             padding: 20px;
+            float : left;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 14px darkseagreen;
             margin-bottom: 20px;
+            margin-top : 40px;
+            padding : 30px;
+        }
+
+        .section-container1{
+            width : 47%;
+            height : 745px;
+            background-color: #fff;
+            float : right;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 14px darkseagreen;
+            margin-bottom: 20px;
+            margin-top : 40px;
+            padding : 30px;
         }
 
         /* 내용 스타일링 추가 */
         .section-container h1 {
-            color: #333;
-            font-size: 24px;
+            color: darkseagreen;
+            font-size: 55px;
+            text-align : center;
             margin-bottom: 20px;
+            font-family: 'Nanum Pen Script', cursive;
+            text-shadow : 10px 10px 10px;
         }
 
-        .section-container p {
-            font-size: 16px;
-            margin: 10px 0;
+        .section-container1 h1{
+            color: darkseagreen;
+            font-size: 55px;
+            text-align : center;
+            margin-bottom: 20px;
+            font-family: 'Nanum Pen Script', cursive;
+            text-shadow : 10px 10px 10px;
         }
 
-        /* 버튼 스타일링 추가 */
-        .btn-primary {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
+        .mypage-container{
+            padding : 10px;
         }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-            color: #fff;
+        .p-name, .p-nick{
+            display : inline;
+            font-size : 17px;
+            margin-bottom : 0;
+            margin-left : 10px;
+            font-family: 'Nanum Gothic', sans-serif;
         }
+        .p-id, .p-grade, .p-date{
+            font-size : 17px;
+            margin-left : 10px;
+            margin-bottom : 0;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+        .name1, .id1, .nick1, .grade1, .date1{
+        margin-right : 30px;
+        }
+
+        .mypage-name, .mypage-id, .mypage-grade, .mypage-nick, .mypage-date{
+            display : inline-block;
+            width : 420px;
+            margin-top : 60px;
+            margin-right : 13px;
+            border-radius : 15px;
+            box-shadow : 5px 5px 5px darkseagreen;
+            padding : 13px;
+        }
+        .w-btn-green {
+            background-color: #77af9c;
+            color: #d7fff1;
+        }
+    .w-btn-green-outline {
+        border: 3px solid #77af9c;
+        color: darkgray;
+    }
+    .w-btn-green-outline:hover {
+        background-color: #77af9c;
+        color: #d7fff1;
+    }
+    .w-btn-outline {
+    position: relative;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+    .w-btn{
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 10px 6px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    }
+    .w-btn:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
     </style>
 </head>
-
-<body>
+<body id="page-top">
+<!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <!-- ... 네비게이션 코드 ... -->
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            TAKE CARE
+        </a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <button class="btn btn-dark dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        카테고리
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="/category/eyes">눈</a></li>
+                        <li><a class="dropdown-item" href="/category/skincare">피부</a></li>
+                        <li><a class="dropdown-item" href="/category/fat">체지방</a></li>
+                        <li><a class="dropdown-item" href="/category/blood">혈관/혈액 순환</a></li>
+                        <li><a class="dropdown-item" href="/category/intestine">장</a></li>
+                        <li><a class="dropdown-item" href="/category/sleep">스트레스/수면</a></li>
+                        <li><a class="dropdown-item" href="/category/cholesterol">콜레스테롤</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <form class="d-flex" role="search" method="get" action="/search-page">
+            <input
+                    class="search-control"
+                    type="search"
+                    placeholder="검색어를 입력해주세요"
+                    aria-label="Search"
+                    name="query"
+                    th:value="${query}">
+            <button class="search-btn" type="submit" onclick="location.herf='/search-page?query=${query}'">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="currentColor"
+                     class="bi bi-search"
+                     viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/notice/list">Notice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/free/list">Free</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
+
 <div class="container">
-    <div class="row">
+    <div class="row-mypage">
         <div class="col-md-6">
             <div class="section-container">
-                <h1>내 정보</h1>
-                <p><strong>아이디:</strong> <span th:text="${user.userId}"></span></p>
-                <p><strong>이름:</strong> <span th:text="${user.uName}"></span></p>
-                <p><strong>닉네임:</strong> <span th:text="${user.nickName}"></span></p>
-                <p><strong>회원 등급:</strong> <span th:text="${user.userAuth}"></span></p>
-                <p><strong>회원가입 날짜:</strong> <span th:text="${user.appendDate}"></span></p>
-                <p><strong>최종 정보 수정 날짜:</strong> <span th:text="${user.updateDate}"></span></p>
-                <button class="btn btn-primary">비밀번호 바꾸기</button>
-                <button class="btn btn-primary">이름 바꾸기</button>
-                <button class="btn btn-primary">닉네임 바꾸기</button>
+                <h1>MyPage</h1>
+                <div class="mypage-container">
+                    <div class="mypage-name">
+                        <p class="p-name"><strong class="name1">이름</strong><span th:text="${user.uName}"></span></p>
+                    </div>
+                    <div style="display:inline-block">
+                        <button class="w-btn w-btn-green" type="button">이름 바꾸기</button>
+                    </div>
+                    <div class="mypage-id">
+                        <p class="p-id"><strong class="id1">아이디</strong> <span th:text="${user.userId}"></span></p>
+                    </div>
+                    <div class="mypage-nick">
+                        <p class="p-nick"><strong class="nick1">닉네임</strong> <span th:text="${user.nickName}"></span></p>
+                    </div>
+                    <div style="display:inline-block">
+                        <button class="w-btn w-btn-green" type="button">닉네임 바꾸기</button>
+                    </div>
+                    <div class="mypage-grade">
+                        <p class="p-grade"><strong class="grade1">회원 등급</strong><span th:text="${user.userAuth}"></span></p>
+                    </div>
+                    <div class="mypage-date">
+                        <p class="p-date" ><strong class="date1">회원가입 날짜</strong> <span th:text="${user.appendDate}"></span></p>
+                    </div>
+                    <div style="display:inline-block">
+                        <button class="w-btn w-btn-green" type="button">비밀번호 바꾸기</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="section-container">
+            <div class="section-container1">
                 <h1>설문 기록</h1>
-                <p><strong>연령대:</strong> <span th:text="${surveyResult.age_group}"></span></p>
-                <p><strong>일주일 영양제 복용 횟수:</strong> <span th:text="${surveyResult.nutrient_frequency}"></span></p>
-                <p><strong>영양제 필요 부위:</strong> <span th:text="${surveyResult.discomfort_area}"></span></p>
-                <p><strong>원하는 기능:</strong> <span th:text="${surveyResult.desired_function}"></span></p>
+                <div class="mypage-name">
+                    <p class="p-name"><strong class="id1">연령대</strong><span th:text="${surveyResult.age_group}"></span></p>
+                </div>
+                <div class="mypage-id">
+                    <p class="p-name"><strong class="id1">일주일 영양제 복용 횟수</strong> <span th:text="${surveyResult.nutrient_frequency}"></span></p>
+                </div>
+                <div class="mypage-grade">
+                    <p class="p-name"><strong class="id1">영양제 필요 부위</strong> <span th:text="${surveyResult.discomfort_area}"></span></p>
+                </div>
+                <div class="mypage-grade">
+                    <p class="p-name"><strong class="id1">원하는 기능</strong> <span th:text="${surveyResult.desired_function}"></span></p>
+                </div>
             </div>
         </div>
     </div>
