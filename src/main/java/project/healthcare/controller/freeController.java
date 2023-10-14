@@ -12,41 +12,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.healthcare.dto.UserDTO;
-import project.healthcare.entity.Help;
-import project.healthcare.service.HelpService;
+import project.healthcare.entity.Free;
+import project.healthcare.service.FreeService;
 import project.healthcare.service.UserService;
 
 @Controller
-public class helpController {
+public class freeController {
     @Autowired
-    private HelpService helpService;
+    private FreeService freeService;
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/help-board")
+    @GetMapping("/free-board")
     public String question() {
-        return "helpBoard";
+        return "freeBoard";
     }
 
-    @PostMapping("/help/writepro")
-    public String helpWritePro(Help help, Model model) {
-        helpService.write(help);
+    @PostMapping("/free/writepro")
+    public String freeWritePro(Free free, Model model) {
+        freeService.write(free);
 
-        return "redirect:/help/list";
+        return "redirect:/free/list";
     }
 
-    @GetMapping("/help/list")
-    public String helpList(Model model,
+    @GetMapping("/free/list")
+    public String freeList(Model model,
                            @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
                             String searchKeyword) {
 
-        Page<Help> list = null;
+        Page<Free> list = null;
 
         if(searchKeyword == null) {
-            list = helpService.helpList(pageable);
+            list = freeService.freeList(pageable);
         }else{
-            list = helpService.helpSearchList(searchKeyword, pageable);
+            list = freeService.freeSearchList(searchKeyword, pageable);
         }
 
         int nowPage = list.getPageable().getPageNumber() + 1;
@@ -58,39 +58,39 @@ public class helpController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        return "helpList";
+        return "freeList";
     }
 
-    @GetMapping("/help/view")
-    public String helpView(Model model, Integer id) {
+    @GetMapping("/free/view")
+    public String freeView(Model model, Integer id) {
         UserDTO user=userService.getCurrentUser();
-        model.addAttribute("view", helpService.helpView(id));
+        model.addAttribute("view", freeService.freeView(id));
         model.addAttribute("user", user);
-        return "helpView";
+        return "freeView";
     }
 
-    @GetMapping("/help/delete")
-    public String helpUpdate(Integer id){
-        helpService.helpUpdate(id);
+    @GetMapping("/free/delete")
+    public String freeUpdate(Integer id){
+        freeService.freeUpdate(id);
 
-        return "redirect:/help/list";
+        return "redirect:/free/list";
     }
 
-    @GetMapping("/help/modify/{id}")
-    public String helpModify(@PathVariable("id") Integer id, Model model){
-        model.addAttribute("view", helpService.helpId(id));
-        return "helpModify";
+    @GetMapping("/free/modify/{id}")
+    public String freeModify(@PathVariable("id") Integer id, Model model){
+        model.addAttribute("view", freeService.freeId(id));
+        return "freeModify";
     }
 
-    @PostMapping("/help/update/{id}")
-    public String helpUpdate(@PathVariable("id") Integer id, Help help){
+    @PostMapping("/free/update/{id}")
+    public String freeUpdate(@PathVariable("id") Integer id, Free free){
 
-        Help helptemp = helpService.helpId(id);
-        helptemp.setTitle(help.getTitle());
-        helptemp.setContent(help.getContent());
+        Free freetemp = freeService.freeId(id);
+        freetemp.setTitle(free.getTitle());
+        freetemp.setContent(free.getContent());
 
-        helpService.helpModify(helptemp);
+        freeService.freeModify(freetemp);
 
-        return "redirect:/help/list";
+        return "redirect:/free/list";
     }
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="" />
-    <title>문의사항 리스트</title>
+    <title>Question Board</title>
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/Logo.png" />
@@ -17,15 +17,17 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
-    <link href="/css/helpList.css?after" rel="stylesheet" />
+    <link href="/css/boardList.css?after" rel="stylesheet" />
 </head>
+<style>
 
+</style>
 <body>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="/img/Logo.png" alt="TAKE CARE">
+            TAKE CARE
         </a>
         <button class="navbar-toggler"
                 type="button"
@@ -76,13 +78,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
+                    <a class="nav-link" href="/notice/list">Notice</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/free/list">Free</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
@@ -101,16 +103,15 @@
     </div>
 </nav>
     <div class="layout">
-        <div class="question">
-        <h1 class="question1">문의사항</h1>
-        <span class="question2">불편사항이 있으면 언제든지 문의 해주세요</span>
-        </div>
-        <div class="search-form">
-            <form th:action="@{/help/list}" method="get">
-                <input type="text" name="searchKeyword">
-                <button class="help-search" type="submit">검색</button>
-                <a th:href="@{/help-board}" class="write-pro">글쓰기</a>
-            </form>
+        <div class="tt">
+        <h1 class="tt1">문의사항</h1>
+        <span class="tt2">불편사항이 있으면 언제든지 문의 해주세요</span>
+            <div class="search-form">
+                <form th:action="@{/help/list}" method="get">
+                    <input type="text" name="searchKeyword">
+                    <button class="search-button" type="submit">검색</button>
+                </form>
+            </div>
         </div>
         <table class="table123">
         <thead>
@@ -119,6 +120,7 @@
             <th>제목</th>
               <th>조회수</th>
             <th>작성 일자</th>
+              <th>작성자</th>
           </tr>
         </thead>
         <tbody>
@@ -127,9 +129,13 @@
             <td><a th:text="${help.title}" th:href="@{/help/view(id=${help.id})}"></a></td>
               <td th:text="${help.view_count}"></td>
               <td th:text="${help.create_date}"></td>
+              <td th:text="${help.write_user}"></td>
           </tr>
         </tbody>
         </table>
+        <div class="write-pro">
+            <a th:href="@{/help-board}" class="write-button">글쓰기</a>
+        </div>
     </div>
         <div class="paging">
             <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
@@ -137,8 +143,6 @@
                 <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
             </th:block>
         </div>
-    </div>
-
 <footer class="footer py-4">
     <div class="container">
         <div class="row align-items-center">
@@ -155,6 +159,6 @@
         </div>
     </div>
 </footer>
-
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

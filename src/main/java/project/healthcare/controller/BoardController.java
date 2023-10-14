@@ -1,11 +1,17 @@
 package project.healthcare.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.authenticator.SavedRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Utf8;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import project.healthcare.dto.PillDto;
 import project.healthcare.dto.UserDTO;
 import project.healthcare.entity.PillEntity;
@@ -15,9 +21,9 @@ import project.healthcare.repository.SurveyTableRepository;
 import project.healthcare.service.UserService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -58,19 +64,30 @@ public class BoardController {
             model.addAttribute("effect_" + i, effects[i-1]);
             model.addAttribute("detail_" + i, details[i-1]);
         }
-
-        UserDTO user = userService.getCurrentUser();
-        String video;
-
-        if (surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId()) == null) {
-            video = "";
-        } else {
-            SurveyEntity surveyResult = surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId());
-            video = surveyResult.getDesired_function();
-        }
-        model.addAttribute("video", video);
-
+		
         return "main";
+    }
+
+    @RequestMapping("/anonyhealth")
+    public String anonyhealth() {
+        String excer=URLEncoder.encode("5분 운동", StandardCharsets.UTF_8);
+        return "redirect:https://www.youtube.com/results?search_query="+excer;
+    }
+
+    @RequestMapping("/userhealth")
+    public String userhealth() {
+        UserDTO user = userService.getCurrentUser();
+        SurveyEntity surveyEntity = new SurveyEntity();
+        surveyEntity = surveyTableRepository.findByNameAndEmail(user.getUName(), user.getUserId());
+        if (surveyEntity==null) {
+            String excer = URLEncoder.encode("5분 운동", StandardCharsets.UTF_8);
+            return "redirect:https://www.youtube.com/results?search_query=" + excer;
+        } else {
+            String function = URLEncoder.encode(surveyEntity.getDesired_function() + " 운동", StandardCharsets.UTF_8);
+            String excer = URLEncoder.encode("운동", StandardCharsets.UTF_8);
+            String link = "https://www.youtube.com/results?search_query=" + function;
+            return "redirect:" + link;
+        }
     }
 
     @RequestMapping("/pill")
@@ -87,12 +104,28 @@ public class BoardController {
         String effects = String.join(", ", pillEntity.getEffect());
         String details = String.join(", ", pillEntity.getDetail());
 
+        List<PillEntity> inCategory = pillRepository.findByCategory(category);
+        List<PillEntity> otherPills = new ArrayList<>();
+
+        Random random = new Random();
+
+        while (otherPills.size() < 4 && inCategory.size() > 0) {
+            int randomIndex = random.nextInt(inCategory.size());
+
+            PillEntity selectedPill = inCategory.get(randomIndex);
+
+            if (!selectedPill.equals(pillEntity) && !otherPills.contains(selectedPill)) {
+                otherPills.add(selectedPill);
+            }
+        }
+
         model.addAttribute("image", image);
         model.addAttribute("product", product);
         model.addAttribute("company", company);
         model.addAttribute("category", category);
         model.addAttribute("effect", effects);
         model.addAttribute("detail", details);
+        model.addAttribute("otherPills", otherPills);
 
         return "pill";
     }
@@ -253,11 +286,6 @@ public class BoardController {
         return "cholesterol";
     }
 
-    @RequestMapping("/portfolio")
-    public String portfolio() {
-        return "portfolio";
-    }
-
     @RequestMapping("/notice")
     public String notice() {
         return "notice";
@@ -268,16 +296,25 @@ public class BoardController {
         return "helpBoard";
     }
 
-//    @RequestMapping("/my-page")
-//    public String myPage() {
-//        return "myPage";
-//    }
-
     @RequestMapping("/join")
     public String join() {
         return "register";
     }
 
+    @GetMapping("/login")
+    public String login(HttpServletRequest request) {
+        String uri=request.getHeader("Referer");
+
+        if (uri==null) {
+            Map<String, ?> paramMap = RequestContextUtils.getInputFlashMap(request);
+            uri = (String) paramMap.get("referer");
+
+            request.getSession().setAttribute("prevPage", uri);
+        } else {
+            request.getSession().setAttribute("prevPage",uri);
+        }
+        return "login";
+    }
     @RequestMapping("/login")
     public String login() {
         return "login";

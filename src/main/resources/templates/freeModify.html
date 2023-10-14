@@ -163,11 +163,11 @@
 <div class="layout">
   <h2 style="text-align:center">게시글 수정</h2>
   <hr />
-  <form class="write-form" th:action="@{/help/update/{id}(id=${view.id})}" method="post" onsubmit="showConfirm(event)">
+  <form class="write-form" th:action="@{/free/update/{id}(id=${view.id})}" method="post" onsubmit="showConfirm(event)">
     <input class="title-modify" name="title" type="text" th:value="${view.title}" required>
     <textarea class="content-modify" name="content" th:text="${view.content}" required></textarea>
     <div class="button-container">
-    <a th:href="@{/help/view(id=${view.id})}" class="write-retry">돌아가기</a>
+    <a th:href="@{/free/view(id=${view.id})}" class="write-retry">돌아가기</a>
     <button class="write-submit" type="submit">수정</button>
     </div>
   </form>

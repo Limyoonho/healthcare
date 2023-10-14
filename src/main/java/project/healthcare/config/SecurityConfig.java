@@ -23,7 +23,7 @@ public class SecurityConfig {
     private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/css/**","/img/**");
+        return (web) -> web.ignoring().requestMatchers("/css/**","/img/**","/js/**");
     }
 
     @Bean
@@ -31,7 +31,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(
                         authorize-> authorize
-                                .requestMatchers("/","/pill","/health-map","/notice","/map","/search-page","/category/**","/login","/join","/user/save").permitAll()
+                                .requestMatchers("/","/notice/**","/anonyhealth","/pill","/health-map","/notice","/free/**","/map","/search-page","/category/**","/login","/join","/user/**","/error").permitAll()
                                 .anyRequest().authenticated()
                 );
         http

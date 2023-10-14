@@ -7,17 +7,23 @@ import org.springframework.stereotype.Service;
 import project.healthcare.entity.Help;
 import project.healthcare.repository.HelpRepository;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class HelpService {
     @Autowired
     private HelpRepository helpRepository;
 
+    @Autowired
+    private UserService userService;
+
     //글 작성 처리
     public void write(Help help){
-        help.setCreate_date(new Date(System.currentTimeMillis())); // 현재 시간을 작성일자로 설정
+        String localTime=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        help.setCreate_date(localTime); // 현재 시간을 작성일자로 설정
         help.setView_count(0);
+        help.setWrite_user(userService.getCurrentUser().getNickName());
         helpRepository.save(help);
     }
 
@@ -30,12 +36,16 @@ public class HelpService {
         return helpRepository.findByTitleContaining(searchKeyword, pageable);
     }
 
+    public Help helpId(Integer id) {
+        Help help = helpRepository.findById(id).orElse(null);
+        return help;
+    }
     //글 상세 페이지
     public Help helpView(Integer id){
         Help help = helpRepository.findById(id).orElse(null);
         if (help != null) {
             if (help.getView_count() == null) {
-                help.setView_count(1); // 초기 조회수 설정
+                help.setView_count(0); // 초기 조회수 설정
             } else {
                 help.setView_count(help.getView_count() + 1); // 조회수 증가
             }
@@ -48,4 +58,13 @@ public class HelpService {
         helpRepository.deleteById(id);
     }
 
+    public void helpModify(Help help) {
+        help.setTitle(help.getTitle());
+        help.setContent(help.getContent());
+        helpRepository.save(help);
+    }
+    public void getHelpWriter(Integer id) {
+        Help help=helpRepository.findById(id).orElse(null);
+        help.setWrite_user(help.getWrite_user());
+    }
 }

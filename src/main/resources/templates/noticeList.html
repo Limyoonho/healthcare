@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html
-        lang="en"
-        data-bs-theme="auto"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta charset="UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="" />
-    <title>Intestine</title>
+    <title>Notice Board</title>
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/Logo.png" />
@@ -22,12 +17,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/boardList.css?after" rel="stylesheet" />
 </head>
+<style>
 
-<th:block>
-    <script th:src="@{http://code.jquery.com/jquery.js}"></script>
-</th:block>
-
+</style>
 <body>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -108,52 +102,63 @@
         </div>
     </div>
 </nav>
-
-<main id="mid">
-
-    <section class="py-5 text-center container" style="margin-top: 80px;">
-        <div class="row py-lg-5">
-            <h2 class="search-title-text fw-bolder">장 건강 관련 영양제</h2>
+<div class="layout">
+    <div class="tt">
+        <h1 class="tt1">공지사항</h1>
+        <span class="tt2">사이트 공지 올라오는 게시판</span>
+        <div class="search-form">
+            <form th:action="@{/notice/list}" method="get">
+                <input type="text" name="searchKeyword">
+                <button class="search-button" type="submit">검색</button>
+            </form>
         </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div th:if="${pillList.isEmpty()}">
-                <p>검색 결과 없음</p>
+    </div>
+    <table class="table123">
+        <thead>
+        <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+            <th>조회수</th>
+            <th>작성 일자</th>
+            <th>작성자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="notice : ${list}">
+            <td class="table-number" th:text="${notice.id}">1</td>
+            <td><a th:text="${notice.title}" th:href="@{/notice/view(id=${notice.id})}"></a></td>
+            <td th:text="${notice.view_count}"></td>
+            <td th:text="${notice.create_date}"></td>
+            <td th:text="${notice.write_user}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="write-pro">
+        <a sec:authorize="isAuthenticated()" th:if="${user.userAuth.toString().equals('ADMIN')}" th:href="@{/notice-board}" class="write-button">글쓰기</a>
+    </div>
+</div>
+<div class="paging">
+    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <a th:if="${page != nowPage}" th:href="@{/notice/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+        <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
+    </th:block>
+</div>
+<footer class="footer py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-lg-start">COPYRIGHT &copy; 2023. TAKE CARE. ALL RIGHTS RESERVED.</div>
+            <div class="col-lg-4 my-3 my-lg-0">
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <div th:unless="${pillList.isEmpty()}" class="row row-cols-1 row-cols-md-3 g-4">
-                <div th:each="pill, iterStat : ${pillList}" class="col">
-                    <div class="card shadow-sm">
-                        <img th:src="${pill.getImage()}" onerror="this.src='/img/default-image.png'" width="100%" height="225" style="object-fit: cover;
-                border-radius: 5px 5px 0px 0px;">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${pill.getProduct()}"></h5>
-                            <p class="card-text" th:text="${pill.getCompany()}"></p>
-                            <div class="justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <form method="GET" action="/pill">
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary" name="product" th:value="${pill.getProduct()}" th:text="View"></button>
-                                        <input type="hidden" name="company" th:value="${pill.getCompany()}" />
-                                        <input type="hidden" name="effect" th:value="${pill.getEffect()}" />
-                                        <input type="hidden" name="detail" th:value="${pill.getDetail()}" />
-                                        <input type="hidden" name="category" th:value="${pill.getCategory()}" />
-                                        <input type="hidden" name="image" th:value="${pill.getImage()}" />
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- and start a new row -->
-                    <div th:if="${iterStat.count % 3 == 0 or iterStat.last}" class="w-100"></div>
-                </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="link-dark text-decoration-none me-3" href="#">Privacy Policy</a>
+                <a class="link-dark text-decoration-none" href="javascript:void(0);" onclick="scrollToTop();">Back to top</a>
             </div>
         </div>
     </div>
-
-</main>
-
+</footer>
 <script src="/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

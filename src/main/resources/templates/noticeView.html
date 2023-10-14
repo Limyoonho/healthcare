@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html
-        lang="en"
-        data-bs-theme="auto"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta charset="UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="" />
-    <title>Intestine</title>
+    <title th:text="${view.title}"></title>
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/Logo.png" />
@@ -22,11 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
-</head>
+    <link href="/css/boardView.css" rel="stylesheet" />
 
-<th:block>
-    <script th:src="@{http://code.jquery.com/jquery.js}"></script>
-</th:block>
+</head>
 
 <body>
 <!-- Navigation-->
@@ -42,6 +35,7 @@
                 aria-controls="navbarResponsive"
                 aria-expanded="false"
                 aria-label="Toggle navigation">
+            Menu
             <i class="fas fa-bars ms-1"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
@@ -108,52 +102,76 @@
         </div>
     </div>
 </nav>
-
-<main id="mid">
-
-    <section class="py-5 text-center container" style="margin-top: 80px;">
-        <div class="row py-lg-5">
-            <h2 class="search-title-text fw-bolder">장 건강 관련 영양제</h2>
+    <div class="container33">
+        <div class="card">
+            <h1 class="details">게시글 상세보기</h1>
+            <hr>
+            <div class="card-header">
+                <table class="card-table">
+                <tr class="notice-viewIng">
+                    <th>제목</th>
+                    <td th:text="${view.title}">제목입니다.</td>
+                </tr>
+                    <tr class="notice-viewIng">
+                        <th>작성자</th>
+                        <td th:text="${view.write_user}"></td>
+                    </tr>
+                <tr class="notice-viewIng">
+                    <th>작성일자</th>
+                    <td th:text="${view.create_date}"></td>
+                </tr>
+                <tr class="notice-viewIng">
+                    <th>조회수</th>
+                    <td th:text="${view.view_count}"></td>
+                </tr>
+                <tr class="notice-viewIng">
+                    <th>내용</th>
+                    <td th:text="${view.content}">내용이 들어 갈 부분 입니다.</td>
+                </tr>
+                </table>
+            </div>
         </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div th:if="${pillList.isEmpty()}">
-                <p>검색 결과 없음</p>
-            </div>
-            <div th:unless="${pillList.isEmpty()}" class="row row-cols-1 row-cols-md-3 g-4">
-                <div th:each="pill, iterStat : ${pillList}" class="col">
-                    <div class="card shadow-sm">
-                        <img th:src="${pill.getImage()}" onerror="this.src='/img/default-image.png'" width="100%" height="225" style="object-fit: cover;
-                border-radius: 5px 5px 0px 0px;">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${pill.getProduct()}"></h5>
-                            <p class="card-text" th:text="${pill.getCompany()}"></p>
-                            <div class="justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <form method="GET" action="/pill">
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary" name="product" th:value="${pill.getProduct()}" th:text="View"></button>
-                                        <input type="hidden" name="company" th:value="${pill.getCompany()}" />
-                                        <input type="hidden" name="effect" th:value="${pill.getEffect()}" />
-                                        <input type="hidden" name="detail" th:value="${pill.getDetail()}" />
-                                        <input type="hidden" name="category" th:value="${pill.getCategory()}" />
-                                        <input type="hidden" name="image" th:value="${pill.getImage()}" />
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- and start a new row -->
-                    <div th:if="${iterStat.count % 3 == 0 or iterStat.last}" class="w-100"></div>
-                </div>
-            </div>
+        <div class="card-footer">
+            <a sec:authorize="isAuthenticated()" th:if="${user.nickName}==${view.write_user} or ${user.userAuth.toString().equals('ADMIN')}" class="go" th:href="@{/notice/delete(id=${view.id})}" onclick="return showConfirm('삭제 하시겠습니까?')">글 삭제</a>
+            <a sec:authorize="isAuthenticated()"th:if="${user.nickName}==${view.write_user} or ${user.userAuth.toString().equals('ADMIN')}" class="go" th:href="@{/notice/modify/{id}(id= ${view.id})}">수정</a>
+            <a class="go" th:href="@{/notice/list}">목록으로</a>
         </div>
     </div>
 
-</main>
-
+<script>
+    function showConfirm(message) {
+        var result = confirm(message);
+        if(result == true){
+            alert("삭제 되었습니다");
+        }else{
+            return result;
+        }
+    }
+</script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<footer class="footer py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-lg-start">COPYRIGHT &copy; 2023. TAKE CARE. ALL RIGHTS RESERVED.</div>
+            <div class="col-lg-4 my-3 my-lg-0">
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="link-dark text-decoration-none me-3" href="#">Privacy Policy</a>
+                <a class="link-dark text-decoration-none" href="javascript:void(0);" onclick="scrollToTop();">Back to top</a>
+            </div>
+        </div>
+    </div>
+</footer>
 <script src="/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

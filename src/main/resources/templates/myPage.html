@@ -1,120 +1,101 @@
 <!DOCTYPE html>
-    <html
-            lang="en"
-            data-bs-theme="auto"
-            xmlns:th="http://www.thymeleaf.org"
-            xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-    >
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="">
+    <meta name="author" content="" />
+    <title>My Page</title>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="">
-        <meta name="author" content="" />
-        <title>My Page</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="img/Logo.png" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/main.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center; /* 페이지 가운데 정렬을 위해 추가 */
+        }
 
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="img/Logo.png" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/main.css" rel="stylesheet" />
-    </head>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left; /* 내용은 왼쪽 정렬 유지 */
+        }
 
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="/img/Logo.png" alt="TAKE CARE">
-            </a>
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarResponsive"
-                    aria-controls="navbarResponsive"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <i class="fas fa-bars ms-1"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <button class="btn btn-dark dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            카테고리
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="/category/eyes">눈</a></li>
-                            <li><a class="dropdown-item" href="/category/skincare">피부</a></li>
-                            <li><a class="dropdown-item" href="/category/fat">체지방</a></li>
-                            <li><a class="dropdown-item" href="/category/blood">혈관/혈액 순환</a></li>
-                            <li><a class="dropdown-item" href="/category/intestine">장</a></li>
-                            <li><a class="dropdown-item" href="/category/sleep">스트레스/수면</a></li>
-                            <li><a class="dropdown-item" href="/category/cholesterol">콜레스테롤</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <form class="d-flex" role="search" method="get" action="/search-page">
-                <input
-                        class="search-control"
-                        type="search"
-                        placeholder="검색어를 입력해주세요"
-                        aria-label="Search"
-                        name="query"
-                        th:value="${query}">
-                <button class="search-btn" type="submit" onclick="location.herf='/search-page?query=${query}'">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         fill="currentColor"
-                         class="bi bi-search"
-                         viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </button>
-            </form>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/notice">Notice</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
-                    </li>
-                </ul>
+        .section-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* 내용 스타일링 추가 */
+        .section-container h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .section-container p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        /* 버튼 스타일링 추가 */
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <!-- ... 네비게이션 코드 ... -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="section-container">
+                <h1>내 정보</h1>
+                <p><strong>아이디:</strong> <span th:text="${user.userId}"></span></p>
+                <p><strong>이름:</strong> <span th:text="${user.uName}"></span></p>
+                <p><strong>닉네임:</strong> <span th:text="${user.nickName}"></span></p>
+                <p><strong>회원 등급:</strong> <span th:text="${user.userAuth}"></span></p>
+                <p><strong>회원가입 날짜:</strong> <span th:text="${user.appendDate}"></span></p>
+                <p><strong>최종 정보 수정 날짜:</strong> <span th:text="${user.updateDate}"></span></p>
+                <button class="btn btn-primary">비밀번호 바꾸기</button>
+                <button class="btn btn-primary">이름 바꾸기</button>
+                <button class="btn btn-primary">닉네임 바꾸기</button>
             </div>
         </div>
-    </nav>
-<body><h1>User Profile</h1>
-<p>USER ID: <span th:text="${user.userId}"></span></p>
-<p>USER Name: <span th:text="${user.uName}"></span></p>
-<p>회원 등급: <span th:text="${user.userAuth}"></span></p>
-<p>회원가입 날짜: <span th:text="${user.appendDate}"></span></p>
-<p>최종 정보 수정 날짜: <span th:text="${user.updateDate}"></span></p>
-<button class="btn btn-primary" onclick="location.href='/mypage/changepw'">비밀번호 바꾸기</button>
-<button class="btn btn-primary" onclick="location.href='/mypage/changename'">이름 바꾸기</button>
-<h1>설문 기록</h1>
-<p>연령대 : <span th:text="${surveyResult.age_group}"></span></p>
-<p>일주일 영양제 복용 횟수 : <span th:text="${surveyResult.nutrient_frequency}"></span></p>
-<p>영양제 필요 부위 : <span th:text="${surveyResult.discomfort_area}"></span></p>
-<p>원하는 기능 : <span th:text="${surveyResult.desired_function}"></span></p>
+        <div class="col-md-6">
+            <div class="section-container">
+                <h1>설문 기록</h1>
+                <p><strong>연령대:</strong> <span th:text="${surveyResult.age_group}"></span></p>
+                <p><strong>일주일 영양제 복용 횟수:</strong> <span th:text="${surveyResult.nutrient_frequency}"></span></p>
+                <p><strong>영양제 필요 부위:</strong> <span th:text="${surveyResult.discomfort_area}"></span></p>
+                <p><strong>원하는 기능:</strong> <span th:text="${surveyResult.desired_function}"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

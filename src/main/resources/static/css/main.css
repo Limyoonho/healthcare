@@ -626,8 +626,9 @@ progress {
 }
 
 .img-fluid {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  border-radius : 10px;
 }
 
 .img-thumbnail {
@@ -702,6 +703,7 @@ progress {
   margin-top: calc(-1 * var(--bs-gutter-y));
   margin-right: calc(-0.5 * var(--bs-gutter-x));
   margin-left: calc(-0.5 * var(--bs-gutter-x));
+  background-color:rgba(255,255,255,0.1);
 }
 .row > * {
   flex-shrink: 0;
@@ -979,6 +981,7 @@ progress {
   .col-sm-6 {
     flex: 0 0 auto;
     width: 50%;
+
   }
   .col-sm-7 {
     flex: 0 0 auto;
@@ -1147,7 +1150,6 @@ progress {
   }
   .col-md-6 {
     flex: 0 0 auto;
-    width: 50%;
   }
   .col-md-7 {
     flex: 0 0 auto;
@@ -7125,6 +7127,21 @@ textarea.form-control-lg {
   bottom: 100% !important;
 }
 
+.start-button {
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+/* Optional: Add hover effect */
+.start-button:hover {
+  background-color: #333;
+}
+
+
 .start-0 {
   left: 0 !important;
 }
@@ -11006,11 +11023,17 @@ header.masthead {
   max-width: 26rem;
   margin-left: auto;
   margin-right: auto;
+  border: 0.9px gainsboro;
+  border-style : groove;
+  border-radius : 10px;
+  box-shadow: 5px 5px 5px gray;
+
 }
 #portfolio .portfolio-item .portfolio-link {
   position: relative;
   display: block;
   margin: 0 auto;
+  border-bottom: 1px solid;
 }
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
   display: flex;
@@ -11022,6 +11045,7 @@ header.masthead {
   justify-content: center;
   opacity: 0;
   transition: opacity ease-in-out 0.25s;
+  border-radius : 10px;
 }
 #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
   font-size: 1.25rem;
@@ -11034,6 +11058,7 @@ header.masthead {
   padding: 1.5rem;
   text-align: center;
   background-color: #fff;
+  border-radius : 10px;
 }
 #portfolio .portfolio-item .portfolio-caption .portfolio-caption-heading {
   font-size: 1.5rem;
@@ -11371,3 +11396,5 @@ section#contact form#contactForm :-ms-input-placeholder {
   margin-left: 0%;
 
 }
+
+
