@@ -17,107 +17,184 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
 </head>
+<style>
+    #changePasswordForm {
+        width: 400px;
+        margin: 0 auto;
+        margin-top: 4%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        box-sizing: border-box; /* Include padding and border in the width */
+    }
+
+    /* Style the form labels */
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    /* Style the input fields */
+    .form-group input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; /* Include padding and border in the width */
+    }
+
+    /* Style the error message container */
+    #errorContainer {
+        color: #ff0000;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    /* Style the submit button */
+    #changePassword {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box; /* 패딩 및 테두리를 너비에 포함 */
+    }
+
+    /* 초기에 비활성화된 버튼 스타일 */
+    #changePassword:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* 버튼에 호버 효과 스타일 */
+    #changePassword:hover {
+        background-color: #45a049;
+    }
+
+    .red-text {
+        color: red;
+    }
+
+    body {
+        background-color: #FFF0BA;
+    }
+</style>
 <body id="page-top">
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            TAKE CARE
-        </a>
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <button class="btn btn-dark dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        카테고리
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="/category/eyes">눈</a></li>
-                        <li><a class="dropdown-item" href="/category/skincare">피부</a></li>
-                        <li><a class="dropdown-item" href="/category/fat">체지방</a></li>
-                        <li><a class="dropdown-item" href="/category/blood">혈관/혈액 순환</a></li>
-                        <li><a class="dropdown-item" href="/category/intestine">장</a></li>
-                        <li><a class="dropdown-item" href="/category/sleep">스트레스/수면</a></li>
-                        <li><a class="dropdown-item" href="/category/cholesterol">콜레스테롤</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <form class="d-flex" role="search" method="get" action="/search-page">
-            <input
-                    class="search-control"
-                    type="search"
-                    placeholder="검색어를 입력해주세요"
-                    aria-label="Search"
-                    name="query"
-                    th:value="${query}">
-            <button class="search-btn" type="submit" onclick="location.herf='/search-page?query=${query}'">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     fill="currentColor"
-                     class="bi bi-search"
-                     viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                TAKE CARE
+            </a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars ms-1"></i>
             </button>
-        </form>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/notice/list">Notice</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/free/list">Free</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-dark dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            카테고리
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/category/eyes">눈</a></li>
+                            <li><a class="dropdown-item" href="/category/skincare">피부</a></li>
+                            <li><a class="dropdown-item" href="/category/fat">체지방</a></li>
+                            <li><a class="dropdown-item" href="/category/blood">혈관/혈액 순환</a></li>
+                            <li><a class="dropdown-item" href="/category/intestine">장</a></li>
+                            <li><a class="dropdown-item" href="/category/sleep">스트레스/수면</a></li>
+                            <li><a class="dropdown-item" href="/category/cholesterol">콜레스테롤</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-flex" role="search" method="get" action="/search-page">
+                <input
+                        class="search-control"
+                        type="search"
+                        placeholder="검색어를 입력해주세요"
+                        aria-label="Search"
+                        name="query"
+                        th:value="${query}">
+                <button class="search-btn" type="submit" onclick="location.herf='/search-page?query=${query}'">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         fill="currentColor"
+                         class="bi bi-search"
+                         viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </form>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/notice/list">Notice</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/free/list">Free</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-<form th:action="@{/mypage/changepw}" method="post" th:object="${ChangeForm}">
-    <!-- 현재 비밀번호 입력 -->
-    <div>
-        <label for="currentPassword">현재 비밀번호: </label>
-        <input type="password" id="currentPassword" name="currentPassword" th:field="*{currentPassword}" required>
-    </div>
+    </nav>
+    <form id="changePasswordForm" th:action="@{/mypage/changepw}" method="post" th:object="${ChangeForm}">
+        <div class="form-heading">
+            <h2>비밀번호 변경</h2>
+            <p>
+                안전한 비밀번호로 내 정보를 보호하세요.<br>
+                <span class="red-text">다른 아이디/사이트에서 사용한 적 없는 비밀번호<br>
+                    이전에 사용한 적 없는 비밀번호</span>가 안전합니다.
+            </p>
+        </div>
+        <!-- 현재 비밀번호 입력 -->
+        <div class="form-group">
+            <label for="currentPassword">현재 비밀번호: </label>
+            <input type="password" id="currentPassword" name="currentPassword" th:field="*{currentPassword}" required>
+        </div>
 
-    <!-- 새 비밀번호 입력 -->
-    <div>
-        <label for="newPassword">새 비밀번호: </label>
-        <input type="password" id="newPassword" name="newPassword" th:field="*{newPassword}" required>
-    </div>
+        <!-- 새 비밀번호 입력 -->
+        <div class="form-group">
+            <label for="newPassword">새 비밀번호: </label>
+            <input type="password" id="newPassword" name="newPassword" th:field="*{newPassword}" required>
+        </div>
 
-    <!-- 새 비밀번호 확인 -->
-    <div>
-        <label for="confirmNewPassword">새 비밀번호 확인: </label>
-        <input type="password" id="confirmNewPassword" name="confirmNewPassword" th:field="*{confirmNewPassword}" required>
-    </div>
-    <p id="errorContainer" class="error-message"></p>
-    <button type="submit" id="changePassword" disabled>비밀번호 변경</button>
-</form>
+        <!-- 새 비밀번호 확인 -->
+        <div class="form-group">
+            <label for="confirmNewPassword">새 비밀번호 확인: </label>
+            <input type="password" id="confirmNewPassword" name="confirmNewPassword" th:field="*{confirmNewPassword}" required>
+        </div>
+        <p id="errorContainer" class="error-message"></p>
+        <button type="submit" id="changePassword" disabled>비밀번호 변경</button>
+    </form>
+</body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -162,5 +239,4 @@
         }
     });
 </script>
-</body>
 </html>

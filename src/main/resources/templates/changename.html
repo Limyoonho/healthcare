@@ -17,6 +17,43 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
 </head>
+<style>
+    body {
+        background-color: beige;
+    }
+
+    #changeNameForm {
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 4%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    #changeName {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box; /* 패딩 및 테두리를 너비에 포함 */
+    }
+
+    /* 버튼에 호버 효과 스타일 */
+    #changeName:hover {
+        background-color: #45a049;
+    }
+</style>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -97,12 +134,19 @@
         </div>
     </div>
 </nav>
-<form th:action="@{/mypage/changename}" method="post" th:object="${ChangeForm}">
+<form th:action="@{/mypage/changename}" method="post" th:object="${ChangeForm}" id="changeNameForm">
+    <div class="form-heading">
+        <h2>이름 변경</h2>
+        <p>
+            이름은 계속 변경 가능합니다.
+        </p>
+    </div>
     <div class="form-group">
         <label for="newUsername">새 이름</label>
         <input type="text" id="newUsername" name="newUsername" class="form-control" required />
     </div>
-    <button type="submit" class="btn btn-primary">이름 변경</button>
+    <p></p>
+    <button type="submit" id="changeName" class="btn btn-primary">이름 변경</button>
 </form>
 </body>
 </html>

@@ -1,16 +1,28 @@
-
-.join-container{
-    background-color : #FFF0BA;
-    height:950px;
-    position : relative;
+.form-signin {
+    background-color: #FFF0BA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-.join-container1{
-    background-color : white;
-    margin : auto;
-    position : absolute;
-    top : 10%;
 
+.login-container {
+    background-color: #FFF0BA;
+    height: 650px;
+    position: relative;
+    top: 50%; /* 중앙 정렬을 위해 50%로 수정 */
+    transform: translateY(-50%); /* 중앙 정렬 */
 }
+
+.login-container1 {
+    background-color: white;
+    margin: auto;
+    width: 80%; /* 내용을 중앙에 정렬하기 위한 폭 수정 */
+    height: 750px; /* 원래 높이로 복구 */
+    box-shadow: 0 0 14px darkcyan;
+    border-radius: 12px;
+}
+
 .pill-img{
     width:100%;
     height:100%;
@@ -129,16 +141,17 @@ display: inline-block;
 }
 @media only screen and (min-width: 768px) {
     .join-container1{
-        width  : 950px;
-        height : 750px;
-        background-color : white;
-        margin-left : 17%;
-        position : absolute;
-        top : 10%;
-        box-shadow : 0 0 14px darkcyan;
+        width: 950px;
+        height: 750px;
+        background-color: white;
+        margin: 0 auto; /* 좌우 중앙 정렬 */
+        display: block;
+        top: 10%;
+        box-shadow: 0 0 14px darkcyan;
         border-radius: 12px;
     }
-    }
+}
+
 /* Style for the error message */
 #userIdDuplicateMessage, #nickNameDuplicateMessage, #passwordMatchMessage {
     font-size: 14px;

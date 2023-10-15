@@ -18,95 +18,182 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/main.css" rel="stylesheet" />
 </head>
+<style>
+    #changeNicknameForm {
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 4%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    /* 레이블 및 입력 필드 스타일 */
+    .form-group input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    /* 에러 메시지 스타일 */
+    .error-message {
+        color: #ff0000;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    /* "닉네임 중복 확인" 버튼 스타일 */
+    #checkNicknameButton {
+        background-color: #4CAF50;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    /* 초기에 비활성화된 "닉네임 변경" 버튼 스타일 */
+    #changeNickname:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* "닉네임 변경" 버튼 스타일 */
+    #changeNickname {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Hover 효과 */
+    .btn:hover, #checkNicknameButton:hover, #changeNickname:hover {
+        background-color: #45a049;
+    }
+
+    .red-text {
+        color: red;
+    }
+
+    body {
+        background-color: #FFF0BA;
+    }
+</style>
 <body id="page-top">
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            TAKE CARE
-        </a>
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <button class="btn btn-dark dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        카테고리
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="/category/eyes">눈</a></li>
-                        <li><a class="dropdown-item" href="/category/skincare">피부</a></li>
-                        <li><a class="dropdown-item" href="/category/fat">체지방</a></li>
-                        <li><a class="dropdown-item" href="/category/blood">혈관/혈액 순환</a></li>
-                        <li><a class="dropdown-item" href="/category/intestine">장</a></li>
-                        <li><a class="dropdown-item" href="/category/sleep">스트레스/수면</a></li>
-                        <li><a class="dropdown-item" href="/category/cholesterol">콜레스테롤</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <form class="d-flex" role="search" method="get" action="/search-page">
-            <input
-                    class="search-control"
-                    type="search"
-                    placeholder="검색어를 입력해주세요"
-                    aria-label="Search"
-                    name="query"
-                    th:value="${query}">
-            <button class="search-btn" type="submit" onclick="location.herf='/search-page?query=${query}'">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     fill="currentColor"
-                     class="bi bi-search"
-                     viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                TAKE CARE
+            </a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars ms-1"></i>
             </button>
-        </form>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/notice/list">Notice</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/free/list">Free</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-dark dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            카테고리
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/category/eyes">눈</a></li>
+                            <li><a class="dropdown-item" href="/category/skincare">피부</a></li>
+                            <li><a class="dropdown-item" href="/category/fat">체지방</a></li>
+                            <li><a class="dropdown-item" href="/category/blood">혈관/혈액 순환</a></li>
+                            <li><a class="dropdown-item" href="/category/intestine">장</a></li>
+                            <li><a class="dropdown-item" href="/category/sleep">스트레스/수면</a></li>
+                            <li><a class="dropdown-item" href="/category/cholesterol">콜레스테롤</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-flex" role="search" method="get" action="/search-page">
+                <input
+                        class="search-control"
+                        type="search"
+                        placeholder="검색어를 입력해주세요"
+                        aria-label="Search"
+                        name="query"
+                        th:value="${query}">
+                <button class="search-btn" type="submit" onclick="location.herf='/search-page?query=${query}'">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         fill="currentColor"
+                         class="bi bi-search"
+                         viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </form>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/notice/list">Notice</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/mypage">Mypage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/free/list">Free</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/help/list">Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAnonymous()" href="/join">Join</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAnonymous()" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-<form th:action="@{/mypage/changenickname}" method="post" th:object="${ChangeForm}">
-    <div class="form-group">
-        <label for="newNickname">새 닉네임</label>
-        <input type="text" id="newNickname" name="newNickname" class="form-control" required />
-        <p id="nickNameDuplicateMessage" class="error-message"></p>
-    </div>
-    <button type="button" id="checkNicknameButton" class="btn btn-primary">닉네임 중복 확인</button>
-    <button type="submit" id="changeNickname" class="btn btn-primary" disabled>닉네임 변경</button>
-</form>
+    </nav>
+    <form th:action="@{/mypage/changenickname}" method="post" th:object="${ChangeForm}" id="changeNicknameForm">
+        <div class="form-heading">
+            <h2>닉네임 변경</h2>
+            <p>
+                닉네임은
+                <span class="red-text">중복이 불가능</span>
+                합니다.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="newNickname">새 닉네임</label>
+            <input type="text" id="newNickname" name="newNickname" class="form-control" required />
+            <p id="nickNameDuplicateMessage" class="error-message"></p>
+        </div>
+        <button type="button" id="checkNicknameButton" class="btn btn-primary">닉네임 중복 확인</button>
+        <button type="submit" id="changeNickname" class="btn btn-primary" disabled>닉네임 변경</button>
+    </form>
+</body>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const nickNameInput = document.getElementById("newNickname");
@@ -156,5 +243,4 @@
         });
     });
 </script>
-</body>
 </html>
